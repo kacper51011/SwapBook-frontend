@@ -1,11 +1,12 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import LoginWindow from "./components/LoginWindow";
+import NavigationBar from "./components/NavigationBar";
 
 function App() {
   return (
     <div className="App">
-      <div>something</div>
+      <NavigationBar />
+      <LoginWindow />
     </div>
   );
 }
