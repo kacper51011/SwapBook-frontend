@@ -7,6 +7,7 @@ import {
   Typography,
   FormGroup,
   FormControlLabel,
+  TextField,
 } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 
@@ -15,8 +16,6 @@ const LoginWindow = () => {
     <Paper
       elevation={4}
       sx={{
-        height: { sm: "200px", lg: "400px" },
-        width: { sm: "200px", lg: "400px" },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -31,19 +30,21 @@ const LoginWindow = () => {
         }}
         variant="h6"
         component="span"
-        mb="30px"
+        pb="30px"
       >
         Sign in to SwapBook
         <LoginIcon />
       </Typography>
       <FormGroup>
-        <Input placeholder="email" sx={{ margin: "5px" }}></Input>
-        <Input placeholder="password" sx={{ margin: "5px" }}></Input>
+        <TextField sx={{ padding: "5px" }}></TextField>
+        <TextField placeholder="password" sx={{ margin: "5px" }}></TextField>
         <FormControlLabel
           control={<Checkbox defaultChecked />}
           label="Remember password"
         />
-        <Button variant="contained">Sign in</Button>
+        <Button variant="contained" size="small">
+          Sign in
+        </Button>
       </FormGroup>
     </Paper>
   );
