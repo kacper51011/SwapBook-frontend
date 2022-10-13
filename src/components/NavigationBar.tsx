@@ -1,10 +1,11 @@
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import AutoStoriesSharpIcon from "@mui/icons-material/AutoStoriesSharp";
 import { NavLink } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import { Stack } from "@mui/system";
 
 const NavigationBar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
     <AppBar position="static">
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -16,12 +17,36 @@ const NavigationBar = () => {
           <Button component={NavLink} to="/about" color="error">
             About us
           </Button>
-          <Button component={NavLink} to="/" color="error">
+          <Button component={NavLink} to="/books" color="error">
             Books for Swap
           </Button>
-          <Button variant="contained" color="error">
-            Sign in
-          </Button>
+          {isLoggedIn && (
+            <Button
+              component={NavLink}
+              to="/"
+              color="error"
+              variant="contained"
+              size="small"
+            >
+              Create Swap Request
+            </Button>
+          )}
+          {!isLoggedIn && (
+            <Button variant="contained" color="error">
+              Sign in
+            </Button>
+          )}
+          {isLoggedIn && (
+            <Button
+              component={NavLink}
+              to="/"
+              variant="contained"
+              color="error"
+              size="small"
+            >
+              Account
+            </Button>
+          )}
         </Stack>
       </Toolbar>
     </AppBar>
