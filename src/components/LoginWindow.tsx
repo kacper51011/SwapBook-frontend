@@ -2,7 +2,6 @@ import React from "react";
 import {
   Paper,
   Button,
-  Input,
   Checkbox,
   Typography,
   FormGroup,
@@ -14,12 +13,14 @@ import LoginIcon from "@mui/icons-material/Login";
 const LoginWindow = () => {
   return (
     <Paper
-      elevation={4}
+      elevation={5}
       sx={{
+        width: { lg: "0.4", md: "0.9" },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        p: "10px",
       }}
     >
       <Typography
@@ -28,7 +29,7 @@ const LoginWindow = () => {
           alignItems: "center",
           flexWrap: "wrap",
         }}
-        variant="h6"
+        variant="h5"
         component="span"
         pb="30px"
       >
