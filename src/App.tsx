@@ -5,11 +5,13 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import AboutUs from "./Pages/AboutUs";
 import BooksForSwapPage from "./Pages/BooksForSwapPage";
-import Book from "./components/Book";
+import BookItem from "./components/BookItem";
 import Account from "./ProtectedPages/Account";
 import MyOffers from "./ProtectedPages/MyOffers";
 import MyRequests from "./ProtectedPages/MyRequests";
 import Messages from "./ProtectedPages/Messages";
+import ProtectedPagesContainer from "./ProtectedPages/ProtectedPagesContainer";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -22,11 +24,14 @@ function App() {
         <Route path="/About" element={<AboutUs />} />
         <Route path="/Books" element={<BooksForSwapPage />}></Route>
         {/*  Protected pages*/}
-        <Route path="/Account" element={<Account />}></Route>
-        <Route path="/MyOffers" element={<MyOffers />}></Route>
-        <Route path="/MyRequests" element={<MyRequests />}></Route>
-        <Route path="/Messages" element={<Messages />}></Route>
+        <Route element={<ProtectedPagesContainer />}>
+          <Route path="/Account" element={<Account />}></Route>
+          <Route path="/MyOffers" element={<MyOffers />}></Route>
+          <Route path="/MyRequests" element={<MyRequests />}></Route>
+          <Route path="/Messages" element={<Messages />}></Route>
+        </Route>
       </Routes>
+      <Footer />
     </div>
   );
 }

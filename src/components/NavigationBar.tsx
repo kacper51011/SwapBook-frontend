@@ -20,6 +20,9 @@ const NavigationBar = () => {
           <Button component={NavLink} to="/books" color="error">
             Books for Swap
           </Button>
+
+          {/* Buttons for for logged in Users */}
+
           {isLoggedIn && (
             <Button
               component={NavLink}
@@ -31,11 +34,6 @@ const NavigationBar = () => {
               Create Swap Request
             </Button>
           )}
-          {!isLoggedIn && (
-            <Button variant="contained" color="error">
-              Sign in
-            </Button>
-          )}
           {isLoggedIn && (
             <Button
               component={NavLink}
@@ -45,6 +43,13 @@ const NavigationBar = () => {
               size="small"
             >
               Account
+            </Button>
+          )}
+          {/* Buttons for not logged users */}
+
+          {!isLoggedIn && (
+            <Button variant="contained" color="error">
+              Sign in
             </Button>
           )}
         </Stack>
