@@ -1,24 +1,36 @@
-import { Card, CardMedia, CardContent, Typography } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Paper } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
 const BookItem = () => {
   return (
-    <Card color="primary.main" sx={{ display: "flex" }}>
+    <Paper
+      elevation={5}
+      sx={{
+        display: "flex",
+        cursor: "pointer",
+      }}
+    >
       <CardMedia component="img" sx={{ width: "0.2" }} />
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <CardContent sx={{ display: "flex" }}>
-          <Typography></Typography>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          width: "0.8",
+        }}
+      >
+        <CardContent sx={{ display: "flex", justifyContent: "flex-start" }}>
+          <Typography>Name of the book</Typography>
         </CardContent>
-        <CardContent sx={{ display: "flex" }}>
-          <Typography></Typography>
+        <CardContent sx={{ display: "flex", justifyContent: "flex-start" }}>
+          <Typography>Categories</Typography>
         </CardContent>
-        <CardContent sx={{ display: "flex" }}>
-          <Typography></Typography>
-          <Typography></Typography>
+        <CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
+          <Typography>sth else </Typography>
+          <Typography>sth else</Typography>
         </CardContent>
       </Box>
-    </Card>
+    </Paper>
   );
 };
 

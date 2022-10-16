@@ -1,13 +1,13 @@
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Link } from "@mui/material";
 import AutoStoriesSharpIcon from "@mui/icons-material/AutoStoriesSharp";
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import { Stack } from "@mui/system";
 
 const NavigationBar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ zIndex: "1000" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography variant="h4" sx={{ display: { xs: "none", sm: "block" } }}>
           SwapBook

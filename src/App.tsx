@@ -17,12 +17,11 @@ function App() {
   return (
     <div className="App">
       <NavigationBar />
-      <LoginWindow />
       <Routes>
         {/* Pages without protection */}
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<AboutUs />} />
-        <Route path="/Books" element={<BooksForSwapPage />}></Route>
+        <Route path="/Books" element={<BooksForSwapPage />} />
         {/*  Protected pages*/}
         <Route element={<ProtectedPagesContainer />}>
           <Route path="/Account" element={<Account />}></Route>

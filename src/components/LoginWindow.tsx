@@ -13,14 +13,14 @@ import LoginIcon from "@mui/icons-material/Login";
 const LoginWindow = () => {
   return (
     <Paper
-      elevation={5}
       sx={{
-        width: { lg: "0.4", md: "0.9" },
+        width: { xs: "0.8", lg: "0.5" },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        p: "10px",
+        paddingTop: "30px",
+        paddingBottom: "20px",
       }}
     >
       <Typography
@@ -37,7 +37,7 @@ const LoginWindow = () => {
         <LoginIcon />
       </Typography>
       <FormGroup>
-        <TextField sx={{ padding: "5px" }}></TextField>
+        <TextField placeholder="email" sx={{ padding: "5px" }}></TextField>
         <TextField placeholder="password" sx={{ margin: "5px" }}></TextField>
         <FormControlLabel
           control={<Checkbox defaultChecked />}
