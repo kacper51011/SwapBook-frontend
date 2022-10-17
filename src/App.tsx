@@ -7,11 +7,13 @@ import AboutUs from "./Pages/AboutUs";
 import BooksForSwapPage from "./Pages/BooksForSwapPage";
 import BookItem from "./components/BookItem";
 import Account from "./ProtectedPages/Account";
-import MyOffers from "./ProtectedPages/MyOffers";
-import MyRequests from "./ProtectedPages/MyRequests";
-import Messages from "./ProtectedPages/Messages";
+import MyRequests from "./ProtectedPages/AccountSubPages/MyRequests";
+import Messages from "./ProtectedPages/AccountSubPages/Messages";
 import ProtectedPagesContainer from "./ProtectedPages/ProtectedPagesContainer";
 import Footer from "./components/Footer";
+import SendMessage from "./ProtectedPages/AccountSubPages/SendMessage";
+import Settings from "./ProtectedPages/AccountSubPages/Settings";
+import Profile from "./ProtectedPages/AccountSubPages/Profile";
 
 function App() {
   return (
@@ -24,10 +26,13 @@ function App() {
         <Route path="/Books" element={<BooksForSwapPage />} />
         {/*  Protected pages*/}
         <Route element={<ProtectedPagesContainer />}>
-          <Route path="/Account" element={<Account />}></Route>
-          <Route path="/MyOffers" element={<MyOffers />}></Route>
-          <Route path="/MyRequests" element={<MyRequests />}></Route>
-          <Route path="/Messages" element={<Messages />}></Route>
+          <Route path="/Account" element={<Account />}>
+            <Route path="MyRequests" element={<MyRequests />}></Route>
+            <Route path="SendMessage" element={<SendMessage />}></Route>
+            <Route path="Messages" element={<Messages />}></Route>
+            <Route path="Settings" element={<Settings />}></Route>
+            <Route path="Profile" element={<Profile />}></Route>
+          </Route>
         </Route>
       </Routes>
       <Footer />
