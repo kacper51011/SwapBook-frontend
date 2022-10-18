@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import SendMessage from "./ProtectedPages/AccountSubPages/SendMessage";
 import Settings from "./ProtectedPages/AccountSubPages/Settings";
 import Profile from "./ProtectedPages/AccountSubPages/Profile";
+import CreateSwapOfferPage from "./ProtectedPages/CreateSwapOfferPage";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="Settings" element={<Settings />}></Route>
             <Route path="Profile" element={<Profile />}></Route>
           </Route>
+          <Route path="/CreateSwapOffer" element={<CreateSwapOfferPage />} />
         </Route>
       </Routes>
       <Footer />

@@ -26,12 +26,12 @@ const NavigationBar = () => {
           {isLoggedIn && (
             <Button
               component={NavLink}
-              to="/"
+              to="/CreateSwapOffer"
               color="error"
               variant="contained"
               size="small"
             >
-              Create Swap Request
+              Create Swap Offer
             </Button>
           )}
           {isLoggedIn && (
