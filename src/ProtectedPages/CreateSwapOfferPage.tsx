@@ -10,12 +10,26 @@ import {
   MenuItem,
   Button,
 } from "@mui/material";
+import { useFormik, FormikProps } from "formik";
 import categories from "../data/categories";
+import {
+  offerInitialValues,
+  offerValidationSchema,
+  iofferInitialValues,
+} from "../data/CreateSwapOfferValidation";
 
 const CreateSwapOfferPage = () => {
+  const offerFormik: FormikProps<iofferInitialValues> = useFormik({
+    initialValues: { ...offerInitialValues },
+    validationSchema: offerValidationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
     // name, category, swap for, description, swapPlace, author of the book, image,
-    <form>
+    <form onSubmit={offerFormik.handleSubmit}>
       <Container
         sx={{
           minHeight: "100vh",
@@ -45,8 +59,19 @@ const CreateSwapOfferPage = () => {
           {/* input for name of the book -> */}
 
           <TextField
-            name="bookName"
-            id="bookName-textfield"
+            value={offerFormik.values.nameOfTheBook}
+            onChange={offerFormik.handleChange}
+            error={
+              offerFormik.touched.nameOfTheBook &&
+              Boolean(offerFormik.errors.nameOfTheBook)
+            }
+            helperText={
+              offerFormik.touched.nameOfTheBook &&
+              offerFormik.errors.nameOfTheBook
+            }
+            onBlur={offerFormik.handleBlur}
+            name="nameOfTheBook"
+            id="nameOfTheBook"
             label="Enter name of the book"
             variant="outlined"
             sx={{ width: "80%", marginBottom: "2%" }}
@@ -62,9 +87,23 @@ const CreateSwapOfferPage = () => {
               <InputLabel variant="standard" htmlFor="categoryOfABook">
                 Category
               </InputLabel>
-              <Select name="age" id="categoryOfABook">
-                {categories.map<React.ReactNode>((category) => {
-                  return <MenuItem value={category}>{category}</MenuItem>;
+              <Select
+                name="category"
+                id="category"
+                value={offerFormik.values.category}
+                error={
+                  offerFormik.touched.category &&
+                  Boolean(offerFormik.errors.category)
+                }
+                onBlur={offerFormik.handleBlur}
+                onChange={offerFormik.handleChange}
+              >
+                {categories.map<React.ReactNode>((category, index) => {
+                  return (
+                    <MenuItem key={index} value={category}>
+                      {category}
+                    </MenuItem>
+                  );
                 })}
               </Select>
             </FormControl>
@@ -72,8 +111,17 @@ const CreateSwapOfferPage = () => {
             {/* input for author */}
 
             <TextField
-              name="bookAuthor"
-              id="bookAuthor-textfield"
+              value={offerFormik.values.author}
+              onChange={offerFormik.handleChange}
+              onBlur={offerFormik.handleBlur}
+              error={
+                offerFormik.touched.author && Boolean(offerFormik.errors.author)
+              }
+              helperText={
+                offerFormik.touched.author && offerFormik.errors.author
+              }
+              name="author"
+              id="author"
               label="Author of the book"
               variant="outlined"
               sx={{ width: { xs: "100%", sm: "33%" } }}
@@ -83,9 +131,20 @@ const CreateSwapOfferPage = () => {
                   so I can anyway validate random inputs with Yup) */}
 
             <TextField
+              value={offerFormik.values.releaseDate}
+              onChange={offerFormik.handleChange}
+              onBlur={offerFormik.handleBlur}
+              error={
+                offerFormik.touched.releaseDate &&
+                Boolean(offerFormik.errors.releaseDate)
+              }
+              helperText={
+                offerFormik.touched.releaseDate &&
+                offerFormik.errors.releaseDate
+              }
               type="number"
-              name="bookRelease"
-              id="bookName-textfield"
+              name="releaseDate"
+              id="releaseDate"
               label="Book release date"
               variant="outlined"
               sx={{ width: { xs: "100%", sm: "33%" } }}
@@ -100,24 +159,57 @@ const CreateSwapOfferPage = () => {
             {/* localization for the swap */}
             <TextField
               fullWidth
+              value={offerFormik.values.swapLocalization}
+              onChange={offerFormik.handleChange}
+              onBlur={offerFormik.handleBlur}
+              error={
+                offerFormik.touched.swapLocalization &&
+                Boolean(offerFormik.errors.swapLocalization)
+              }
+              helperText={
+                offerFormik.touched.swapLocalization &&
+                offerFormik.errors.swapLocalization
+              }
               name="swapLocalization"
-              id="swapLocalization-textfield"
+              id="swapLocalization"
               label="Swap localization"
               variant="outlined"
             ></TextField>
             {/* books somebody want to have */}
             <TextField
               fullWidth
-              name="bookAuthor"
-              id="bookExchange-textfield"
+              value={offerFormik.values.booksInterestedFor}
+              onChange={offerFormik.handleChange}
+              onBlur={offerFormik.handleBlur}
+              error={
+                offerFormik.touched.booksInterestedFor &&
+                Boolean(offerFormik.errors.booksInterestedFor)
+              }
+              helperText={
+                offerFormik.touched.booksInterestedFor &&
+                offerFormik.errors.booksInterestedFor
+              }
+              name="booksInterestedFor"
+              id="booksInterestedFor"
               label="Books that you are interested in for"
               variant="outlined"
             ></TextField>
 
             {/* description */}
             <TextField
+              value={offerFormik.values.description}
+              onChange={offerFormik.handleChange}
+              onBlur={offerFormik.handleBlur}
+              error={
+                offerFormik.touched.description &&
+                Boolean(offerFormik.errors.description)
+              }
+              helperText={
+                offerFormik.touched.description &&
+                offerFormik.errors.description
+              }
               name="description"
-              id="description-textfield"
+              id="description"
               label="Description"
               variant="outlined"
               multiline
@@ -126,7 +218,7 @@ const CreateSwapOfferPage = () => {
             ></TextField>
           </Stack>
 
-          <Button variant="contained" size="large">
+          <Button type="submit" variant="contained" size="large">
             Create swap offer
           </Button>
         </Paper>

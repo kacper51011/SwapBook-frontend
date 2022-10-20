@@ -1,6 +1,5 @@
-import { Card, CardMedia, CardContent, Typography, Paper } from "@mui/material";
+import { CardMedia, CardContent, Typography, Paper } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
 
 const BookItem = () => {
   return (

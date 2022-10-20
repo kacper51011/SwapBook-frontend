@@ -1,4 +1,6 @@
-interface offerInitialValues {
+import * as yup from "yup"
+
+interface iofferInitialValues {
     nameOfTheBook: string
     category: string
     author: string
@@ -9,7 +11,7 @@ interface offerInitialValues {
 
 }
 
-const initialValues: offerInitialValues = {
+const offerInitialValues: iofferInitialValues = {
     nameOfTheBook: "",
     category: "",
     author: "",
@@ -19,5 +21,27 @@ const initialValues: offerInitialValues = {
     description: ""
 }
 
+// functions and consts to make validation schema more simple
 
-export default initialValues
+const requiredError: string = "This field is required"
+const dateError: string = "Write correct date of release"
+const minError = (characters: number) => {
+    return `this field require minimum ${characters} characters`
+}
+const maxError = (characters: number) => {
+    return `this field require maximum ${characters} characters`
+}
+
+
+const offerValidationSchema = yup.object({
+    nameOfTheBook: yup.string().required(requiredError).min(5, minError(5)).max(50,maxError(50)),
+    category: yup.string().required(requiredError),
+    author: yup.string().required(requiredError).min(4, minError(4)).max(30, maxError(50)),
+    releaseDate: yup.number().required(requiredError).moreThan(1900, dateError ).lessThan(2023, dateError),
+    swapLocalization: yup.string().required(requiredError),
+    booksInterestedFor: yup.string().required(requiredError).min(5, minError(5)).max(100, maxError(100)),
+    description: yup.string().required(requiredError).min(10, minError(10)).max(200, maxError(200)),
+
+})
+
+export {offerInitialValues, offerValidationSchema, type iofferInitialValues};

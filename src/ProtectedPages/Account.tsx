@@ -1,17 +1,12 @@
 import {
   Box,
-  Button,
-  Divider,
   List,
   ListItem,
   ListItemButton,
-  Stack,
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { padding } from "@mui/system";
-import React from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import MailIcon from "@mui/icons-material/Mail";
 import SettingsIcon from "@mui/icons-material/Settings";
