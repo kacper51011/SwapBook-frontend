@@ -1,10 +1,8 @@
-import React from "react";
 import {
   Paper,
   Button,
   Checkbox,
   Typography,
-  FormGroup,
   FormControlLabel,
   TextField,
 } from "@mui/material";
@@ -36,17 +34,19 @@ const LoginWindow = () => {
         Sign in to SwapBook
         <LoginIcon />
       </Typography>
-      <FormGroup>
-        <TextField placeholder="email" sx={{ padding: "5px" }}></TextField>
-        <TextField placeholder="password" sx={{ margin: "5px" }}></TextField>
-        <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="Remember password"
-        />
-        <Button variant="contained" size="small">
-          Sign in
-        </Button>
-      </FormGroup>
+
+      <TextField placeholder="email" sx={{ padding: "5px" }}></TextField>
+      <TextField placeholder="password" sx={{ margin: "5px" }}></TextField>
+      <FormControlLabel
+        control={<Checkbox defaultChecked />}
+        label="Remember password"
+      />
+      <Button variant="contained" size="medium" sx={{ marginBottom: "10px" }}>
+        Sign in
+      </Button>
+      <Typography variant="body2" marginTop={"5px"}>
+        You don't have an account yet? <Button variant="text">Sign up</Button>
+      </Typography>
     </Paper>
   );
 };

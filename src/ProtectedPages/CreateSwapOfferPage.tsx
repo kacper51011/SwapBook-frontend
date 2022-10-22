@@ -16,7 +16,7 @@ import {
   offerInitialValues,
   offerValidationSchema,
   iofferInitialValues,
-} from "../data/CreateSwapOfferValidation";
+} from "../data/createSwapOfferValidation";
 
 const CreateSwapOfferPage = () => {
   const offerFormik: FormikProps<iofferInitialValues> = useFormik({
@@ -46,6 +46,7 @@ const CreateSwapOfferPage = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            marginTop: "5vw",
           }}
         >
           <Typography variant="h2" margin={"1%"}>

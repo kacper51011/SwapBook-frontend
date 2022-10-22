@@ -1,12 +1,22 @@
 import { Box, Container, Paper } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import LoginWindow from "../components/LoginWindow";
+import RegisterWindow from "../components/RegisterWindow";
 
 const Home = () => {
+  const [displayRegisterWindow, setDisplayedWindow] = useState(false);
+
+  const showLoginWindow = () => {
+    setDisplayedWindow(false);
+  };
+  const showRegisterWindow = () => {
+    setDisplayedWindow(true);
+  };
+
   return (
     <Box
       sx={{
-        height: "90vh",
+        height: "100vh",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
@@ -26,7 +36,7 @@ const Home = () => {
           width: "50%",
         }}
       >
-        <Paper sx={{ height: "90%", width: "90%" }}></Paper>
+        <Paper sx={{ height: "70%", width: "90%" }}>sdsdsd</Paper>
       </Box>
       <Box
         sx={{
@@ -38,7 +48,7 @@ const Home = () => {
           alignItems: "center",
         }}
       >
-        <LoginWindow />
+        <RegisterWindow />
       </Box>
     </Box>
   );
