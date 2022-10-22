@@ -15,11 +15,11 @@ import categories from "../data/categories";
 import {
   offerInitialValues,
   offerValidationSchema,
-  iofferInitialValues,
+  IOfferInitialValues,
 } from "../data/createSwapOfferValidation";
 
 const CreateSwapOfferPage = () => {
-  const offerFormik: FormikProps<iofferInitialValues> = useFormik({
+  const offerFormik: FormikProps<IOfferInitialValues> = useFormik({
     initialValues: { ...offerInitialValues },
     validationSchema: offerValidationSchema,
     onSubmit: (values) => {

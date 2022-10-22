@@ -1,10 +1,19 @@
+import * as yup from "yup"
 
-export interface IloginInitialValues {
+interface ILoginInitialValues {
     email: string
     password: string
+    
+}
+const loginInitialValues: ILoginInitialValues = {
+    email: "",
+    password: "",
+    
 }
 
-export const loginInitialValues: IloginInitialValues = {
-    email: "",
-    password: ""
-}
+const loginValidationSchema = yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().required()
+})
+
+export {loginInitialValues, loginValidationSchema, type ILoginInitialValues};
