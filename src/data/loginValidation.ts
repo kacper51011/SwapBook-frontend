@@ -10,10 +10,11 @@ const loginInitialValues: ILoginInitialValues = {
     password: "",
     
 }
+const requiredError: string = "This field is required"
 
 const loginValidationSchema = yup.object({
-    email: yup.string().email().required(),
-    password: yup.string().required()
+    email: yup.string().email("Invalid email").required(requiredError),
+    password: yup.string().required(requiredError)
 })
 
 export {loginInitialValues, loginValidationSchema, type ILoginInitialValues};

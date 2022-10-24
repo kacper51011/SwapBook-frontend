@@ -1,7 +1,26 @@
 import { Paper, Button, Typography, TextField, Link } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
+import { MouseEventHandler } from "react";
+import { useFormik, FormikProps } from "formik";
+import {
+  registerInitialValues,
+  registerValidationSchema,
+  IRegisterInitialValues,
+} from "../data/registerValidation";
 
-const RegisterWindow = () => {
+interface IRegisterProps {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+const RegisterWindow = ({ onClick }: IRegisterProps) => {
+  const registerFormik: FormikProps<IRegisterInitialValues> = useFormik({
+    initialValues: { ...registerInitialValues },
+    validationSchema: registerValidationSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+
   return (
     <Paper
       sx={{
@@ -27,33 +46,80 @@ const RegisterWindow = () => {
         Sign up
         <LoginIcon />
       </Typography>
+
+      {/* nickname input */}
+
       <TextField
         placeholder="Nickname"
         name="nickname"
         id="nickname"
         type="text"
         sx={{ margin: "5px", width: "0.6" }}
-        helperText="Nickname should include only letters, numbers and be at least 5 letters long."
+        onChange={registerFormik.handleChange}
+        onBlur={registerFormik.handleBlur}
+        error={
+          registerFormik.touched.nickname &&
+          Boolean(registerFormik.errors.nickname)
+        }
+        helperText={
+          registerFormik.touched.nickname && registerFormik.errors.nickname
+        }
       ></TextField>
+
+      {/* email input */}
+
       <TextField
         placeholder="Email"
         name="email"
         id="email"
         type="email"
+        onChange={registerFormik.handleChange}
+        onBlur={registerFormik.handleBlur}
+        error={
+          registerFormik.touched.email && Boolean(registerFormik.errors.email)
+        }
+        helperText={registerFormik.touched.email && registerFormik.errors.email}
         sx={{ margin: "10px", width: "0.6" }}
       ></TextField>
+
+      {/* password input */}
+
       <TextField
         placeholder="Password"
         type="password"
         name="password"
         id="password"
+        onChange={registerFormik.handleChange}
+        onBlur={registerFormik.handleBlur}
+        error={
+          registerFormik.touched.password &&
+          Boolean(registerFormik.errors.password)
+        }
+        helperText={
+          registerFormik.touched.password && registerFormik.errors.password
+        }
+        label="password"
         sx={{ margin: "5px", width: "0.6" }}
       ></TextField>
+
+      {/* confirm password input */}
+
       <TextField
         type="password"
         placeholder="Confirm password"
         name="confirmPassword"
         id="confirmPassword"
+        onChange={registerFormik.handleChange}
+        onBlur={registerFormik.handleBlur}
+        error={
+          registerFormik.touched.confirmPassword &&
+          Boolean(registerFormik.errors.confirmPassword)
+        }
+        helperText={
+          registerFormik.touched.confirmPassword &&
+          registerFormik.errors.confirmPassword
+        }
+        label="password"
         sx={{ margin: "5px", marginBottom: "15px", width: "0.6" }}
       ></TextField>
 
@@ -61,7 +127,10 @@ const RegisterWindow = () => {
         Sign up
       </Button>
       <Typography variant="body2" marginTop={"5px"}>
-        You have an account? <Button variant="text">Sign in</Button>
+        You have an account?{" "}
+        <Button variant="text" onClick={onClick}>
+          Sign in
+        </Button>
       </Typography>
     </Paper>
   );

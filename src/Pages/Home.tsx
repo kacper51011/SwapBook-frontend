@@ -48,7 +48,11 @@ const Home = () => {
           alignItems: "center",
         }}
       >
-        <RegisterWindow />
+        {displayRegisterWindow ? (
+          <RegisterWindow onClick={showLoginWindow} />
+        ) : (
+          <LoginWindow onClick={showRegisterWindow} />
+        )}
       </Box>
     </Box>
   );
