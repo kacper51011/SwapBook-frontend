@@ -4,7 +4,7 @@ import { Box } from "@mui/system";
 const BookItem = () => {
   return (
     <Paper
-      elevation={5}
+      elevation={3}
       sx={{
         display: "flex",
         cursor: "pointer",

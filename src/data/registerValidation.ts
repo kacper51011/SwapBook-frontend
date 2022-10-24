@@ -25,7 +25,7 @@ const registerValidationSchema = yup.object({
     nickname: yup.string().required(requiredError).min(5, minError(5)).max(20, maxError(20)),
     email: yup.string().email("Invalid email").required(requiredError) ,
     password: yup.string().required(requiredError).min(6, minError(6)),
-    confirmPassword: yup.string().required().oneOf([yup.ref('password'), null], 'Passwords must match')
+    confirmPassword: yup.string().required(requiredError).oneOf([yup.ref('password'), null], 'Passwords must match')
 })
 
 export {registerInitialValues, registerValidationSchema, type IRegisterInitialValues};

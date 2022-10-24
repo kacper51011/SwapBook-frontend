@@ -50,7 +50,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
       {/* nickname input */}
 
       <TextField
-        placeholder="Nickname"
+        label="Nickname"
         name="nickname"
         id="nickname"
         type="text"
@@ -69,7 +69,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
       {/* email input */}
 
       <TextField
-        placeholder="Email"
+        label="Email"
         name="email"
         id="email"
         type="email"
@@ -119,7 +119,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
           registerFormik.touched.confirmPassword &&
           registerFormik.errors.confirmPassword
         }
-        label="password"
+        label="Confirm password"
         sx={{ margin: "5px", marginBottom: "15px", width: "0.6" }}
       ></TextField>
 
