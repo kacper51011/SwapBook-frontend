@@ -1,10 +1,15 @@
-import { Box, Container, Stack, Paper } from "@mui/material";
-import React from "react";
+import { Container, Stack, Paper, Pagination } from "@mui/material";
 import BookItem from "../components/BookItem";
 
 const BooksForSwapPage = () => {
   return (
-    <Container sx={{ backgroundColor: "#F5F5F5" }}>
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       <Paper
         elevation={1}
         sx={{
@@ -13,6 +18,7 @@ const BooksForSwapPage = () => {
           paddingTop: "20px",
           paddingBottom: "20px",
           backgroundColor: "#F5F5F5",
+          width: 1,
         }}
       >
         <Container>
@@ -26,6 +32,7 @@ const BooksForSwapPage = () => {
           </Stack>
         </Container>
       </Paper>
+      <Pagination count={10} color="primary" variant="outlined"></Pagination>
     </Container>
   );
 };

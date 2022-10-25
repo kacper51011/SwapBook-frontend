@@ -62,7 +62,6 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
       <form style={formStyle} onSubmit={loginFormik.handleSubmit}>
         {/* email input */}
         <TextField
-          placeholder="email"
           onChange={loginFormik.handleChange}
           onBlur={loginFormik.handleBlur}
           error={loginFormik.touched.email && Boolean(loginFormik.errors.email)}
@@ -71,7 +70,6 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
           name="email"
           id="email"
           type="email"
-          sx={{ padding: "5px" }}
         ></TextField>
 
         {/* password input */}

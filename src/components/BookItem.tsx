@@ -1,7 +1,21 @@
 import { CardMedia, CardContent, Typography, Paper } from "@mui/material";
 import { Box } from "@mui/system";
 
-const BookItem = () => {
+interface IBookItem {
+  img: string;
+  bookName: string;
+  category: string;
+  swapPlace: string;
+  addedIn: string;
+}
+
+const BookItem = ({
+  img,
+  bookName,
+  category,
+  swapPlace,
+  addedIn,
+}: IBookItem) => {
   return (
     <Paper
       elevation={3}
@@ -10,7 +24,7 @@ const BookItem = () => {
         cursor: "pointer",
       }}
     >
-      <CardMedia component="img" sx={{ width: "0.2" }} />
+      <CardMedia component="img" src={img} sx={{ width: "0.2" }} />
       <Box
         sx={{
           display: "flex",
@@ -19,14 +33,14 @@ const BookItem = () => {
         }}
       >
         <CardContent sx={{ display: "flex", justifyContent: "flex-start" }}>
-          <Typography>Name of the book</Typography>
+          <Typography>{bookName}</Typography>
         </CardContent>
         <CardContent sx={{ display: "flex", justifyContent: "flex-start" }}>
-          <Typography>Categories</Typography>
+          <Typography>{category}</Typography>
         </CardContent>
         <CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
-          <Typography>sth else </Typography>
-          <Typography>sth else</Typography>
+          <Typography>{swapPlace} </Typography>
+          <Typography>{addedIn}</Typography>
         </CardContent>
       </Box>
     </Paper>
