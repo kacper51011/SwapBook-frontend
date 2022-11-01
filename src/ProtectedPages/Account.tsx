@@ -18,12 +18,17 @@ const Account = () => {
     <Box
       sx={{
         display: "flex",
-        justifyContent: "space-between",
+        flexDirection: { xs: "column", sm: "row" },
         width: "100%",
         height: "90vh",
       }}
     >
-      <List sx={{ width: "20%" }}>
+      <List
+        sx={{
+          width: { xs: "100%", sm: "15%" },
+          borderRight: { xs: "none", sm: "1px black solid" },
+        }}
+      >
         <ListItem disablePadding>
           <ListItemButton component={Link} to="MyRequests">
             <ListItemIcon>
