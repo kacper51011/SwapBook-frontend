@@ -54,7 +54,7 @@ const CreateSwapOfferPage = () => {
           </Typography>
 
           <Typography variant="h6">
-            Informations about the book you offer to someone
+            Informations about the book you offer
           </Typography>
 
           {/* input for name of the book -> */}

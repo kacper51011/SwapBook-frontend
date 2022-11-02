@@ -9,6 +9,7 @@ import {
 import AutoStoriesSharpIcon from "@mui/icons-material/AutoStoriesSharp";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import EmailIcon from "@mui/icons-material/Email";
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import { Stack } from "@mui/system";
@@ -25,8 +26,6 @@ const NavigationBar = () => {
         </Typography>
         <AutoStoriesSharpIcon sx={{ display: { xs: "block", sm: "none" } }} />
         <Stack direction="row" spacing={1} alignItems="center">
-          {/* Buttons for for logged in Users */}
-
           {/* Button or Icon for creating offer (depends on width and being logged in) */}
           {isLoggedIn && (
             <Button
@@ -43,7 +42,7 @@ const NavigationBar = () => {
           {isLoggedIn && (
             <IconButton
               component={Link}
-              to="/Account"
+              to="/CreateSwapOffer"
               sx={{ display: { xs: "block", sm: "none" } }}
             >
               <NoteAddIcon sx={{ color: "white" }} />
@@ -63,22 +62,40 @@ const NavigationBar = () => {
 
           <IconButton
             component={Link}
-            to="/Account"
+            to="/books"
             sx={{ display: { xs: "block", sm: "none" } }}
           >
             <CompareArrowsIcon sx={{ color: "white" }} />
           </IconButton>
+          {/* button or icon for messages page (depends on width and being logged) */}
 
           {isLoggedIn && (
-            <Button component={NavLink} to="/Account/Messages" color="error">
+            <Button
+              component={NavLink}
+              to="/Account/Messages"
+              color="error"
+              sx={{ display: { xs: "none", sm: "block" } }}
+            >
               Messages
             </Button>
           )}
+          <IconButton
+            component={Link}
+            to="/Account/Messages"
+            sx={{ display: { xs: "block", sm: "none" } }}
+          >
+            <EmailIcon sx={{ color: "white" }} />
+          </IconButton>
+
+          {/* icon for profile page (depends on being logged) */}
+
           {isLoggedIn && (
             <IconButton component={Link} to="/Account">
               <Avatar src="" />
             </IconButton>
           )}
+
+          {/* button for home page (depends on not being logged) */}
 
           {!isLoggedIn && (
             <Button component={Link} to="/" variant="contained" color="error">
