@@ -1,5 +1,6 @@
-import { Box, Typography, Stack } from "@mui/material";
+import { Box, Typography, Stack, Paper } from "@mui/material";
 import React from "react";
+import ProfilePaper from "../../components/ProfilePaper";
 
 const Profile = () => {
   return (
@@ -11,9 +12,7 @@ const Profile = () => {
       <Typography padding={2} variant="h2">
         My Profile
       </Typography>
-      <Stack padding={5}>
-        <Typography variant="h4"></Typography>
-      </Stack>
+      <ProfilePaper></ProfilePaper>
     </Box>
   );
 };
