@@ -1,6 +1,7 @@
 import { Box, Typography, Stack, Paper } from "@mui/material";
 import React from "react";
 import ProfilePaper from "../../components/ProfilePaper";
+import ProfileSecondPaper from "../../components/ProfileSecondPaper";
 
 const Profile = () => {
   return (
@@ -12,7 +13,10 @@ const Profile = () => {
       <Typography padding={2} variant="h2">
         My Profile
       </Typography>
-      <ProfilePaper></ProfilePaper>
+      <Stack direction={"row"} justifyContent="space-around">
+        <ProfilePaper />
+        <ProfileSecondPaper />
+      </Stack>
     </Box>
   );
 };
