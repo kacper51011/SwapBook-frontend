@@ -7,9 +7,10 @@ interface IprofilePaper {
   image?: string;
   nickname?: string;
   email?: string;
+  aboutMe?: string;
 }
 
-const ProfilePaper = ({ image, nickname, email }: IprofilePaper) => {
+const ProfilePaper = ({ image, nickname, email, aboutMe }: IprofilePaper) => {
   return (
     <Paper
       sx={{
@@ -28,6 +29,7 @@ const ProfilePaper = ({ image, nickname, email }: IprofilePaper) => {
         <Typography paddingBottom={"1vw"}>
           Nickname: {nickname || ""}
         </Typography>
+        <Typography paddingBottom={"1vw"}>About me: {aboutMe || ""}</Typography>
       </Stack>
     </Paper>
   );
