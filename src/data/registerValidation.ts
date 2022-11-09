@@ -36,19 +36,18 @@ const registerValidationSchema = yup.object({
     .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
-const registerOnSubmit = async ({
-  nickname,
-  email,
-  password,
-  confirmPassword,
-}: IRegisterInitialValues) => {
-  try {
-  } catch (err) {
-    console.log(err);
-  }
+const registerApiCall = async (values: IRegisterInitialValues) => {
+  const { nickname, email, password, confirmPassword } = values;
+  const { data } = await axios.post("/api/users/signup", {
+    nickname,
+    email,
+    password,
+    confirmPassword,
+  });
+  return data;
 };
-
 export {
+  registerApiCall,
   registerInitialValues,
   registerValidationSchema,
   type IRegisterInitialValues,

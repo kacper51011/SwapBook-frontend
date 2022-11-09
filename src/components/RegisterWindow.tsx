@@ -1,4 +1,4 @@
-import { useState, useEffect, CSSProperties } from "react";
+import { CSSProperties } from "react";
 import { Paper, Button, Typography, TextField, Link } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 import { MouseEventHandler } from "react";
@@ -7,7 +7,11 @@ import {
   registerInitialValues,
   registerValidationSchema,
   IRegisterInitialValues,
+  registerApiCall,
 } from "../data/registerValidation";
+import axios from "axios";
+import { ErrorResponse } from "@remix-run/router";
+
 const formStyle: CSSProperties = {
   display: "flex",
   flexDirection: "column",
@@ -24,8 +28,16 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
   const registerFormik: FormikProps<IRegisterInitialValues> = useFormik({
     initialValues: { ...registerInitialValues },
     validationSchema: registerValidationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      registerApiCall(values)
+        .then((res) => console.log(res))
+        .catch((err) =>
+          console.log(
+            err.response.data.message
+              ? err.response.data.message
+              : err.response.data
+          )
+        );
     },
   });
 

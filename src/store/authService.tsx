@@ -8,9 +8,8 @@ const registerUser = async (user: IRegisterInitialValues) => {
 
   if (response.status === 201 && response.data) {
     return response.data;
-  }
-  if (response.status !== 201) {
-    return response.statusText;
+  } else {
+    return Error(response.data);
   }
 };
 export { registerUser };
