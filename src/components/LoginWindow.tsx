@@ -13,6 +13,7 @@ import {
   loginInitialValues,
   loginValidationSchema,
   ILoginInitialValues,
+  loginApiCall,
 } from "../data/loginValidation";
 
 interface ILoginProps {
@@ -29,8 +30,16 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
   const loginFormik: FormikProps<ILoginInitialValues> = useFormik({
     initialValues: { ...loginInitialValues },
     validationSchema: loginValidationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      loginApiCall(values)
+        .then((res) => console.log(res))
+        .catch((err) =>
+          console.log(
+            err.response.data.message
+              ? err.response.data.message
+              : err.response.data
+          )
+        );
     },
   });
 
