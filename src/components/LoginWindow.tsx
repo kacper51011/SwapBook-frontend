@@ -9,6 +9,7 @@ import {
 import LoginIcon from "@mui/icons-material/Login";
 import { CSSProperties, MouseEventHandler } from "react";
 import { useFormik, FormikProps } from "formik";
+import { useNavigate } from "react-router-dom";
 import {
   loginInitialValues,
   loginValidationSchema,
@@ -19,6 +20,7 @@ import {
 interface ILoginProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
+
 const formStyle: CSSProperties = {
   display: "flex",
   flexDirection: "column",
@@ -27,19 +29,28 @@ const formStyle: CSSProperties = {
 };
 
 const LoginWindow = ({ onClick }: ILoginProps) => {
+  const navigate = useNavigate();
+
   const loginFormik: FormikProps<ILoginInitialValues> = useFormik({
     initialValues: { ...loginInitialValues },
+
     validationSchema: loginValidationSchema,
+
+    // onSubmit use loginApiCall, coming from the loginValidation file, also use replace: true in navigation to remove loginPage from history
     onSubmit: async (values) => {
+      console.log(values);
       loginApiCall(values)
-        .then((res) => console.log(res))
-        .catch((err) =>
+        .then((res) => {
+          console.log(res);
+          navigate("/Books", { replace: true });
+        })
+        .catch((err) => {
           console.log(
             err.response.data.message
               ? err.response.data.message
               : err.response.data
-          )
-        );
+          );
+        });
     },
   });
 
@@ -100,8 +111,14 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
         ></TextField>
 
         <FormControlLabel
-          control={<Checkbox defaultChecked />}
-          label="Remember password"
+          control={
+            <Checkbox
+              name="dontLogout"
+              onChange={loginFormik.handleChange}
+              id="dontLogout"
+            />
+          }
+          label="Do not log me out"
         />
         <Button
           variant="contained"
