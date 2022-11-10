@@ -1,7 +1,14 @@
 import { CSSProperties } from "react";
-import { Paper, Button, Typography, TextField, Link } from "@mui/material";
+import {
+  Paper,
+  Button,
+  Typography,
+  TextField,
+  Link,
+  FormHelperText,
+} from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useState } from "react";
 import { useFormik, FormikProps } from "formik";
 import {
   registerInitialValues,
@@ -25,19 +32,19 @@ interface IRegisterProps {
 }
 
 const RegisterWindow = ({ onClick }: IRegisterProps) => {
+  const [backendError, setBackendError] = useState("");
+
   const registerFormik: FormikProps<IRegisterInitialValues> = useFormik({
     initialValues: { ...registerInitialValues },
     validationSchema: registerValidationSchema,
     onSubmit: async (values) => {
+      setBackendError("");
       registerApiCall(values)
         .then((res) => console.log(res))
-        .catch((err) =>
-          console.log(
-            err.response.data.message
-              ? err.response.data.message
-              : err.response.data
-          )
-        );
+        .catch((err) => {
+          console.log(err.response.data.message);
+          setBackendError(err.response.data.message);
+        });
     },
   });
 
@@ -153,6 +160,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
         >
           Sign up
         </Button>
+        <FormHelperText> {backendError} </FormHelperText>
       </form>
       <Typography variant="body2" marginTop={"5px"}>
         You have an account?{" "}

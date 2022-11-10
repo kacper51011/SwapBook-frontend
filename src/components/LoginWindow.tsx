@@ -5,9 +5,10 @@ import {
   Typography,
   FormControlLabel,
   TextField,
+  FormHelperText,
 } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
-import { CSSProperties, MouseEventHandler } from "react";
+import { CSSProperties, MouseEventHandler, useState } from "react";
 import { useFormik, FormikProps } from "formik";
 import { useNavigate } from "react-router-dom";
 import {
@@ -29,6 +30,8 @@ const formStyle: CSSProperties = {
 };
 
 const LoginWindow = ({ onClick }: ILoginProps) => {
+  // todo: take the backend error useState to page and pass it as a props
+  const [backendError, setBackendError] = useState("");
   const navigate = useNavigate();
 
   const loginFormik: FormikProps<ILoginInitialValues> = useFormik({
@@ -45,11 +48,7 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
           navigate("/Books", { replace: true });
         })
         .catch((err) => {
-          console.log(
-            err.response.data.message
-              ? err.response.data.message
-              : err.response.data
-          );
+          setBackendError(err.response.data.message);
         });
     },
   });
@@ -128,6 +127,7 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
         >
           Sign in
         </Button>
+        <FormHelperText> {backendError} </FormHelperText>
       </form>
       <Typography variant="body2" marginTop={"5px"}>
         You don't have an account yet?{" "}
