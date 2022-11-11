@@ -1,7 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-import { IRegisterInitialValues } from "../data/registerValidation";
+import { createSlice } from "@reduxjs/toolkit";
+import axios, { AxiosResponse } from "axios";
 
 interface Iuser {
   id: string;
@@ -29,7 +27,12 @@ const initialState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    // this reducer will be used in login and logout functions
+    changeAuth: (state, action) => {
+      state.user = action.payload;
+    },
+  },
 });
-
+export const { changeAuth } = authSlice.actions;
 export default authSlice.reducer;

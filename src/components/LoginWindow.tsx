@@ -11,12 +11,14 @@ import LoginIcon from "@mui/icons-material/Login";
 import { CSSProperties, MouseEventHandler, useState } from "react";
 import { useFormik, FormikProps } from "formik";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import {
   loginInitialValues,
   loginValidationSchema,
   ILoginInitialValues,
   loginApiCall,
 } from "../data/loginValidation";
+import { changeAuth } from "../store/authSlice";
 
 interface ILoginProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
@@ -32,6 +34,7 @@ const formStyle: CSSProperties = {
 const LoginWindow = ({ onClick }: ILoginProps) => {
   // todo: take the backend error useState to page and pass it as a props
   const [backendError, setBackendError] = useState("");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const loginFormik: FormikProps<ILoginInitialValues> = useFormik({
@@ -49,6 +52,7 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
           } else {
             sessionStorage.setItem("userInfo", JSON.stringify(res.user));
           }
+          dispatch(changeAuth(res.user));
           navigate("/Books", { replace: true });
         })
         .catch((err) => {
