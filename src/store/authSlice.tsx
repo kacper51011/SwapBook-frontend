@@ -4,15 +4,26 @@ import axios from "axios";
 import { IRegisterInitialValues } from "../data/registerValidation";
 
 interface Iuser {
-  Iuser: null;
+  id: string;
+  nickname: string;
 }
 
 interface IauthInitialState {
-  user: Iuser | null;
+  user: Iuser | "";
 }
 
+// checking the localStorage (if login was valid and doNotLogout was checked, then data is there)
+// checking the sessionStorage (if login was valid and doNotLogout was unchecked, then data is there)
+//  else ""
+
+const userAuthCheck: IauthInitialState = localStorage.getItem("userInfo")
+  ? JSON.parse(localStorage.getItem("userInfo") || "")
+  : sessionStorage.getItem("userInfo")
+  ? JSON.parse(sessionStorage.getItem("userInfo") || "")
+  : "";
+
 const initialState = {
-  user: null,
+  user: userAuthCheck,
 };
 
 export const authSlice = createSlice({

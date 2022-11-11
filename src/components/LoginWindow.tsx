@@ -44,7 +44,11 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
       console.log(values);
       loginApiCall(values)
         .then((res) => {
-          console.log(res);
+          if (values.dontLogout) {
+            localStorage.setItem("userInfo", JSON.stringify(res.user));
+          } else {
+            sessionStorage.setItem("userInfo", JSON.stringify(res.user));
+          }
           navigate("/Books", { replace: true });
         })
         .catch((err) => {

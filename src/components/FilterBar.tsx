@@ -70,7 +70,7 @@ const FilterBar = () => {
         <FormControl sx={{ width: { xs: "0.8", sm: "0.15" } }}>
           <Typography marginBottom="5px">Sort by:</Typography>
 
-          <NativeSelect>
+          <NativeSelect defaultValue={""}>
             <option value={""}></option>
             <option value={"name_1"}>name+</option>
             <option value={"name_-1"}>name-</option>
