@@ -1,24 +1,80 @@
 import { Container, Stack, Paper, Pagination } from "@mui/material";
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect, ElementType } from "react";
 import BookItem from "../components/BookItem";
 import FilterBar from "../components/FilterBar";
 
-const BooksForSwapPage = () => {
-  const [error, setError] = useState("");
-  const [pagination, setPagination] = useState();
-  const [category, setCategory] = useState("");
-  const [sorting, setSorting] = useState("");
-  const [booksPerPage, setBooksPerPage] = useState("");
+interface Ibook {}
 
+const BooksForSwapPage = () => {
+  const [books, setBooks] = useState([]);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [booksPerPage, setBooksPerPage] = useState(10);
+  const [sorting, setSorting] = useState("");
+  const [pagination, setPagination] = useState(1);
+  const [choosenPage, setChoosenPage] = useState(1);
+  const [error, setError] = useState("");
+
+  // handling the page change on click, used on <Pagination/> (BooksForSwapPage)
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setChoosenPage(value);
+  };
+  // handling the category Change used in FilterBar props
+  const handleCategoryChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+    value: string
+  ) => {};
+  // handling the sorting Change used in FilterBar props
+  const handleSortingChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+    value: string
+  ) => {};
+  // handling books per page change used in FilterBar props
+  const handleBooksPerPageChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+    value: number
+  ) => {};
+  // handling search used in FilterBar props, then in SearchBar props
+
+  useEffect(() => {
+    const getBooks = async () => {
+      // setting up flexible params and queries for get request
+      const CategoryParams = category ? `/category/${category}` : "";
+      const searchParams = search ? `/${search}` : "";
+      const booksPerPageQuery = `records=${booksPerPage}`;
+      const sortingQuery = sorting ? `&sort=${sorting}` : "";
+      const choosenPageQuery = `&pageNum=${choosenPage}`;
+
+      try {
+        const { data } = await axios.get(
+          `/api/books${CategoryParams}${searchParams}?${booksPerPageQuery}`
+        );
+
+        setBooks(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    // todo: use getBooks func
+  }, []);
+
+  // filtering, categories, pagination, books per page, sorting
+  // fetching the data here
+  // probably using states for every type of data, using queries and params
+  // passing props to filterBar and deeper into SearchBar with the functions that sets states
+  // create a useEffect that search for books 1. when the page is opened first time 2. when somebody change the values of categories/booksperpage/sorting
+  // 3. when somebody use "search" button in searchBar
   return (
-    // filtering, categories, pagination, books per page, sorting
-    // fetching the data here
-    // probably using states for every type of data, using queries and params
-    // passing props to filterBar and deeper into SearchBar with the functions that sets states
-    // create a useEffect that search for books 1. when the page is opened first time 2. when somebody change the values of categories/booksperpage/sorting
-    // 3. when somebody use "search" button in searchBar
     <>
-      <FilterBar />
+      <FilterBar
+        handleSortingChange={handleSortingChange}
+        handleCategoryChange={handleCategoryChange}
+        handleBooksPerPageChange={handleBooksPerPageChange}
+      />
       <Container
         sx={{
           display: "flex",
@@ -41,7 +97,13 @@ const BooksForSwapPage = () => {
             <Stack spacing={2}></Stack>
           </Container>
         </Paper>
-        <Pagination count={10} color="primary" variant="outlined"></Pagination>
+        <Pagination
+          count={pagination}
+          page={choosenPage}
+          onChange={handlePageChange}
+          color="primary"
+          variant="outlined"
+        ></Pagination>
       </Container>
     </>
   );

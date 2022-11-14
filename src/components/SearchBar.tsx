@@ -1,7 +1,7 @@
 import { Paper, InputBase, Divider, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
-const SearchBar = () => {
+const SearchBar = ({ handleSearchChange }) => {
   return (
     <Paper
       component="form"

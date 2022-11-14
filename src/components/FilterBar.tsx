@@ -10,7 +10,12 @@ import {
 import categories from "../data/categories";
 import SearchBar from "./SearchBar";
 
-const FilterBar = () => {
+const FilterBar = ({
+  handleBooksPerPageChange,
+  handleCategoryChange,
+  handleSortingChange,
+  handleSearchChange,
+}) => {
   return (
     <Paper
       elevation={0}
@@ -33,9 +38,9 @@ const FilterBar = () => {
         alignItems="center"
         spacing={5}
       >
-        <SearchBar />
+        <SearchBar handleSearchChange={handleSearchChange} />
       </Stack>
-      {/* category filter */}
+
       <Stack
         width="80%"
         direction={{ xs: "column", sm: "row" }}
@@ -43,9 +48,10 @@ const FilterBar = () => {
         alignItems="center"
         spacing={5}
       >
+        {/* category filter */}
         <FormControl sx={{ width: { xs: "0.6", sm: "0.15" } }}>
           <Typography marginBottom="5px">Category</Typography>
-          <NativeSelect defaultValue={""}>
+          <NativeSelect defaultValue={""} onChange={handleCategoryChange}>
             <option value=""></option>
             {categories.map<React.ReactNode>((category, index) => {
               return (
@@ -60,7 +66,7 @@ const FilterBar = () => {
         <FormControl sx={{ width: { xs: "0.8", sm: "0.15" } }}>
           <Typography marginBottom="5px">Books per page</Typography>
 
-          <NativeSelect defaultValue={10}>
+          <NativeSelect defaultValue={10} onChange={handleBooksPerPageChange}>
             <option value={10}>10</option>
             <option value={25}>25</option>
             <option value={50}>50</option>
@@ -70,7 +76,7 @@ const FilterBar = () => {
         <FormControl sx={{ width: { xs: "0.8", sm: "0.15" } }}>
           <Typography marginBottom="5px">Sort by:</Typography>
 
-          <NativeSelect defaultValue={""}>
+          <NativeSelect defaultValue={""} onChange={handleSortingChange}>
             <option value={""}></option>
             <option value={"name_1"}>name+</option>
             <option value={"name_-1"}>name-</option>
