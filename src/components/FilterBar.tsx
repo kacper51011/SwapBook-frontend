@@ -4,12 +4,12 @@ import {
   FormControl,
   Typography,
   Stack,
-  Input,
-  Button,
 } from "@mui/material";
-import { SetStateAction } from "react";
 import categories from "../data/categories";
 import SearchBar from "./SearchBar";
+
+// component belongs to BooksForSwapPage,
+// include: SearchBar
 
 interface IFilterBar {
   handleSortingChange: React.ChangeEventHandler<HTMLSelectElement>;

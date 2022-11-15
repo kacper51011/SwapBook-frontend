@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios, { AxiosResponse } from "axios";
 
 interface Iuser {
   id: string;

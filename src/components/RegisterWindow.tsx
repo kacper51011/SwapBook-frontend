@@ -4,7 +4,6 @@ import {
   Button,
   Typography,
   TextField,
-  Link,
   FormHelperText,
 } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
@@ -16,8 +15,8 @@ import {
   IRegisterInitialValues,
   registerApiCall,
 } from "../data/registerValidation";
-import axios from "axios";
-import { ErrorResponse } from "@remix-run/router";
+
+// component used in Home Page
 
 const formStyle: CSSProperties = {
   display: "flex",

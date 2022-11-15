@@ -2,6 +2,8 @@ import { Box, Paper, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import Image from "mui-image";
 
+// component used in Account/Profile Page
+
 interface IprofilePaper {
   image?: string;
   nickname?: string;

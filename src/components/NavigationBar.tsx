@@ -11,11 +11,11 @@ import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import EmailIcon from "@mui/icons-material/Email";
 import { NavLink } from "react-router-dom";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { Stack } from "@mui/system";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/useAppSelector";
+
+// component used in every page
 
 const NavigationBar = () => {
   const auth = useAppSelector((state) => state.auth.user);

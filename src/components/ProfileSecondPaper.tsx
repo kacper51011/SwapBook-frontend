@@ -1,12 +1,7 @@
-import {
-  Card,
-  Paper,
-  TextField,
-  Typography,
-  Button,
-  TextareaAutosize,
-} from "@mui/material";
+import { Paper, TextField, Typography, Button } from "@mui/material";
 import { Stack } from "@mui/system";
+
+// component used in account/profile page
 
 interface ISecondPaper {
   swapsLength?: number;

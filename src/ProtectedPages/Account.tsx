@@ -6,13 +6,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import {
-  Link,
-  Navigate,
-  Outlet,
-  redirect,
-  useNavigate,
-} from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import MailIcon from "@mui/icons-material/Mail";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -26,6 +20,9 @@ import { changeAuth } from "../store/authSlice";
 const Account = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // logout function will clean cookies (cookies http=true, so I had to use api call to delete the cookie in backend)
+  // and also reset all the data of the user (saved in redux, localstorage and session storage)
+
   const logout = async () => {
     axios.delete("/api/users/logout").then((res) => {
       dispatch(changeAuth(""));
@@ -34,7 +31,7 @@ const Account = () => {
     });
     navigate("/");
   };
-
+  // todo: create a listItem component, then map the listItems with provided data here
   return (
     <Box
       sx={{

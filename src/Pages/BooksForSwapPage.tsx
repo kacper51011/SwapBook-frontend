@@ -1,6 +1,6 @@
 import { Container, Stack, Paper, Pagination } from "@mui/material";
 import axios from "axios";
-import { useState, useEffect, ElementType } from "react";
+import { useState, useEffect } from "react";
 import BookItem from "../components/BookItem";
 import FilterBar from "../components/FilterBar";
 

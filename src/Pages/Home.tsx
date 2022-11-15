@@ -1,4 +1,4 @@
-import { Box, Container, Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import React, { useState } from "react";
 import LoginWindow from "../components/LoginWindow";
 import RegisterWindow from "../components/RegisterWindow";

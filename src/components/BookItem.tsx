@@ -1,6 +1,8 @@
 import { CardMedia, CardContent, Typography, Paper } from "@mui/material";
 import { Box } from "@mui/system";
 
+// todo: implement images
+
 interface IBookItem {
   img?: string;
   bookName: string;

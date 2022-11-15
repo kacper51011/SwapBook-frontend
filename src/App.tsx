@@ -15,6 +15,7 @@ import SendMessage from "./ProtectedPages/AccountSubPages/SendMessage";
 import Settings from "./ProtectedPages/AccountSubPages/Settings";
 import Profile from "./ProtectedPages/AccountSubPages/Profile";
 import CreateSwapOfferPage from "./ProtectedPages/CreateSwapOfferPage";
+import BookDetails from "./Pages/BookDetails";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<AboutUs />} />
         <Route path="/Books" element={<BooksForSwapPage />} />
+        <Route path="/Books/:bookId" element={<BookDetails />} />
         {/*  Protected pages*/}
         <Route element={<ProtectedPagesContainer />}>
           <Route path="/Account" element={<Account />}>

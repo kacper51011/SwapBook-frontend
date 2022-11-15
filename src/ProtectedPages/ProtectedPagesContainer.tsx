@@ -1,5 +1,4 @@
-import React from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Home from "../Pages/Home";

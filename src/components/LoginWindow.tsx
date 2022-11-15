@@ -20,6 +20,8 @@ import {
 } from "../data/loginValidation";
 import { changeAuth } from "../store/authSlice";
 
+// component used in Home Page
+
 interface ILoginProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }

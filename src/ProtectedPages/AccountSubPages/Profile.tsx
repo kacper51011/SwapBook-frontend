@@ -1,5 +1,4 @@
-import { Box, Typography, Stack, Paper } from "@mui/material";
-import React from "react";
+import { Box, Typography, Stack } from "@mui/material";
 import ProfilePaper from "../../components/ProfilePaper";
 import ProfileSecondPaper from "../../components/ProfileSecondPaper";
 

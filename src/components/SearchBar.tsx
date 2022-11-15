@@ -2,6 +2,8 @@ import { Paper, InputBase, Divider, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
 
+// component used in BooksForSwapPage, as a part of FilterBar
+
 interface ISearchBar {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
