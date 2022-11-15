@@ -4,17 +4,21 @@ import { useState, useEffect, ElementType } from "react";
 import BookItem from "../components/BookItem";
 import FilterBar from "../components/FilterBar";
 
-interface Ibook {}
-
 const BooksForSwapPage = () => {
-  const [books, setBooks] = useState([]);
+  // STATES
+
+  // States set by user before fetching the data
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
-  const [booksPerPage, setBooksPerPage] = useState(10);
+  const [booksPerPage, setBooksPerPage] = useState("10");
   const [sorting, setSorting] = useState("");
-  const [pagination, setPagination] = useState(1);
   const [choosenPage, setChoosenPage] = useState(1);
+
+  // States set after fetching the data
+  const [books, setBooks] = useState([]);
+  const [pagination, setPagination] = useState(1);
   const [error, setError] = useState("");
+  // HANDLERS
 
   // handling the page change on click, used on <Pagination/> (BooksForSwapPage)
   const handlePageChange = (
@@ -23,44 +27,54 @@ const BooksForSwapPage = () => {
   ) => {
     setChoosenPage(value);
   };
+
   // handling the category Change used in FilterBar props
-  const handleCategoryChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-    value: string
-  ) => {};
+  const handleCategoryChange: React.ChangeEventHandler<HTMLSelectElement> = (
+    event
+  ) => {
+    setCategory(event.target.value);
+  };
+
   // handling the sorting Change used in FilterBar props
-  const handleSortingChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-    value: string
-  ) => {};
+  const handleSortingChange: React.ChangeEventHandler<HTMLSelectElement> = (
+    event
+  ) => {
+    setSorting(event.target.value);
+  };
+
   // handling books per page change used in FilterBar props
-  const handleBooksPerPageChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-    value: number
-  ) => {};
-  // handling search used in FilterBar props, then in SearchBar props
+  const handleBooksPerPageChange: React.ChangeEventHandler<
+    HTMLSelectElement
+  > = (event) => {
+    setBooksPerPage(event.target.value);
+  };
+
+  // I will pass state setter of the search text in filterBar, then in SearchBar props
 
   useEffect(() => {
     const getBooks = async () => {
       // setting up flexible params and queries for get request
       const CategoryParams = category ? `/category/${category}` : "";
-      const searchParams = search ? `/${search}` : "";
-      const booksPerPageQuery = `records=${booksPerPage}`;
+      const searchParams = search ? `/search/${search}` : "";
+      const booksPerPageQuery = `?records=${booksPerPage}`;
       const sortingQuery = sorting ? `&sort=${sorting}` : "";
       const choosenPageQuery = `&pageNum=${choosenPage}`;
 
       try {
         const { data } = await axios.get(
-          `/api/books${CategoryParams}${searchParams}?${booksPerPageQuery}`
+          `/api/books${CategoryParams}${searchParams}${booksPerPageQuery}${sortingQuery}${choosenPageQuery}`
         );
 
-        setBooks(data);
+        setBooks(data.books);
+        console.log(data.books);
+        setPagination(data.paginationNumbers);
       } catch (error) {
         console.log(error);
       }
     };
+    getBooks();
     // todo: use getBooks func
-  }, []);
+  }, [search, category, booksPerPage, sorting, choosenPage]);
 
   // filtering, categories, pagination, books per page, sorting
   // fetching the data here
@@ -74,6 +88,7 @@ const BooksForSwapPage = () => {
         handleSortingChange={handleSortingChange}
         handleCategoryChange={handleCategoryChange}
         handleBooksPerPageChange={handleBooksPerPageChange}
+        setSearch={setSearch}
       />
       <Container
         sx={{

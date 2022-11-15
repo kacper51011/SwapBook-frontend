@@ -7,15 +7,23 @@ import {
   Input,
   Button,
 } from "@mui/material";
+import { SetStateAction } from "react";
 import categories from "../data/categories";
 import SearchBar from "./SearchBar";
+
+interface IFilterBar {
+  handleSortingChange: React.ChangeEventHandler<HTMLSelectElement>;
+  handleCategoryChange: React.ChangeEventHandler<HTMLSelectElement>;
+  handleBooksPerPageChange: React.ChangeEventHandler<HTMLSelectElement>;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+}
 
 const FilterBar = ({
   handleBooksPerPageChange,
   handleCategoryChange,
   handleSortingChange,
-  handleSearchChange,
-}) => {
+  setSearch,
+}: IFilterBar) => {
   return (
     <Paper
       elevation={0}
@@ -38,7 +46,7 @@ const FilterBar = ({
         alignItems="center"
         spacing={5}
       >
-        <SearchBar handleSearchChange={handleSearchChange} />
+        <SearchBar setSearch={setSearch} />
       </Stack>
 
       <Stack
@@ -66,10 +74,10 @@ const FilterBar = ({
         <FormControl sx={{ width: { xs: "0.8", sm: "0.15" } }}>
           <Typography marginBottom="5px">Books per page</Typography>
 
-          <NativeSelect defaultValue={10} onChange={handleBooksPerPageChange}>
-            <option value={10}>10</option>
-            <option value={25}>25</option>
-            <option value={50}>50</option>
+          <NativeSelect defaultValue={"10"} onChange={handleBooksPerPageChange}>
+            <option value={"10"}>10</option>
+            <option value={"25"}>25</option>
+            <option value={"50"}>50</option>
           </NativeSelect>
         </FormControl>
         {/* sortBy */}
