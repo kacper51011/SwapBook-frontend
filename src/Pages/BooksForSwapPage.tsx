@@ -76,12 +76,6 @@ const BooksForSwapPage = () => {
     // todo: use getBooks func
   }, [search, category, booksPerPage, sorting, choosenPage]);
 
-  // filtering, categories, pagination, books per page, sorting
-  // fetching the data here
-  // probably using states for every type of data, using queries and params
-  // passing props to filterBar and deeper into SearchBar with the functions that sets states
-  // create a useEffect that search for books 1. when the page is opened first time 2. when somebody change the values of categories/booksperpage/sorting
-  // 3. when somebody use "search" button in searchBar
   return (
     <>
       <FilterBar

@@ -12,11 +12,13 @@ import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import EmailIcon from "@mui/icons-material/Email";
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Stack } from "@mui/system";
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../hooks/useAppSelector";
 
 const NavigationBar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const auth = useAppSelector((state) => state.auth.user);
   return (
     <AppBar position="static" sx={{ zIndex: "1000" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -27,7 +29,7 @@ const NavigationBar = () => {
         <AutoStoriesSharpIcon sx={{ display: { xs: "block", sm: "none" } }} />
         <Stack direction="row" spacing={1} alignItems="center">
           {/* Button or Icon for creating offer (depends on width and being logged in) */}
-          {isLoggedIn && (
+          {auth && (
             <Button
               component={NavLink}
               to="/CreateSwapOffer"
@@ -39,7 +41,7 @@ const NavigationBar = () => {
               Create swap offer
             </Button>
           )}
-          {isLoggedIn && (
+          {auth && (
             <IconButton
               component={Link}
               to="/CreateSwapOffer"
@@ -69,7 +71,7 @@ const NavigationBar = () => {
           </IconButton>
           {/* button or icon for messages page (depends on width and being logged) */}
 
-          {isLoggedIn && (
+          {auth && (
             <Button
               component={NavLink}
               to="/Account/Messages"
@@ -89,7 +91,7 @@ const NavigationBar = () => {
 
           {/* icon for profile page (depends on being logged) */}
 
-          {isLoggedIn && (
+          {auth && (
             <IconButton component={Link} to="/Account">
               <Avatar src="" />
             </IconButton>
@@ -97,7 +99,7 @@ const NavigationBar = () => {
 
           {/* button for home page (depends on not being logged) */}
 
-          {!isLoggedIn && (
+          {!auth && (
             <Button component={Link} to="/" variant="contained" color="error">
               Sign in
             </Button>
