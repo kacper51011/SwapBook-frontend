@@ -14,13 +14,13 @@ interface IauthInitialState {
 // checking the sessionStorage (if login was valid and doNotLogout was unchecked, then data is there)
 //  else ""
 
-const userAuthCheck: IauthInitialState = localStorage.getItem("userInfo")
+const userAuthCheck: Iuser = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo") || "")
   : sessionStorage.getItem("userInfo")
   ? JSON.parse(sessionStorage.getItem("userInfo") || "")
   : "";
 
-const initialState = {
+const initialState: IauthInitialState = {
   user: userAuthCheck,
 };
 

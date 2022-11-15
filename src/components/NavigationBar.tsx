@@ -93,7 +93,7 @@ const NavigationBar = () => {
 
           {auth && (
             <IconButton component={Link} to="/Account">
-              <Avatar src="" />
+              <Avatar alt="asd" />
             </IconButton>
           )}
 

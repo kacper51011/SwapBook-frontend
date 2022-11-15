@@ -6,14 +6,35 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { Link, Outlet } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+  Outlet,
+  redirect,
+  useNavigate,
+} from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import MailIcon from "@mui/icons-material/Mail";
 import SettingsIcon from "@mui/icons-material/Settings";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import SendIcon from "@mui/icons-material/Send";
+import LogoutIcon from "@mui/icons-material/Logout";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { changeAuth } from "../store/authSlice";
 
 const Account = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const logout = async () => {
+    axios.delete("/api/users/logout").then((res) => {
+      dispatch(changeAuth(""));
+      localStorage.clear();
+      sessionStorage.clear();
+    });
+    navigate("/");
+  };
+
   return (
     <Box
       sx={{
@@ -25,7 +46,7 @@ const Account = () => {
     >
       <List
         sx={{
-          width: { xs: "100%", sm: "15%" },
+          minWidth: { xs: "100%", sm: "15%" },
           borderRight: { xs: "none", sm: "1px black solid" },
         }}
       >
@@ -67,6 +88,14 @@ const Account = () => {
               <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Profile" />
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={logout}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
           </ListItemButton>
         </ListItem>
       </List>

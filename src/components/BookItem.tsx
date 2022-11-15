@@ -2,7 +2,7 @@ import { CardMedia, CardContent, Typography, Paper } from "@mui/material";
 import { Box } from "@mui/system";
 
 interface IBookItem {
-  img: string;
+  img?: string;
   bookName: string;
   category: string;
   swapPlace: string;
