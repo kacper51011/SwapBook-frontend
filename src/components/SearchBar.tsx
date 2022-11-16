@@ -11,7 +11,8 @@ interface ISearchBar {
 const SearchBar = ({ setSearch }: ISearchBar) => {
   const [input, setInput] = useState("");
 
-  const handleSearch: React.MouseEventHandler<HTMLButtonElement> = () => {
+  const handleSearch: React.MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.preventDefault();
     setSearch(input);
   };
 

@@ -4,19 +4,31 @@ import { useState, useEffect } from "react";
 import BookItem from "../components/BookItem";
 import FilterBar from "../components/FilterBar";
 
+interface ISingleBook {
+  nameOfTheBook: string;
+  category: string;
+  author: string;
+  releaseDate: number;
+  swapPlace: string;
+  swapFor: string;
+  description: string;
+  _id: string;
+  created: string;
+}
+
 const BooksForSwapPage = () => {
   // STATES
 
   // States set by user before fetching the data
-  const [search, setSearch] = useState("");
-  const [category, setCategory] = useState("");
-  const [booksPerPage, setBooksPerPage] = useState("10");
-  const [sorting, setSorting] = useState("");
-  const [choosenPage, setChoosenPage] = useState(1);
+  const [search, setSearch] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
+  const [booksPerPage, setBooksPerPage] = useState<string>("10");
+  const [sorting, setSorting] = useState<string>("");
+  const [choosenPage, setChoosenPage] = useState<number>(1);
 
   // States set after fetching the data
-  const [books, setBooks] = useState([]);
-  const [pagination, setPagination] = useState(1);
+  const [books, setBooks] = useState<ISingleBook[]>([]);
+  const [pagination, setPagination] = useState<number>(1);
   const [error, setError] = useState("");
   // HANDLERS
 
@@ -66,14 +78,13 @@ const BooksForSwapPage = () => {
         );
 
         setBooks(data.books);
-        console.log(data.books);
+        console.log(data);
         setPagination(data.paginationNumbers);
       } catch (error) {
         console.log(error);
       }
     };
     getBooks();
-    // todo: use getBooks func
   }, [search, category, booksPerPage, sorting, choosenPage]);
 
   return (
@@ -103,7 +114,20 @@ const BooksForSwapPage = () => {
           }}
         >
           <Container>
-            <Stack spacing={2}></Stack>
+            <Stack spacing={2}>
+              {books &&
+                books.map((el) => {
+                  return (
+                    <BookItem
+                      key={el._id}
+                      bookName={el.nameOfTheBook}
+                      category={el.category}
+                      swapPlace={el.swapPlace}
+                      addedIn={el.created}
+                    ></BookItem>
+                  );
+                })}
+            </Stack>
           </Container>
         </Paper>
         <Pagination
