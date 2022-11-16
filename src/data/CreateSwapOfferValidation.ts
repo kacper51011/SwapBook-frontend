@@ -7,7 +7,7 @@ interface IOfferInitialValues {
   author: string;
   releaseDate: number;
   swapPlace: string;
-  booksInterestedFor: string;
+  swapFor: string;
   description: string;
 }
 
@@ -17,7 +17,7 @@ const offerInitialValues: IOfferInitialValues = {
   author: "",
   releaseDate: 2022,
   swapPlace: "",
-  booksInterestedFor: "",
+  swapFor: "",
   description: "",
 };
 
@@ -50,8 +50,8 @@ const offerValidationSchema = yup.object({
     .required(requiredError)
     .moreThan(1900, dateError)
     .lessThan(2023, dateError),
-  swapLocalization: yup.string().required(requiredError),
-  booksInterestedFor: yup
+  swapPlace: yup.string().required(requiredError),
+  swapFor: yup
     .string()
     .required(requiredError)
     .min(5, minError(5))
@@ -78,17 +78,17 @@ const CreateOfferApiCall = async (values: IOfferInitialValues) => {
     author,
     releaseDate,
     swapPlace,
-    booksInterestedFor,
+    swapFor,
     description,
   } = values;
 
-  const { data } = await axios.post("/api/users/login", {
+  const { data } = await axios.post("/api/books/create", {
     nameOfTheBook,
     category,
     author,
     releaseDate,
     swapPlace,
-    booksInterestedFor,
+    swapFor,
     description,
   });
   return data;

@@ -26,9 +26,7 @@ const CreateSwapOfferPage = () => {
     onSubmit: async (values) => {
       CreateOfferApiCall(values)
         .then((res) => console.log(res))
-        .catch((err) => {
-          console.log(err.response.data.message);
-        });
+        .catch((err) => console.log(err));
     },
   });
 
@@ -96,6 +94,7 @@ const CreateSwapOfferPage = () => {
               <Select
                 name="category"
                 id="category"
+                defaultValue=""
                 value={offerFormik.values.category}
                 error={
                   offerFormik.touched.category &&
@@ -106,7 +105,7 @@ const CreateSwapOfferPage = () => {
               >
                 {categories.map<React.ReactNode>((category, index) => {
                   return (
-                    <MenuItem key={index} value={category}>
+                    <MenuItem value={category} key={index}>
                       {category}
                     </MenuItem>
                   );
@@ -175,27 +174,26 @@ const CreateSwapOfferPage = () => {
               helperText={
                 offerFormik.touched.swapPlace && offerFormik.errors.swapPlace
               }
-              name="swapLocalization"
-              id="swapLocalization"
+              name="swapPlace"
+              id="swapPlace"
               label="Swap localization"
               variant="outlined"
             ></TextField>
             {/* books somebody want to have */}
             <TextField
               fullWidth
-              value={offerFormik.values.booksInterestedFor}
+              value={offerFormik.values.swapFor}
               onChange={offerFormik.handleChange}
               onBlur={offerFormik.handleBlur}
               error={
-                offerFormik.touched.booksInterestedFor &&
-                Boolean(offerFormik.errors.booksInterestedFor)
+                offerFormik.touched.swapFor &&
+                Boolean(offerFormik.errors.swapFor)
               }
               helperText={
-                offerFormik.touched.booksInterestedFor &&
-                offerFormik.errors.booksInterestedFor
+                offerFormik.touched.swapFor && offerFormik.errors.swapFor
               }
-              name="booksInterestedFor"
-              id="booksInterestedFor"
+              name="swapFor"
+              id="swapFor"
               label="Books that you are interested in for"
               variant="outlined"
             ></TextField>
