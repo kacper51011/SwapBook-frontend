@@ -1,11 +1,9 @@
 import "./App.css";
-import LoginWindow from "./components/LoginWindow";
 import NavigationBar from "./components/NavigationBar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import AboutUs from "./Pages/AboutUs";
 import BooksForSwapPage from "./Pages/BooksForSwapPage";
-import BookItem from "./components/BookItem";
 import Account from "./ProtectedPages/Account";
 import MyRequests from "./ProtectedPages/AccountSubPages/MyRequests";
 import Messages from "./ProtectedPages/AccountSubPages/Messages";

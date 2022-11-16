@@ -1,11 +1,12 @@
 import * as yup from "yup";
+import axios from "axios";
 
 interface IOfferInitialValues {
   nameOfTheBook: string;
   category: string;
   author: string;
   releaseDate: number;
-  swapLocalization: string;
+  swapPlace: string;
   booksInterestedFor: string;
   description: string;
 }
@@ -15,7 +16,7 @@ const offerInitialValues: IOfferInitialValues = {
   category: "",
   author: "",
   releaseDate: 2022,
-  swapLocalization: "",
+  swapPlace: "",
   booksInterestedFor: "",
   description: "",
 };
@@ -62,4 +63,40 @@ const offerValidationSchema = yup.object({
     .max(200, maxError(200)),
 });
 
-export { offerInitialValues, offerValidationSchema, type IOfferInitialValues };
+// nameOfTheBook: string;
+// category: string;
+// author: string;
+// releaseDate: number;
+// swapLocalization: string;
+// booksInterestedFor: string;
+// description: string;
+
+const CreateOfferApiCall = async (values: IOfferInitialValues) => {
+  const {
+    nameOfTheBook,
+    category,
+    author,
+    releaseDate,
+    swapPlace,
+    booksInterestedFor,
+    description,
+  } = values;
+
+  const { data } = await axios.post("/api/users/login", {
+    nameOfTheBook,
+    category,
+    author,
+    releaseDate,
+    swapPlace,
+    booksInterestedFor,
+    description,
+  });
+  return data;
+};
+
+export {
+  offerInitialValues,
+  offerValidationSchema,
+  type IOfferInitialValues,
+  CreateOfferApiCall,
+};

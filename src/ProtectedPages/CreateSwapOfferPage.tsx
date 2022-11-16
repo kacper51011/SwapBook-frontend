@@ -16,14 +16,19 @@ import {
   offerInitialValues,
   offerValidationSchema,
   IOfferInitialValues,
+  CreateOfferApiCall,
 } from "../data/createSwapOfferValidation";
 
 const CreateSwapOfferPage = () => {
   const offerFormik: FormikProps<IOfferInitialValues> = useFormik({
     initialValues: { ...offerInitialValues },
     validationSchema: offerValidationSchema,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      CreateOfferApiCall(values)
+        .then((res) => console.log(res))
+        .catch((err) => {
+          console.log(err.response.data.message);
+        });
     },
   });
 
@@ -160,16 +165,15 @@ const CreateSwapOfferPage = () => {
             {/* localization for the swap */}
             <TextField
               fullWidth
-              value={offerFormik.values.swapLocalization}
+              value={offerFormik.values.swapPlace}
               onChange={offerFormik.handleChange}
               onBlur={offerFormik.handleBlur}
               error={
-                offerFormik.touched.swapLocalization &&
-                Boolean(offerFormik.errors.swapLocalization)
+                offerFormik.touched.swapPlace &&
+                Boolean(offerFormik.errors.swapPlace)
               }
               helperText={
-                offerFormik.touched.swapLocalization &&
-                offerFormik.errors.swapLocalization
+                offerFormik.touched.swapPlace && offerFormik.errors.swapPlace
               }
               name="swapLocalization"
               id="swapLocalization"
