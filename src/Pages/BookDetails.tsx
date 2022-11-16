@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 const BookDetails = () => {
   const { bookId } = useParams();
 
-  return <div>BookDetails</div>;
+  return <div>{bookId}</div>;
 };
 
 export default BookDetails;

@@ -14,6 +14,7 @@ import { NavLink } from "react-router-dom";
 import { Stack } from "@mui/system";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/useAppSelector";
+import { deepOrange, red } from "@mui/material/colors";
 
 // component used in every page
 
@@ -56,8 +57,7 @@ const NavigationBar = () => {
           <Button
             component={NavLink}
             to="/books"
-            color="error"
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: "none", sm: "block" }, color: red[50] }}
           >
             Books for Swap
           </Button>
@@ -76,7 +76,7 @@ const NavigationBar = () => {
               component={NavLink}
               to="/Account/Messages"
               color="error"
-              sx={{ display: { xs: "none", sm: "block" } }}
+              sx={{ display: { xs: "none", sm: "block" }, color: red[50] }}
             >
               Messages
             </Button>
@@ -93,7 +93,9 @@ const NavigationBar = () => {
 
           {auth && (
             <IconButton component={Link} to="/Account">
-              <Avatar alt="asd" />
+              <Avatar alt="avatar" sx={{ bgcolor: deepOrange[500] }}>
+                {auth.nickname.charAt(0)}
+              </Avatar>
             </IconButton>
           )}
 

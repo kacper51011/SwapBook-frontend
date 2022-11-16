@@ -124,6 +124,7 @@ const BooksForSwapPage = () => {
                       category={el.category}
                       swapPlace={el.swapPlace}
                       addedIn={el.created}
+                      bookId={el._id}
                     ></BookItem>
                   );
                 })}

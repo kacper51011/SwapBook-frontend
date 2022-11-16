@@ -1,4 +1,4 @@
-import { CardMedia, CardContent, Typography, Paper } from "@mui/material";
+import { CardMedia, CardContent, Typography, Paper, Link } from "@mui/material";
 import { Box } from "@mui/system";
 
 // todo: implement images
@@ -9,6 +9,7 @@ interface IBookItem {
   category: string;
   swapPlace: string;
   addedIn: string;
+  bookId: string;
 }
 
 const BookItem = ({
@@ -17,13 +18,13 @@ const BookItem = ({
   category,
   swapPlace,
   addedIn,
+  bookId,
 }: IBookItem) => {
   return (
     <Paper
       elevation={3}
       sx={{
         display: "flex",
-        cursor: "pointer",
       }}
     >
       <CardMedia component="img" src={img} sx={{ width: "0.2" }} />
@@ -34,15 +35,18 @@ const BookItem = ({
           width: "0.8",
         }}
       >
-        <CardContent sx={{ display: "flex", justifyContent: "flex-start" }}>
+        <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography>{bookName}</Typography>
+          <Typography>{addedIn}</Typography>
         </CardContent>
         <CardContent sx={{ display: "flex", justifyContent: "flex-start" }}>
           <Typography>{category}</Typography>
         </CardContent>
-        <CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
+        <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography>{swapPlace} </Typography>
-          <Typography>{addedIn}</Typography>
+          <Link underline="hover" href={`/Books/${bookId}`}>
+            Read more...
+          </Link>
         </CardContent>
       </Box>
     </Paper>
