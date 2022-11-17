@@ -9,9 +9,11 @@ interface IprofilePaper {
   nickname?: string;
   email?: string;
   swapsAmount?: number;
+  // change contact from boolean to string or link etc
   contact?: boolean;
   xsWidth: string;
   smWidth: string;
+  offerCreatedBy?: boolean;
 }
 
 const ProfilePaper = ({
@@ -22,6 +24,7 @@ const ProfilePaper = ({
   contact,
   xsWidth,
   smWidth,
+  offerCreatedBy,
 }: IprofilePaper) => {
   return (
     <Paper
@@ -34,6 +37,11 @@ const ProfilePaper = ({
       }}
     >
       <Box display={"flex"} alignItems="center" flexDirection={"column"}>
+        {offerCreatedBy && (
+          <Typography variant="h5" component="h4">
+            Offer creator
+          </Typography>
+        )}
         <Image height={"20vw"} width="90%" src={image || ""}></Image>
       </Box>
 
@@ -47,8 +55,19 @@ const ProfilePaper = ({
         <Typography paddingBottom={"1vw"}>
           Number of swaps: {swapsAmount || 0}
         </Typography>
-        {contact && <Button>Send a message</Button>}
       </Stack>
+      {contact && (
+        <Box
+          display={"flex"}
+          alignItems="center"
+          flexDirection={"column"}
+          marginBottom="1vw"
+        >
+          <Button sx={{ width: "0.5", marginBottom: "0.2" }}>
+            Send a message
+          </Button>
+        </Box>
+      )}
     </Paper>
   );
 };
