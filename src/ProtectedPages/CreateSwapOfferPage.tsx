@@ -12,21 +12,27 @@ import {
 } from "@mui/material";
 import { useFormik, FormikProps } from "formik";
 import categories from "../data/categories";
+import { useState } from "react";
 import {
   offerInitialValues,
   offerValidationSchema,
   IOfferInitialValues,
   CreateOfferApiCall,
 } from "../data/createSwapOfferValidation";
+import SnackBarItem from "../components/SnackBarItem";
 
 const CreateSwapOfferPage = () => {
+  const [successSnackBar, setSuccessSnackBar] = useState<boolean>(false);
+  const [failSnackBar, setFailSnackBar] = useState<boolean>(false);
+
+  // initializing Formik, data can be found in "../data/createSwapOfferValidation"
   const offerFormik: FormikProps<IOfferInitialValues> = useFormik({
     initialValues: { ...offerInitialValues },
     validationSchema: offerValidationSchema,
     onSubmit: async (values) => {
       CreateOfferApiCall(values)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        .then((res) => setSuccessSnackBar(true))
+        .catch((err) => setFailSnackBar(true));
     },
   });
 
@@ -225,6 +231,18 @@ const CreateSwapOfferPage = () => {
             Create swap offer
           </Button>
         </Paper>
+        <SnackBarItem
+          state={successSnackBar}
+          setter={setSuccessSnackBar}
+          color="success"
+          message="Offer created!"
+        />
+        <SnackBarItem
+          state={failSnackBar}
+          setter={setFailSnackBar}
+          color="error"
+          message="something went wrong!"
+        />
       </Container>
     </form>
   );

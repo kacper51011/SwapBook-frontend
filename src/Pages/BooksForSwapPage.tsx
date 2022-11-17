@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import BookItem from "../components/BookItem";
 import FilterBar from "../components/FilterBar";
 
-interface ISingleBook {
+export interface ISingleBook {
   nameOfTheBook: string;
   category: string;
   author: string;
@@ -29,7 +29,7 @@ const BooksForSwapPage = () => {
   // States set after fetching the data
   const [books, setBooks] = useState<ISingleBook[]>([]);
   const [pagination, setPagination] = useState<number>(1);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<boolean>(false);
   // HANDLERS
 
   // handling the page change on click, used on <Pagination/> (BooksForSwapPage)
@@ -81,7 +81,7 @@ const BooksForSwapPage = () => {
         console.log(data);
         setPagination(data.paginationNumbers);
       } catch (error) {
-        console.log(error);
+        setError(true);
       }
     };
     getBooks();
