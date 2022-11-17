@@ -14,8 +14,12 @@ import Settings from "./ProtectedPages/AccountSubPages/Settings";
 import Profile from "./ProtectedPages/AccountSubPages/Profile";
 import CreateSwapOfferPage from "./ProtectedPages/CreateSwapOfferPage";
 import BookDetails from "./Pages/BookDetails";
+import SnackBarItem from "./components/SnackBarItem";
+import { useAppSelector } from "./hooks/useAppSelector";
 
 function App() {
+  const success = useAppSelector((state) => state.alerts.success);
+  const error = useAppSelector((state) => state.alerts.error);
   return (
     <div className="App">
       <NavigationBar />
@@ -38,6 +42,8 @@ function App() {
         </Route>
       </Routes>
       <Footer />
+      <SnackBarItem state color="success" message={success} />
+      <SnackBarItem state color="error" message={error} />
     </div>
   );
 }

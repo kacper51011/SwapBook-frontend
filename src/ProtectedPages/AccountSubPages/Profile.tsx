@@ -13,7 +13,7 @@ const Profile = () => {
         My Profile
       </Typography>
       <Stack direction={"row"} justifyContent="space-around">
-        <ProfilePaper />
+        <ProfilePaper xsWidth="0.15" smWidth="0.6" />
         <ProfileSecondPaper />
       </Stack>
     </Box>

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import BookItem from "../components/BookItem";
 import FilterBar from "../components/FilterBar";
+import SnackBarItem from "../components/SnackBarItem";
 
 export interface ISingleBook {
   nameOfTheBook: string;
@@ -138,6 +139,12 @@ const BooksForSwapPage = () => {
           color="primary"
           variant="outlined"
         ></Pagination>
+        <SnackBarItem
+          state={error}
+          setter={setError}
+          color="error"
+          message="couldn`t load books, try again later!"
+        />
       </Container>
     </>
   );

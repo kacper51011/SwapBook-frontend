@@ -86,9 +86,9 @@ const FilterBar = ({
 
           <NativeSelect defaultValue={""} onChange={handleSortingChange}>
             <option value={""}></option>
-            <option value={"name_1"}>name+</option>
-            <option value={"name_-1"}>name-</option>
-            <option value={"author_1"}>author+</option>
+            <option value={"nameOfTheBook_+1"}>name+</option>
+            <option value={"nameOfTheBook_-1"}>name-</option>
+            <option value={"author_+1"}>author+</option>
             <option value={"author_-1"}>author-</option>
           </NativeSelect>
         </FormControl>

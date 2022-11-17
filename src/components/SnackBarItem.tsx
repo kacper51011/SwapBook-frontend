@@ -5,10 +5,9 @@ interface ISnackBarItem {
   state: boolean;
   color: "success" | "info" | "warning" | "error";
   message: string;
-  setter: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SnackBarItem = ({ state, color, message, setter }: ISnackBarItem) => {
+const SnackBarItem = ({ state, color, message }: ISnackBarItem) => {
   const handleClose = (
     event?: React.SyntheticEvent | Event,
     reason?: string
@@ -16,8 +15,6 @@ const SnackBarItem = ({ state, color, message, setter }: ISnackBarItem) => {
     if (reason === "clickaway") {
       return;
     }
-
-    setter(false);
   };
 
   return (
