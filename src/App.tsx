@@ -18,8 +18,13 @@ import SnackBarItem from "./components/SnackBarItem";
 import { useAppSelector } from "./hooks/useAppSelector";
 
 function App() {
-  const success = useAppSelector((state) => state.alerts.success);
-  const error = useAppSelector((state) => state.alerts.error);
+  const successMessage = useAppSelector((state) => state.alerts.success);
+  const successState = useAppSelector(
+    (state) => state.alerts.successVisibility
+  );
+  const errorMessage = useAppSelector((state) => state.alerts.error);
+  const errorState = useAppSelector((state) => state.alerts.errorVisibility);
+
   return (
     <div className="App">
       <NavigationBar />
@@ -42,8 +47,12 @@ function App() {
         </Route>
       </Routes>
       <Footer />
-      <SnackBarItem state color="success" message={success} />
-      <SnackBarItem state color="error" message={error} />
+      <SnackBarItem
+        state={successState}
+        color="success"
+        message={successMessage}
+      />
+      <SnackBarItem state={errorState} color="error" message={errorMessage} />
     </div>
   );
 }

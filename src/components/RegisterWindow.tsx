@@ -15,6 +15,8 @@ import {
   IRegisterInitialValues,
   registerApiCall,
 } from "../data/registerValidation";
+import { useDispatch } from "react-redux";
+import { setError, setSuccess } from "../store/alertsSlice";
 
 // component used in Home Page
 
@@ -33,16 +35,19 @@ interface IRegisterProps {
 const RegisterWindow = ({ onClick }: IRegisterProps) => {
   const [backendError, setBackendError] = useState("");
 
+  const dispatch = useDispatch();
+
   const registerFormik: FormikProps<IRegisterInitialValues> = useFormik({
     initialValues: { ...registerInitialValues },
     validationSchema: registerValidationSchema,
     onSubmit: async (values) => {
       setBackendError("");
       registerApiCall(values)
-        .then((res) => console.log(res))
+        .then((res) => dispatch(setSuccess("registered successfully!")))
         .catch((err) => {
           console.log(err.response.data.message);
           setBackendError(err.response.data.message);
+          dispatch(setError("Registering unsuccessfull"));
         });
     },
   });

@@ -12,27 +12,27 @@ import {
 } from "@mui/material";
 import { useFormik, FormikProps } from "formik";
 import categories from "../data/categories";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   offerInitialValues,
   offerValidationSchema,
   IOfferInitialValues,
   CreateOfferApiCall,
 } from "../data/createSwapOfferValidation";
-import SnackBarItem from "../components/SnackBarItem";
+import { setError, setSuccess } from "../store/alertsSlice";
 
 const CreateSwapOfferPage = () => {
-  const [successSnackBar, setSuccessSnackBar] = useState<boolean>(false);
-  const [failSnackBar, setFailSnackBar] = useState<boolean>(false);
-
+  const dispatch = useDispatch();
   // initializing Formik, data can be found in "../data/createSwapOfferValidation"
   const offerFormik: FormikProps<IOfferInitialValues> = useFormik({
     initialValues: { ...offerInitialValues },
     validationSchema: offerValidationSchema,
     onSubmit: async (values) => {
       CreateOfferApiCall(values)
-        .then((res) => setSuccessSnackBar(true))
-        .catch((err) => setFailSnackBar(true));
+        .then((res) => dispatch(setSuccess("Offer created!")))
+        .catch((err) =>
+          dispatch(setError("something went wrong, try again later!"))
+        );
     },
   });
 
@@ -231,18 +231,6 @@ const CreateSwapOfferPage = () => {
             Create swap offer
           </Button>
         </Paper>
-        <SnackBarItem
-          state={successSnackBar}
-          setter={setSuccessSnackBar}
-          color="success"
-          message="Offer created!"
-        />
-        <SnackBarItem
-          state={failSnackBar}
-          setter={setFailSnackBar}
-          color="error"
-          message="something went wrong!"
-        />
       </Container>
     </form>
   );
