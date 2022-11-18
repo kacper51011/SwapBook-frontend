@@ -5,23 +5,36 @@ import { ISingleBook } from "./BooksForSwapPage";
 import { Container, Grid, Box, Paper } from "@mui/material";
 import ProfilePaper from "../components/ProfilePaper";
 import BookDetailsInfo from "../components/BookDetailsInfo";
+import { useDispatch } from "react-redux";
+import { setError } from "../store/alertsSlice";
+
+// interface of the creator of offer used in ProfilePaper in BookDetails (sent data.data.creator contains only those 3 values)
+interface IFetchedCreator {
+  _id?: string;
+  nickname?: string;
+  swaps?: string[];
+}
 
 const BookDetails = () => {
   // getting the params, will be used in useEffect data fetching, where the getSingleBook route will be used
   let { bookId } = useParams();
+  const dispatch = useDispatch();
 
   // fetched book state will be saved here
   const [fetchedBook, setBook] = useState<ISingleBook>();
+  const [fetchedCreator, setFetchedCreator] = useState<IFetchedCreator>();
 
   //
   useEffect(() => {
     const getBook = async () => {
       try {
-        // todo: modify the response in backend to send also the offerCreator data
         const { data } = await axios.get(`/api/books/getBook/${bookId}`);
         setBook(data.data.oneBook);
         console.log(data.data.oneBook);
+        setFetchedCreator(data.data.creator);
+        console.log(data.data.creator);
       } catch (err) {
+        dispatch(setError("couldn`t load book details"));
         console.log(err);
       }
     };
@@ -34,15 +47,18 @@ const BookDetails = () => {
         <Box marginTop="5%" minHeight="50vw">
           <Grid container spacing={3}>
             <Grid item xs={8}>
-              <Paper elevation={3} sx={{ width: "1", height: "1" }} />
+              {/* todo: image carousel */}
+              <Paper elevation={3} sx={{ width: "1", height: "1" }}>
+                Here will be image carousel
+              </Paper>
             </Grid>
             <Grid item xs={4}>
               <ProfilePaper
                 xsWidth="0.2"
                 smWidth="0.4"
                 image=""
-                nickname="123"
-                swapsAmount={3}
+                nickname={fetchedCreator?.nickname}
+                swapsAmount={fetchedCreator?.swaps?.length}
                 contact={true}
                 offerCreatedBy
               />
