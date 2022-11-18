@@ -5,11 +5,11 @@ import { Box } from "@mui/system";
 
 interface IBookItem {
   img?: string;
-  bookName: string;
-  category: string;
-  swapPlace: string;
-  addedIn: string;
-  bookId: string;
+  bookName?: string;
+  category?: string;
+  swapPlace?: string;
+  addedIn?: string;
+  bookId?: string;
 }
 
 const BookItem = ({

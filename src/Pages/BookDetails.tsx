@@ -17,6 +17,7 @@ const BookDetails = () => {
   useEffect(() => {
     const getBook = async () => {
       try {
+        // todo: modify the response in backend to send also the offerCreator data
         const { data } = await axios.get(`/api/books/getBook/${bookId}`);
         setBook(data.data.oneBook);
         console.log(data.data.oneBook);
@@ -46,8 +47,18 @@ const BookDetails = () => {
                 offerCreatedBy
               />
             </Grid>
-            <Grid item xs={12} minHeight="30vw">
-              <BookDetailsInfo />
+            <Grid item xs={12} minHeight="40vw">
+              <BookDetailsInfo
+                nameOfTheBook={fetchedBook?.nameOfTheBook}
+                category={fetchedBook?.category}
+                author={fetchedBook?.author}
+                releaseDate={fetchedBook?.releaseDate}
+                swapPlace={fetchedBook?.swapPlace}
+                swapFor={fetchedBook?.swapFor}
+                description={fetchedBook?.description}
+                created={fetchedBook?.created}
+                _id={fetchedBook?._id}
+              />
             </Grid>
           </Grid>
         </Box>

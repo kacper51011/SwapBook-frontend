@@ -5,15 +5,15 @@ import BookItem from "../components/BookItem";
 import FilterBar from "../components/FilterBar";
 
 export interface ISingleBook {
-  nameOfTheBook: string;
-  category: string;
-  author: string;
-  releaseDate: number;
-  swapPlace: string;
-  swapFor: string;
-  description: string;
-  _id: string;
-  created: string;
+  nameOfTheBook?: string;
+  category?: string;
+  author?: string;
+  releaseDate?: number;
+  swapPlace?: string;
+  swapFor?: string;
+  description?: string;
+  _id?: string;
+  created?: string;
 }
 
 const BooksForSwapPage = () => {

@@ -33,12 +33,12 @@ const ProfilePaper = ({
         display: "flex",
         flexDirection: "column",
         minWidth: { xs: { xsWidth }, sm: { smWidth } },
-        paddingX: "2vw",
+        padding: "2vw",
       }}
     >
       <Box display={"flex"} alignItems="center" flexDirection={"column"}>
         {offerCreatedBy && (
-          <Typography variant="h5" component="h4">
+          <Typography variant="h5" component="h5">
             Offer creator
           </Typography>
         )}
