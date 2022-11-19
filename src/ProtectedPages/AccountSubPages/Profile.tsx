@@ -15,11 +15,15 @@ const Profile = () => {
       <Typography padding={2} variant="h2">
         My Profile
       </Typography>
-      <Grid container direction="row" spacing={3}>
-        <Grid item xs={4}>
+      <Grid
+        container
+        spacing={3}
+        sx={{ flexDirection: { xs: "reverse-column", sm: "row" } }}
+      >
+        <Grid item xs={8} sm={4}>
           <ProfilePaper xsWidth="1" smWidth="1" />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12} sm={8}>
           <ProfileSecondPaper />
         </Grid>
       </Grid>

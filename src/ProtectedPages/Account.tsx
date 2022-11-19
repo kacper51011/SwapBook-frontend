@@ -1,5 +1,6 @@
 import {
   Box,
+  Divider,
   List,
   ListItem,
   ListItemButton,
@@ -40,13 +41,12 @@ const Account = () => {
         display: "flex",
         flexDirection: { xs: "column", sm: "row" },
         width: "100%",
-        height: "90vh",
+        minHeight: "90vh",
       }}
     >
       <List
         sx={{
           minWidth: { xs: "100%", sm: "15%" },
-          borderRight: { xs: "none", sm: "1px black solid" },
         }}
       >
         <ListItem disablePadding>
@@ -98,6 +98,7 @@ const Account = () => {
           </ListItemButton>
         </ListItem>
       </List>
+      <Divider orientation="vertical" />
       <Outlet />
     </Box>
   );
