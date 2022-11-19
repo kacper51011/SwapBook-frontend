@@ -1,8 +1,11 @@
-import { Box, Typography, Stack } from "@mui/material";
+import { Box, Typography, Grid } from "@mui/material";
 import ProfilePaper from "../../components/ProfilePaper";
 import ProfileSecondPaper from "../../components/ProfileSecondPaper";
+import { useState } from "react";
 
 const Profile = () => {
+  // to do: formik, check validation etc.
+  const [userData, setUserData] = useState();
   return (
     <Box
       padding={3}
@@ -12,10 +15,14 @@ const Profile = () => {
       <Typography padding={2} variant="h2">
         My Profile
       </Typography>
-      <Stack direction={"row"} justifyContent="space-around">
-        <ProfilePaper xsWidth="0.15" smWidth="0.6" />
-        <ProfileSecondPaper />
-      </Stack>
+      <Grid container direction="row" spacing={3}>
+        <Grid item xs={4}>
+          <ProfilePaper xsWidth="1" smWidth="1" />
+        </Grid>
+        <Grid item xs={8}>
+          <ProfileSecondPaper />
+        </Grid>
+      </Grid>
     </Box>
   );
 };

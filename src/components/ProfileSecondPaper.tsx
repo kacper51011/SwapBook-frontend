@@ -1,5 +1,13 @@
-import { Paper, TextField, Typography, Button } from "@mui/material";
+import {
+  Paper,
+  TextField,
+  Typography,
+  Button,
+  InputBase,
+  FormControl,
+} from "@mui/material";
 import { Stack } from "@mui/system";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
 // component used in account/profile page
 
@@ -16,7 +24,8 @@ const ProfileSecondPaper = ({ swapsLength }: ISecondPaper) => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-evenly",
-        minWidth: "60%",
+        width: "1",
+        height: "1",
       }}
     >
       <Stack
@@ -43,9 +52,24 @@ const ProfileSecondPaper = ({ swapsLength }: ISecondPaper) => {
         justifyContent={"space-around"}
       >
         <Typography>Change your photo:</Typography>
-        <Button variant="contained">choose a photo</Button>
-        <Typography>There is no photo chosen</Typography>
-        <Button>Save</Button>
+        <label htmlFor="photo">
+          <Button
+            variant="contained"
+            component="span"
+            endIcon={<CameraAltIcon />}
+          >
+            Change your photo
+          </Button>
+
+          <input
+            hidden
+            type="file"
+            accept="image/*"
+            multiple
+            name="photo"
+            id="photo"
+          />
+        </label>
       </Stack>
     </Paper>
   );

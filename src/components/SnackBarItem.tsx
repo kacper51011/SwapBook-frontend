@@ -22,7 +22,12 @@ const SnackBarItem = ({ state, color, message }: ISnackBarItem) => {
   };
 
   return (
-    <Snackbar open={state} autoHideDuration={5000} onClose={handleClose}>
+    <Snackbar
+      anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      open={state}
+      autoHideDuration={5000}
+      onClose={handleClose}
+    >
       <Alert onClose={handleClose} sx={{ width: "100%" }} color={color}>
         {message}
       </Alert>

@@ -16,6 +16,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { changeAuth } from "../store/authSlice";
+import { setSuccess } from "../store/alertsSlice";
 
 const Account = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Account = () => {
       sessionStorage.clear();
     });
     navigate("/");
+    dispatch(setSuccess("successfully logged out!"));
   };
   // todo: create a listItem component, then map the listItems with provided data here
   return (

@@ -1,6 +1,7 @@
 import { Box, Paper, Typography, Button } from "@mui/material";
 import { Stack } from "@mui/system";
 import Image from "mui-image";
+import BookDetailsTypography from "./BookDetailsTypography";
 
 // component used in Account/Profile Page
 
@@ -33,7 +34,7 @@ const ProfilePaper = ({
         display: "flex",
         flexDirection: "column",
         minWidth: { xs: { xsWidth }, sm: { smWidth } },
-        padding: "2vw",
+        padding: "1vw",
       }}
     >
       <Box display={"flex"} alignItems="center" flexDirection={"column"}>
@@ -47,14 +48,22 @@ const ProfilePaper = ({
 
       <Stack direction={"column"} alignItems={"left"}>
         {email && (
-          <Typography paddingBottom={"1vw"}>Email: {email || ""}</Typography>
+          <BookDetailsTypography
+            inputName="Email"
+            userInput={email}
+            inputNameVariant="h6"
+          />
         )}
-        <Typography paddingBottom={"1vw"}>
-          Nickname: {nickname || ""}
-        </Typography>
-        <Typography paddingBottom={"1vw"}>
-          Number of swaps: {swapsAmount || 0}
-        </Typography>
+        <BookDetailsTypography
+          inputName="Nickname"
+          userInput={nickname}
+          inputNameVariant="h6"
+        />
+        <BookDetailsTypography
+          inputName="Number of swaps"
+          userInput={swapsAmount}
+          inputNameVariant="h6"
+        />
       </Stack>
       {contact && (
         <Box
@@ -62,8 +71,12 @@ const ProfilePaper = ({
           alignItems="center"
           flexDirection={"column"}
           marginBottom="1vw"
+          marginTop="1vw"
         >
-          <Button sx={{ width: "0.5", marginBottom: "0.2" }}>
+          <Button
+            variant="contained"
+            sx={{ width: "0.5", marginBottom: "0.2" }}
+          >
             Send a message
           </Button>
         </Box>
