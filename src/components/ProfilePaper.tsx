@@ -1,7 +1,9 @@
-import { Box, Paper, Typography, Button } from "@mui/material";
+import { Box, Paper, Typography, Button, Icon, Avatar } from "@mui/material";
 import { Stack } from "@mui/system";
 import Image from "mui-image";
 import BookDetailsTypography from "./BookDetailsTypography";
+import { useAppSelector } from "../hooks/useAppSelector";
+import { deepOrange } from "@mui/material/colors";
 
 // component used in Account/Profile Page
 
@@ -15,6 +17,7 @@ interface IprofilePaper {
   xsWidth: string;
   smWidth: string;
   offerCreatedBy?: boolean;
+  avatarMargin: string;
 }
 
 const ProfilePaper = ({
@@ -26,7 +29,9 @@ const ProfilePaper = ({
   xsWidth,
   smWidth,
   offerCreatedBy,
+  avatarMargin,
 }: IprofilePaper) => {
+  const auth = useAppSelector((state) => state.auth.user);
   return (
     <Paper
       elevation={5}
@@ -34,19 +39,39 @@ const ProfilePaper = ({
         display: "flex",
         flexDirection: "column",
         minWidth: { xs: { xsWidth }, sm: { smWidth } },
+        minHeight: "1",
         padding: "1vw",
       }}
     >
       <Box display={"flex"} alignItems="center" flexDirection={"column"}>
         {offerCreatedBy && (
-          <Typography variant="h5" component="h5">
+          <Typography variant="h5" component="h5" marginBottom="2vw">
             Offer creator
           </Typography>
         )}
-        <Image height={"20vw"} width="90%" src={image || ""}></Image>
+        {image && <Image height={"20vw"} width="90%" src={image} />}
+        {!image && auth && (
+          <Avatar
+            alt="avatar"
+            sx={{
+              bgcolor: deepOrange[500],
+              height: "10vw",
+              width: "10vw",
+              fontSize: "5vw",
+              padding: "20px",
+              margin: { avatarMargin },
+            }}
+          >
+            {auth.nickname.charAt(0)}
+          </Avatar>
+        )}
       </Box>
 
-      <Stack direction={"column"} alignItems={"left"}>
+      <Stack
+        direction={"column"}
+        alignItems={"left"}
+        justifyContent="space-around"
+      >
         {email && (
           <BookDetailsTypography
             inputName="Email"

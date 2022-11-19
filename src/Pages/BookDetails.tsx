@@ -61,6 +61,7 @@ const BookDetails = () => {
                 swapsAmount={fetchedCreator?.swaps?.length}
                 contact={true}
                 offerCreatedBy
+                avatarMargin="2vw"
               />
             </Grid>
             <Grid item xs={12} minHeight="40vw">

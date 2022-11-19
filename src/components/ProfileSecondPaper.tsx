@@ -34,10 +34,10 @@ const ProfileSecondPaper = ({
   const togglePasswordEditHandler: MouseEventHandler<
     HTMLButtonElement
   > = () => {
-    togglePasswordEdit(!nicknameEdit);
+    togglePasswordEdit(!passwordEdit);
   };
   const toggleEmailEditHandler: MouseEventHandler<HTMLButtonElement> = () => {
-    toggleEmailEdit(!nicknameEdit);
+    toggleEmailEdit(!emailEdit);
   };
 
   return (
@@ -73,10 +73,10 @@ const ProfileSecondPaper = ({
           {!nicknameEdit && <Typography>actualNickname</Typography>}
           {nicknameEdit && (
             <TextField
-              label="Nickname"
+              type="text"
+              label="Your Nickname"
               id="nicknameEdit"
               name="nicknameEdit"
-              defaultValue={actualNickname}
             ></TextField>
           )}
         </Grid>
@@ -106,10 +106,9 @@ const ProfileSecondPaper = ({
           {passwordEdit && (
             <TextField
               type="password"
-              label="Password"
+              label="Your Password"
               id="passwordEdit"
               name="passwordEdit"
-              defaultValue={actualPassword}
             ></TextField>
           )}
         </Grid>
@@ -139,7 +138,8 @@ const ProfileSecondPaper = ({
           {!emailEdit && <Typography>actualEmail</Typography>}
           {emailEdit && (
             <TextField
-              label="email"
+              type="email"
+              label="Your Email"
               id="emailEdit"
               name="emailEdit"
             ></TextField>

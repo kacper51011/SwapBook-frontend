@@ -23,6 +23,7 @@ interface IBookDetailsTypography {
     | "subtitle2";
   inputNamePadding?: string;
   userInputPadding?: string;
+  marginY?: string;
 }
 
 const BookDetailsTypography = ({
@@ -32,9 +33,14 @@ const BookDetailsTypography = ({
   inputNameVariant,
   inputNamePadding,
   userInputPadding,
+  marginY,
 }: IBookDetailsTypography) => {
   return (
-    <Typography variant={inputNameVariant || "h5"} padding={inputNamePadding}>
+    <Typography
+      variant={inputNameVariant || "h5"}
+      padding={inputNamePadding}
+      marginY="1vw"
+    >
       {inputName}
       <br></br>{" "}
       <Typography

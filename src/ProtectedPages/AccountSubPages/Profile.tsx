@@ -5,12 +5,12 @@ import { useState } from "react";
 
 const Profile = () => {
   // to do: formik, check validation etc.
-  const [userData, setUserData] = useState();
   return (
     <Box
       padding={3}
       width={{ xs: "100%", sm: "85%" }}
       sx={{ backgroundColor: "#F5F5F5" }}
+      minHeight="40vw"
     >
       <Typography padding={2} variant="h2">
         My Profile
@@ -18,10 +18,20 @@ const Profile = () => {
       <Grid
         container
         spacing={3}
-        sx={{ flexDirection: { xs: "reverse-column", sm: "row" } }}
+        sx={{
+          flexDirection: { xs: "reverse-column", sm: "row" },
+          justifyContent: { xs: "center" },
+        }}
       >
         <Grid item xs={8} sm={4}>
-          <ProfilePaper xsWidth="1" smWidth="1" />
+          <ProfilePaper
+            xsWidth="1"
+            smWidth="1"
+            avatarMargin="7vw"
+            email="123"
+            nickname="123"
+            swapsAmount={123}
+          />
         </Grid>
         <Grid item xs={12} sm={8}>
           <ProfileSecondPaper />
