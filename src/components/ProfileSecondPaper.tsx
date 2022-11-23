@@ -21,6 +21,7 @@ interface ISecondPaper {
   email?: string;
   setFetchedEmail: React.Dispatch<React.SetStateAction<string>>;
   setFetchedNickname: React.Dispatch<React.SetStateAction<string>>;
+  setFetchedPhoto: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ProfileSecondPaper = ({
@@ -28,6 +29,7 @@ const ProfileSecondPaper = ({
   email,
   setFetchedEmail,
   setFetchedNickname,
+  setFetchedPhoto,
 }: ISecondPaper) => {
   const dispatch = useDispatch();
 
@@ -38,6 +40,7 @@ const ProfileSecondPaper = ({
   const [nicknameEditValue, setEditedNicknameValue] = useState("");
   const [emailEditValue, setEditedEmailValue] = useState("");
   const [passwordEditValue, setEditedPasswordValue] = useState("");
+  const [photo, setEditedPhotoValue] = useState<File | null>(null);
 
   const handleNicknameChangeSave = async () => {
     try {
@@ -74,6 +77,30 @@ const ProfileSecondPaper = ({
     } catch (err) {
       dispatch(setError("something went wrong, try other password"));
     }
+  };
+
+  // handling the button Click
+
+  const handlePhotoChangeSave: React.MouseEventHandler = () => {
+    const photoCall = async () => {
+      const data = new FormData();
+      if (photo) {
+        data.append("photo", photo);
+      }
+
+      try {
+        if (photo) {
+          await axios.post("/api/users/account/upload", data);
+
+          dispatch(setSuccess("photo set successfully"));
+        }
+      } catch (err) {
+        console.log(err);
+        dispatch(setError("something went wrong, try other password"));
+      }
+    };
+
+    photoCall();
   };
 
   // onChange`s and onClick`s are setted inline
@@ -205,24 +232,31 @@ const ProfileSecondPaper = ({
           <Typography fontWeight="bold">Photo</Typography>
         </Grid>
         <Grid item xs={4}>
-          <label htmlFor="photoEdit">
-            <Button
-              variant="contained"
-              component="span"
-              endIcon={<CameraAltIcon />}
-            >
-              Change your photo
-            </Button>
-
-            <input
-              hidden
-              type="file"
-              accept="image/*"
-              multiple
-              name="photoEdit"
-              id="photoEdit"
-            />
-          </label>
+          {/* <form
+            encType="multipart/form-data"
+            action="/api/users/account/upload"
+            method="POST"
+          > */}
+          <input
+            type="file"
+            name="photo"
+            accept="image/*"
+            onChange={(e) => {
+              if (e.target && e.target.files) {
+                const myPhoto = e.target.files[0];
+                setEditedPhotoValue(myPhoto);
+              }
+            }}
+          />
+          <Button
+            variant="contained"
+            endIcon={<CameraAltIcon />}
+            // type="submit"
+            onClick={handlePhotoChangeSave}
+          >
+            Save{" "}
+          </Button>
+          {/* </form> */}
         </Grid>
       </Grid>
     </Paper>

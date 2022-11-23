@@ -17,6 +17,8 @@ import BookDetails from "./Pages/BookDetails";
 import SnackBarItem from "./components/SnackBarItem";
 import { useAppSelector } from "./hooks/useAppSelector";
 
+// todo: images, swaps page, swaps expiration, preparing dates, refactoring
+
 function App() {
   const successMessage = useAppSelector((state) => state.alerts.success);
   const successState = useAppSelector(

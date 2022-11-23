@@ -13,7 +13,7 @@ const Profile = () => {
   const [fetchedNickname, setFetchedNickname] = useState<string>("");
   const [fetchedEmail, setFetchedEmail] = useState<string>("");
   const [fetchedNumberOfSwaps, setFetchedNumberOfSwaps] = useState<number>();
-  // const [fetchedPhoto, setFetchedPhoto] = useState("")
+  const [fetchedPhoto, setFetchedPhoto] = useState("");
 
   useEffect(() => {
     const getPersonalData = async () => {
@@ -64,6 +64,7 @@ const Profile = () => {
             nickname={fetchedNickname || ""}
             setFetchedEmail={setFetchedEmail}
             setFetchedNickname={setFetchedNickname}
+            setFetchedPhoto={setFetchedPhoto}
           />
         </Grid>
       </Grid>
