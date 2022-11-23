@@ -49,9 +49,18 @@ const ProfilePaper = ({
             Offer creator
           </Typography>
         )}
-        {image && <Image height={"20vw"} width="90%" src={image} />}
+        {image && (
+          <Image
+            height={"10vw"}
+            style={{ borderRadius: "50%" }}
+            width="10vw"
+            src={image}
+          />
+        )}
         {!image && auth && (
           <Avatar
+            src=""
+            style={{ objectFit: "cover" }}
             alt="avatar"
             sx={{
               bgcolor: deepOrange[500],

@@ -22,6 +22,8 @@ const Profile = () => {
         setFetchedEmail(data.user.email);
         setFetchedNickname(data.user.nickname);
         setFetchedNumberOfSwaps(data.user.swaps.length);
+        setFetchedPhoto(data.user.photo);
+        console.log(data);
       } catch (err) {
         dispatch(setError("couldn`t load the data, try again later"));
       }
@@ -56,6 +58,7 @@ const Profile = () => {
             email={fetchedEmail || ""}
             nickname={fetchedNickname || ""}
             swapsAmount={fetchedNumberOfSwaps || 0}
+            image={`http://localhost:5000//images/users/${fetchedPhoto}`}
           />
         </Grid>
         <Grid item xs={12} sm={8}>

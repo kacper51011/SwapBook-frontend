@@ -60,11 +60,11 @@ const ProfileSecondPaper = ({
       await axios.patch("/api/users/account", {
         email: emailEditValue,
       });
-      dispatch(setSuccess("nickname changed successfully"));
+      dispatch(setSuccess("Email changed successfully"));
       setFetchedEmail(emailEditValue);
       toggleEmailEdit(!emailEdit);
     } catch (err) {
-      dispatch(setError("something went wrong, try other nickname"));
+      dispatch(setError("something went wrong, try other Email"));
     }
   };
 
@@ -96,7 +96,7 @@ const ProfileSecondPaper = ({
         }
       } catch (err) {
         console.log(err);
-        dispatch(setError("something went wrong, try other password"));
+        dispatch(setError("something went wrong, try other image"));
       }
     };
 
@@ -231,12 +231,7 @@ const ProfileSecondPaper = ({
         <Grid item xs={4}>
           <Typography fontWeight="bold">Photo</Typography>
         </Grid>
-        <Grid item xs={4}>
-          {/* <form
-            encType="multipart/form-data"
-            action="/api/users/account/upload"
-            method="POST"
-          > */}
+        <Grid item xs={12} flexDirection="row" justifyContent="space-around">
           <input
             type="file"
             name="photo"
@@ -251,7 +246,6 @@ const ProfileSecondPaper = ({
           <Button
             variant="contained"
             endIcon={<CameraAltIcon />}
-            // type="submit"
             onClick={handlePhotoChangeSave}
           >
             Save{" "}
