@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface Iuser {
-  id: string;
-  nickname: string;
+export interface Iuser {
+  id: string | "";
+  nickname: string | "";
+  photo: string | "";
 }
 
 interface IauthInitialState {
-  user: Iuser | "";
+  user: Iuser;
 }
 
 // checking the localStorage (if login was valid and doNotLogout was checked, then data is there)
@@ -31,7 +32,10 @@ export const authSlice = createSlice({
     changeAuth: (state, action) => {
       state.user = action.payload;
     },
+    changePhoto: (state, action) => {
+      state.user.photo = action.payload;
+    },
   },
 });
-export const { changeAuth } = authSlice.actions;
+export const { changeAuth, changePhoto } = authSlice.actions;
 export default authSlice.reducer;

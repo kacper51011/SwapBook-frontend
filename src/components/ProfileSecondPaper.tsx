@@ -13,6 +13,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setError, setSuccess } from "../store/alertsSlice";
+import { changeAuth, changePhoto, Iuser } from "../store/authSlice";
+import { useAppSelector } from "../hooks/useAppSelector";
 
 // component used in account/profile page
 
@@ -32,6 +34,7 @@ const ProfileSecondPaper = ({
   setFetchedPhoto,
 }: ISecondPaper) => {
   const dispatch = useDispatch();
+  const auth = useAppSelector((state) => state.auth.user) as Iuser;
 
   // states used only for toggling normal mode and edit mode (Password is a textfield by default, so it dont have a toggle)
   const [nicknameEdit, toggleNicknameEdit] = useState<Boolean>(false);
@@ -42,9 +45,11 @@ const ProfileSecondPaper = ({
   const [passwordEditValue, setEditedPasswordValue] = useState("");
   const [photo, setEditedPhotoValue] = useState<File | null>(null);
 
+  // todo: change the useeffect in profile and handlers below to instantly update the data
+
   const handleNicknameChangeSave = async () => {
     try {
-      await axios.patch("/api/users/account", {
+      await axios.put("/api/users/account/update", {
         nickname: nicknameEditValue,
       });
       dispatch(setSuccess("nickname changed successfully"));
@@ -57,7 +62,7 @@ const ProfileSecondPaper = ({
 
   const handleEmailChangeSave = async () => {
     try {
-      await axios.patch("/api/users/account", {
+      await axios.put("/api/users/account/update", {
         email: emailEditValue,
       });
       dispatch(setSuccess("Email changed successfully"));
@@ -70,7 +75,7 @@ const ProfileSecondPaper = ({
 
   const handlePasswordChangeSave = async () => {
     try {
-      await axios.patch("/api/users/account", {
+      await axios.put("/api/users/account/update", {
         password: passwordEditValue,
       });
       dispatch(setSuccess("password changed successfully"));

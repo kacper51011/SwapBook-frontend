@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setError } from "../../store/alertsSlice";
+import { changeAuth } from "../../store/authSlice";
+import userEvent from "@testing-library/user-event";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -28,7 +30,6 @@ const Profile = () => {
         dispatch(setError("couldn`t load the data, try again later"));
       }
     };
-
     getPersonalData();
   });
 

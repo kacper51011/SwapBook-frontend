@@ -93,7 +93,15 @@ const NavigationBar = () => {
 
           {auth && (
             <IconButton component={Link} to="/Account">
-              <Avatar alt="avatar" sx={{ bgcolor: deepOrange[500] }}>
+              <Avatar
+                src={
+                  auth.photo
+                    ? `http://localhost:5000//images/users/${auth.photo}`
+                    : ""
+                }
+                alt="avatar"
+                sx={{ bgcolor: deepOrange[500] }}
+              >
                 {auth.nickname.charAt(0)}
               </Avatar>
             </IconButton>
