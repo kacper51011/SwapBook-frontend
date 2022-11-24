@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setError } from "../../store/alertsSlice";
 import axios from "axios";
 import { ISingleBook } from "../../Pages/BooksForSwapPage";
+import BookItem from "../../components/BookItem";
 
 const MyOffers = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const MyOffers = () => {
     const getSwaps = async () => {
       try {
         const { data } = await axios.get("/api/users/account/myOffers");
-
+        setUserSwaps(data.data);
         console.log(data);
       } catch (err) {
         console.log(err);
@@ -22,7 +23,7 @@ const MyOffers = () => {
       }
     };
     getSwaps();
-  });
+  }, []);
 
   return (
     <Box
@@ -34,6 +35,19 @@ const MyOffers = () => {
       <Typography padding={2} variant="h2">
         My Requests
       </Typography>
+
+      {userSwaps?.map((swap) => {
+        return (
+          <BookItem
+            bookName={swap.nameOfTheBook}
+            category={swap.category}
+            swapPlace={swap.swapPlace}
+            addedIn={swap.created}
+            bookId={swap._id}
+            key={swap._id}
+          ></BookItem>
+        );
+      })}
     </Box>
   );
 };

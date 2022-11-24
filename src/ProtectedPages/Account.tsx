@@ -49,7 +49,7 @@ const Account = () => {
         }}
       >
         <ListItem disablePadding>
-          <ListItemButton component={Link} to="MyRequests">
+          <ListItemButton component={Link} to="MyOffers">
             <ListItemIcon>
               <SwapHorizIcon />
             </ListItemIcon>
