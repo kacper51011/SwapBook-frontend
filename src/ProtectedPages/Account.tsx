@@ -24,7 +24,6 @@ const Account = () => {
   const navigate = useNavigate();
   // logout function will clean cookies (cookies http=true, so I had to use api call to delete the cookie in backend)
   // and also reset all the data of the user (saved in redux, localstorage and session storage)
-
   const logout = async () => {
     axios.delete("/api/users/logout").then((res) => {
       dispatch(changeAuth(""));
@@ -54,31 +53,7 @@ const Account = () => {
             <ListItemIcon>
               <SwapHorizIcon />
             </ListItemIcon>
-            <ListItemText primary="Swaps" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component={Link} to="SendMessage">
-            <ListItemIcon>
-              <SendIcon />
-            </ListItemIcon>
-            <ListItemText primary="Send a message" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component={Link} to="Messages">
-            <ListItemIcon>
-              <MailIcon />
-            </ListItemIcon>
-            <ListItemText primary="Messages" />
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton component={Link} to="Settings">
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
+            <ListItemText primary="My Offers" />
           </ListItemButton>
         </ListItem>
         <ListItem disablePadding>

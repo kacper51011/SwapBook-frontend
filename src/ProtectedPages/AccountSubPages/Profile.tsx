@@ -5,17 +5,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setError } from "../../store/alertsSlice";
-import { changeAuth } from "../../store/authSlice";
-import userEvent from "@testing-library/user-event";
+
+import { useAppSelector } from "../../hooks/useAppSelector";
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const auth = useAppSelector((state) => state.auth?.user);
   // states that will store data that useEffect fetch at initial render
   // also states that will store the default values of inputs in ProfileSecondPaper
   const [fetchedNickname, setFetchedNickname] = useState<string>("");
   const [fetchedEmail, setFetchedEmail] = useState<string>("");
   const [fetchedNumberOfSwaps, setFetchedNumberOfSwaps] = useState<number>();
-  const [fetchedPhoto, setFetchedPhoto] = useState("");
 
   useEffect(() => {
     const getPersonalData = async () => {
@@ -24,7 +24,6 @@ const Profile = () => {
         setFetchedEmail(data.user.email);
         setFetchedNickname(data.user.nickname);
         setFetchedNumberOfSwaps(data.user.swaps.length);
-        setFetchedPhoto(data.user.photo);
         console.log(data);
       } catch (err) {
         dispatch(setError("couldn`t load the data, try again later"));
@@ -59,7 +58,11 @@ const Profile = () => {
             email={fetchedEmail || ""}
             nickname={fetchedNickname || ""}
             swapsAmount={fetchedNumberOfSwaps || 0}
-            image={`http://localhost:5000//images/users/${fetchedPhoto}`}
+            image={
+              auth.photo
+                ? `http://localhost:5000//images/users/${auth.photo}`
+                : ""
+            }
           />
         </Grid>
         <Grid item xs={12} sm={8}>
@@ -68,7 +71,6 @@ const Profile = () => {
             nickname={fetchedNickname || ""}
             setFetchedEmail={setFetchedEmail}
             setFetchedNickname={setFetchedNickname}
-            setFetchedPhoto={setFetchedPhoto}
           />
         </Grid>
       </Grid>

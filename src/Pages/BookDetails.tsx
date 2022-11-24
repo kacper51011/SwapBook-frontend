@@ -10,9 +10,10 @@ import { setError } from "../store/alertsSlice";
 
 // interface of the creator of offer used in ProfilePaper in BookDetails (sent data.data.creator contains only those 3 values)
 interface IFetchedCreator {
-  _id?: string;
-  nickname?: string;
-  swaps?: string[];
+  _id: string;
+  nickname: string;
+  swaps: string[];
+  photo: string;
 }
 
 const BookDetails = () => {
@@ -23,22 +24,31 @@ const BookDetails = () => {
   // fetched book state will be saved here
   const [fetchedBook, setBook] = useState<ISingleBook>();
   const [fetchedCreator, setFetchedCreator] = useState<IFetchedCreator>();
+  const [fetchedId, setFetchedId] = useState<string>("");
 
   //
   useEffect(() => {
+    // tried to fight with the error, that fires when i fetch the data after changing photo. Decided to leave it like that (with two async functions)
     const getBook = async () => {
       try {
         const { data } = await axios.get(`/api/books/getBook/${bookId}`);
         setBook(data.data.oneBook);
-        console.log(data.data.oneBook);
-        setFetchedCreator(data.data.creator);
-        console.log(data.data.creator);
+        setFetchedId(data.data.creator._id);
       } catch (err) {
         dispatch(setError("couldn`t load book details"));
+      }
+    };
+
+    const getUserImage = async () => {
+      try {
+        const { data } = await axios.get(`/api/users/${fetchedId}`);
+
+        setFetchedCreator(data.data.users[0]);
+      } catch (err) {
         console.log(err);
       }
     };
-    getBook();
+    getBook().then(() => getUserImage());
   }, []);
 
   return (
@@ -56,10 +66,14 @@ const BookDetails = () => {
               <ProfilePaper
                 xsWidth="0.2"
                 smWidth="0.4"
-                image=""
                 nickname={fetchedCreator?.nickname}
-                swapsAmount={fetchedCreator?.swaps?.length}
+                swapsAmount={fetchedCreator?.swaps.length}
                 contact={true}
+                image={
+                  fetchedCreator?.photo
+                    ? `http://localhost:5000//images/users/${fetchedCreator.photo}`
+                    : ""
+                }
                 offerCreatedBy
                 avatarMargin="2vw"
               />

@@ -69,30 +69,11 @@ const NavigationBar = () => {
           >
             <CompareArrowsIcon sx={{ color: "white" }} />
           </IconButton>
-          {/* button or icon for messages page (depends on width and being logged) */}
-
-          {auth && (
-            <Button
-              component={NavLink}
-              to="/Account/Messages"
-              color="error"
-              sx={{ display: { xs: "none", sm: "block" }, color: red[50] }}
-            >
-              Messages
-            </Button>
-          )}
-          <IconButton
-            component={Link}
-            to="/Account/Messages"
-            sx={{ display: { xs: "block", sm: "none" } }}
-          >
-            <EmailIcon sx={{ color: "white" }} />
-          </IconButton>
 
           {/* icon for profile page (depends on being logged) */}
 
           {auth && (
-            <IconButton component={Link} to="/Account">
+            <IconButton component={Link} to="/Account/Profile">
               <Avatar
                 src={
                   auth.photo

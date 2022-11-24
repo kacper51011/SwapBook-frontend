@@ -10,6 +10,7 @@ interface IBookItem {
   swapPlace?: string;
   addedIn?: string;
   bookId?: string;
+  children?: JSX.Element | JSX.Element[];
 }
 
 const BookItem = ({
@@ -19,6 +20,7 @@ const BookItem = ({
   swapPlace,
   addedIn,
   bookId,
+  children,
 }: IBookItem) => {
   return (
     <Paper
@@ -27,6 +29,8 @@ const BookItem = ({
         display: "flex",
       }}
     >
+      {/* I will use children in myOffers page */}
+      {children}
       <CardMedia component="img" src={img} sx={{ width: "0.2" }} />
       <Box
         sx={{

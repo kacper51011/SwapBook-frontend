@@ -23,7 +23,6 @@ interface ISecondPaper {
   email?: string;
   setFetchedEmail: React.Dispatch<React.SetStateAction<string>>;
   setFetchedNickname: React.Dispatch<React.SetStateAction<string>>;
-  setFetchedPhoto: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ProfileSecondPaper = ({
@@ -31,10 +30,8 @@ const ProfileSecondPaper = ({
   email,
   setFetchedEmail,
   setFetchedNickname,
-  setFetchedPhoto,
 }: ISecondPaper) => {
   const dispatch = useDispatch();
-  const auth = useAppSelector((state) => state.auth.user) as Iuser;
 
   // states used only for toggling normal mode and edit mode (Password is a textfield by default, so it dont have a toggle)
   const [nicknameEdit, toggleNicknameEdit] = useState<Boolean>(false);
@@ -95,7 +92,11 @@ const ProfileSecondPaper = ({
 
       try {
         if (photo) {
-          await axios.post("/api/users/account/upload", data);
+          const newUserData = await axios.post(
+            "/api/users/account/upload",
+            data
+          );
+          dispatch(changePhoto(newUserData.data.data));
 
           dispatch(setSuccess("photo set successfully"));
         }
