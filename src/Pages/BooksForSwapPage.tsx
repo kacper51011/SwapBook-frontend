@@ -90,6 +90,7 @@ const BooksForSwapPage = () => {
 
   return (
     <>
+      {/* searchBar, sorting, number of Books displayed, filtering */}
       <FilterBar
         handleSortingChange={handleSortingChange}
         handleCategoryChange={handleCategoryChange}
@@ -97,6 +98,7 @@ const BooksForSwapPage = () => {
         setSearch={setSearch}
       />
       <CustomContainer
+        // books fetched from API
         children1={
           <Stack spacing={2}>
             {books &&
@@ -114,6 +116,7 @@ const BooksForSwapPage = () => {
               })}
           </Stack>
         }
+        // Pagination
         children2={
           <Pagination
             count={pagination}

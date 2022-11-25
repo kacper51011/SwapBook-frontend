@@ -1,5 +1,5 @@
 import { Container, Paper } from "@mui/material";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 
 interface ICustomContainer {
   children1?: React.ReactNode | undefined;
@@ -19,9 +19,7 @@ const CustomContainer = ({ children1, children2 }: ICustomContainer) => {
         elevation={1}
         sx={{
           marginY: "20px",
-
           paddingY: "20px",
-
           backgroundColor: "#F5F5F5",
           width: 1,
         }}
