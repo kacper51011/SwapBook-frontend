@@ -2,6 +2,7 @@ import { Container, Stack, Paper, Pagination } from "@mui/material";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import BookItem from "../components/BookItem";
+import CustomContainer from "../components/CustomContainer";
 import FilterBar from "../components/FilterBar";
 
 export interface ISingleBook {
@@ -95,50 +96,34 @@ const BooksForSwapPage = () => {
         handleBooksPerPageChange={handleBooksPerPageChange}
         setSearch={setSearch}
       />
-      <Container
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Paper
-          elevation={1}
-          sx={{
-            marginTop: "20px",
-            marginBottom: "20px",
-            paddingTop: "20px",
-            paddingBottom: "20px",
-            backgroundColor: "#F5F5F5",
-            width: 1,
-          }}
-        >
-          <Container>
-            <Stack spacing={2}>
-              {books &&
-                books.map((el) => {
-                  return (
-                    <BookItem
-                      key={el._id}
-                      bookName={el.nameOfTheBook}
-                      category={el.category}
-                      swapPlace={el.swapPlace}
-                      addedIn={el.created}
-                      bookId={el._id}
-                    ></BookItem>
-                  );
-                })}
-            </Stack>
-          </Container>
-        </Paper>
-        <Pagination
-          count={pagination}
-          page={choosenPage}
-          onChange={handlePageChange}
-          color="primary"
-          variant="outlined"
-        ></Pagination>
-      </Container>
+      <CustomContainer
+        children1={
+          <Stack spacing={2}>
+            {books &&
+              books.map((el) => {
+                return (
+                  <BookItem
+                    key={el._id}
+                    bookName={el.nameOfTheBook}
+                    category={el.category}
+                    swapPlace={el.swapPlace}
+                    addedIn={el.created}
+                    bookId={el._id}
+                  ></BookItem>
+                );
+              })}
+          </Stack>
+        }
+        children2={
+          <Pagination
+            count={pagination}
+            page={choosenPage}
+            onChange={handlePageChange}
+            color="primary"
+            variant="outlined"
+          ></Pagination>
+        }
+      />
     </>
   );
 };
