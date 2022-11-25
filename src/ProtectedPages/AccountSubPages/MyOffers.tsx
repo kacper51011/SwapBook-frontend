@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { setError } from "../../store/alertsSlice";
 import axios from "axios";
 import { ISingleBook } from "../../Pages/BooksForSwapPage";
-import BookItem from "../../components/BookItem";
+import MyOffersBookItem from "../../components/MyOffersBookItem";
 
 const MyOffers = () => {
   const dispatch = useDispatch();
@@ -25,6 +25,8 @@ const MyOffers = () => {
     getSwaps();
   }, []);
 
+  // use tooltips
+
   return (
     <Box
       padding={3}
@@ -35,19 +37,20 @@ const MyOffers = () => {
       <Typography padding={2} variant="h2">
         My Requests
       </Typography>
-
-      {userSwaps?.map((swap) => {
-        return (
-          <BookItem
-            bookName={swap.nameOfTheBook}
-            category={swap.category}
-            swapPlace={swap.swapPlace}
-            addedIn={swap.created}
-            bookId={swap._id}
-            key={swap._id}
-          ></BookItem>
-        );
-      })}
+      <Grid container spacing={3}>
+        {userSwaps?.map((swap) => {
+          return (
+            <MyOffersBookItem
+              key={swap._id}
+              bookName={swap.nameOfTheBook}
+              category={swap.category}
+              swapPlace={swap.swapPlace}
+              addedIn={swap.created}
+              bookId={swap._id}
+            />
+          );
+        })}
+      </Grid>
     </Box>
   );
 };

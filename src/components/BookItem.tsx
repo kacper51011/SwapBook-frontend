@@ -3,14 +3,15 @@ import { Box } from "@mui/system";
 
 // todo: implement images
 
-interface IBookItem {
+export interface IBookItem {
   img?: string;
   bookName?: string;
   category?: string;
   swapPlace?: string;
   addedIn?: string;
   bookId?: string;
-  children?: JSX.Element | JSX.Element[];
+  children?: any;
+  width?: string;
 }
 
 const BookItem = ({
@@ -21,12 +22,15 @@ const BookItem = ({
   addedIn,
   bookId,
   children,
+  width,
 }: IBookItem) => {
   return (
     <Paper
       elevation={3}
       sx={{
         display: "flex",
+        position: "relative",
+        width: { width },
       }}
     >
       {/* I will use children in myOffers page */}
