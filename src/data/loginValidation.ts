@@ -1,5 +1,6 @@
 import * as yup from "yup";
 import axios from "axios";
+import { CSSProperties } from "react";
 
 interface ILoginInitialValues {
   email: string;
@@ -29,9 +30,18 @@ const loginApiCall = async (values: ILoginInitialValues) => {
   return data;
 };
 
+const formStyle: CSSProperties = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "100%",
+};
+
 export {
   loginApiCall,
   loginInitialValues,
   loginValidationSchema,
   type ILoginInitialValues,
+  formStyle,
 };

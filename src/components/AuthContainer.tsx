@@ -1,12 +1,13 @@
-import React, { PropsWithChildren, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Paper, Typography } from "@mui/material";
 
 interface IAuthContainer {
   children: ReactNode;
   information: string;
+  icon?: ReactNode;
 }
 
-const AuthContainer = ({ children, information }: IAuthContainer) => {
+const AuthContainer = ({ children, information, icon }: IAuthContainer) => {
   return (
     <Paper
       sx={{
@@ -29,7 +30,7 @@ const AuthContainer = ({ children, information }: IAuthContainer) => {
         component="span"
         pb="30px"
       >
-        {information}
+        {information} {icon}
       </Typography>
       {children}
     </Paper>

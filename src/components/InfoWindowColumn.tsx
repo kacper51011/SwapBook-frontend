@@ -8,7 +8,7 @@ interface IInfoColumn {
   inputs: { inputName: string; userInput?: string | number }[];
 }
 
-const InfoColumn = ({ columnName, inputs }: IInfoColumn) => {
+const InfoWindowColumn = ({ columnName, inputs }: IInfoColumn) => {
   return (
     <Box width="0.5" padding="10px" display="flex" flexDirection="column">
       <Typography width="100%" textAlign="center" variant="h4">
@@ -30,4 +30,4 @@ const InfoColumn = ({ columnName, inputs }: IInfoColumn) => {
   );
 };
 
-export default InfoColumn;
+export default InfoWindowColumn;

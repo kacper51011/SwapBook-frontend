@@ -17,16 +17,9 @@ import {
 } from "../data/registerValidation";
 import { useDispatch } from "react-redux";
 import { setError, setSuccess } from "../store/alertsSlice";
-
+import AuthContainer from "./AuthContainer";
+import { formStyle } from "../data/loginValidation";
 // component used in Home Page
-
-const formStyle: CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  width: "100%",
-};
 
 interface IRegisterProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
@@ -53,31 +46,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
   });
 
   return (
-    <Paper
-      sx={{
-        width: { xs: "0.8", lg: "0.7" },
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        paddingTop: "30px",
-        paddingBottom: "20px",
-      }}
-    >
-      <Typography
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-        variant="h5"
-        component="span"
-        pb="30px"
-      >
-        Sign up
-        <LoginIcon />
-      </Typography>
-
+    <AuthContainer information="Sign up to SwapBook" icon={<LoginIcon />}>
       {/* nickname input */}
       <form style={formStyle} onSubmit={registerFormik.handleSubmit}>
         <TextField
@@ -172,7 +141,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
           Sign in
         </Button>
       </Typography>
-    </Paper>
+    </AuthContainer>
   );
 };
 

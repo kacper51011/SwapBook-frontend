@@ -1,5 +1,4 @@
 import {
-  Paper,
   Button,
   Checkbox,
   Typography,
@@ -8,7 +7,7 @@ import {
   FormHelperText,
 } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
-import { CSSProperties, MouseEventHandler, useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import { useFormik, FormikProps } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -20,19 +19,14 @@ import {
 } from "../data/loginValidation";
 import { changeAuth } from "../store/authSlice";
 import { setError, setSuccess } from "../store/alertsSlice";
+import AuthContainer from "./AuthContainer";
+import { formStyle } from "../data/loginValidation";
 
 // component used in Home Page
 
 interface ILoginProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
-
-const formStyle: CSSProperties = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-};
 
 const LoginWindow = ({ onClick }: ILoginProps) => {
   // todo: take the backend error useState to page and pass it as a props
@@ -67,30 +61,7 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
   });
 
   return (
-    <Paper
-      sx={{
-        width: { xs: "0.8", lg: "0.5" },
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        paddingTop: "30px",
-        paddingBottom: "20px",
-      }}
-    >
-      <Typography
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          flexWrap: "wrap",
-        }}
-        variant="h5"
-        component="span"
-        pb="30px"
-      >
-        Sign in to SwapBook
-        <LoginIcon />
-      </Typography>
+    <AuthContainer information="Sign In to SwapBook" icon={<LoginIcon />}>
       <form style={formStyle} onSubmit={loginFormik.handleSubmit}>
         {/* email input */}
         <TextField
@@ -148,7 +119,7 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
           Sign up
         </Button>
       </Typography>
-    </Paper>
+    </AuthContainer>
   );
 };
 

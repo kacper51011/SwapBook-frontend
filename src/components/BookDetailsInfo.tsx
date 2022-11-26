@@ -1,7 +1,7 @@
 import { ISingleBook } from "../Pages/BooksForSwapPage";
 
-import InfoColumn from "./InfoColumn";
-import InfoWindow from "./InfoWindow";
+import InfoWindowColumn from "./InfoWindowColumn";
+import InfoWindowContainer from "./InfoWindowContainer";
 
 const BookDetailsInfo = ({
   nameOfTheBook,
@@ -14,9 +14,9 @@ const BookDetailsInfo = ({
   created,
 }: ISingleBook) => {
   return (
-    <InfoWindow
+    <InfoWindowContainer
       firstInfo={
-        <InfoColumn
+        <InfoWindowColumn
           columnName="About book"
           inputs={[
             { inputName: "Book", userInput: nameOfTheBook },
@@ -27,7 +27,7 @@ const BookDetailsInfo = ({
         />
       }
       secondInfo={
-        <InfoColumn
+        <InfoWindowColumn
           columnName="About offer"
           inputs={[
             { inputName: "Created at", userInput: created },

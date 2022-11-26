@@ -6,12 +6,12 @@ interface IInfoWindow {
   secondInfo?: React.ReactNode;
 }
 
-const InfoWindow = ({ firstInfo, secondInfo }: IInfoWindow) => {
+const InfoWindowContainer = ({ firstInfo, secondInfo }: IInfoWindow) => {
   return (
     <Paper elevation={5} sx={{ width: "1", height: "1" }}>
+      {/* Divide will display only if both props are passed to InfoWindow */}
       <Box width="100%" height="100%" display="flex" flexDirection="row">
         {firstInfo}
-        {/* Divide will display only if both props are passed to InfoWindow */}
         {firstInfo && secondInfo && <Divider />}
         {secondInfo}
       </Box>
@@ -19,4 +19,4 @@ const InfoWindow = ({ firstInfo, secondInfo }: IInfoWindow) => {
   );
 };
 
-export default InfoWindow;
+export default InfoWindowContainer;
