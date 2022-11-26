@@ -1,11 +1,4 @@
-import { CSSProperties } from "react";
-import {
-  Paper,
-  Button,
-  Typography,
-  TextField,
-  FormHelperText,
-} from "@mui/material";
+import { Button, Typography, TextField, FormHelperText } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 import { MouseEventHandler, useState } from "react";
 import { useFormik, FormikProps } from "formik";
