@@ -18,9 +18,9 @@ import {
   loginApiCall,
 } from "../data/loginValidation";
 import { changeAuth } from "../store/authSlice";
-import { setError, setSuccess } from "../store/alertsSlice";
 import AuthContainer from "./AuthContainer";
 import { formStyle } from "../data/loginValidation";
+import useAlert from "../hooks/useAlert";
 
 // component used in Home Page
 
@@ -50,12 +50,12 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
             sessionStorage.setItem("userInfo", JSON.stringify(res.user));
           }
           dispatch(changeAuth(res.user));
-          dispatch(setSuccess("successfully logged in!"));
+          useAlert("success", "Successfully logged in!");
           navigate("/Books", { replace: true });
         })
         .catch((err) => {
           setBackendError(err.response.data.message);
-          dispatch(setError("something went wrong! try again"));
+          useAlert("error", "Something went wrong! try again");
         });
     },
   });

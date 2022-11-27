@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { setError, setSuccess } from "../store/alertsSlice";
 import { changeAuth, changePhoto, Iuser } from "../store/authSlice";
 import { useAppSelector } from "../hooks/useAppSelector";
+import useAlert from "../hooks/useAlert";
 
 // component used in account/profile page
 
@@ -49,11 +50,11 @@ const ProfileSecondPaper = ({
       await axios.put("/api/users/account/update", {
         nickname: nicknameEditValue,
       });
-      dispatch(setSuccess("nickname changed successfully"));
+      useAlert("success", "nickname changed successfully");
       setFetchedNickname(nicknameEditValue);
       toggleNicknameEdit(!nicknameEdit);
     } catch (err) {
-      dispatch(setError("something went wrong, try other nickname"));
+      useAlert("error", "something went wrong, try other nickname");
     }
   };
 
@@ -75,9 +76,9 @@ const ProfileSecondPaper = ({
       await axios.put("/api/users/account/update", {
         password: passwordEditValue,
       });
-      dispatch(setSuccess("password changed successfully"));
+      useAlert("success", "password changed successfully");
     } catch (err) {
-      dispatch(setError("something went wrong, try other password"));
+      useAlert("success", "something went wrong, try other Password");
     }
   };
 

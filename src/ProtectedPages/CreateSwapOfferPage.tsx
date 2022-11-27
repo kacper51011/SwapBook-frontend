@@ -12,26 +12,24 @@ import {
 } from "@mui/material";
 import { useFormik, FormikProps } from "formik";
 import categories from "../data/categories";
-import { useDispatch } from "react-redux";
 import {
   offerInitialValues,
   offerValidationSchema,
   IOfferInitialValues,
   CreateOfferApiCall,
 } from "../data/createSwapOfferValidation";
-import { setError, setSuccess } from "../store/alertsSlice";
+import useAlert from "../hooks/useAlert";
 
 const CreateSwapOfferPage = () => {
-  const dispatch = useDispatch();
   // initializing Formik, data can be found in "../data/createSwapOfferValidation"
   const offerFormik: FormikProps<IOfferInitialValues> = useFormik({
     initialValues: { ...offerInitialValues },
     validationSchema: offerValidationSchema,
     onSubmit: async (values) => {
       CreateOfferApiCall(values)
-        .then((res) => dispatch(setSuccess("Offer created!")))
+        .then((res) => useAlert("success", "Offer created"))
         .catch((err) =>
-          dispatch(setError("something went wrong, try again later!"))
+          useAlert("error", "something went wrong, try again later!")
         );
     },
   });

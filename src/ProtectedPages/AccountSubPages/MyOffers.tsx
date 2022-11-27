@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { setError } from "../../store/alertsSlice";
 import axios from "axios";
 import { ISingleBook } from "../../Pages/BooksForSwapPage";
 import MyOffersBookItem from "../../components/MyOffersBookItem";
+import useAlert from "../../hooks/useAlert";
 
 const MyOffers = () => {
-  const dispatch = useDispatch();
-
   const [userSwaps, setUserSwaps] = useState<ISingleBook[]>();
 
   useEffect(() => {
@@ -16,10 +13,8 @@ const MyOffers = () => {
       try {
         const { data } = await axios.get("/api/users/account/myOffers");
         setUserSwaps(data.data);
-        console.log(data);
       } catch (err) {
-        console.log(err);
-        dispatch(setError("couldn`t load the data, try again later"));
+        useAlert("error", "couldn`t load the data, try again later");
       }
     };
     getSwaps();

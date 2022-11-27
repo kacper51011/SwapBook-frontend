@@ -3,30 +3,35 @@ import ProfilePaper from "../../components/ProfilePaper";
 import ProfileSecondPaper from "../../components/ProfileSecondPaper";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { setError } from "../../store/alertsSlice";
-
 import { useAppSelector } from "../../hooks/useAppSelector";
+import useAlert from "../../hooks/useAlert";
+import useFetchedUser from "../../hooks/useFetchedUser";
 
 const Profile = () => {
-  const dispatch = useDispatch();
   const auth = useAppSelector((state) => state.auth?.user);
   // states that will store data that useEffect fetch at initial render
   // also states that will store the default values of inputs in ProfileSecondPaper
-  const [fetchedNickname, setFetchedNickname] = useState<string>("");
-  const [fetchedEmail, setFetchedEmail] = useState<string>("");
-  const [fetchedNumberOfSwaps, setFetchedNumberOfSwaps] = useState<number>();
+  // const [fetchedNickname, setFetchedNickname] = useState<string>("");
+  // const [fetchedEmail, setFetchedEmail] = useState<string>("");
+  // const [fetchedNumberOfSwaps, setFetchedNumberOfSwaps] = useState<number>();
+
+  const [fetchedNickname, fetchedEmail, fetchedNumberOfSwaps, { setUserData }] =
+    useFetchedUser();
 
   useEffect(() => {
     const getPersonalData = async () => {
       try {
         const { data } = await axios.get("/api/users/account/profile");
-        setFetchedEmail(data.user.email);
-        setFetchedNickname(data.user.nickname);
-        setFetchedNumberOfSwaps(data.user.swaps.length);
-        console.log(data);
+        setUserData(
+          data.user.nickname,
+          data.user.email,
+          data.user.swaps.length
+        );
+        // setFetchedEmail(data.user.email);
+        // setFetchedNickname(data.user.nickname);
+        // setFetchedNumberOfSwaps(data.user.swaps.length);
       } catch (err) {
-        dispatch(setError("couldn`t load the data, try again later"));
+        useAlert("error", "couldn`t load the data, try again later");
       }
     };
     getPersonalData();
@@ -69,8 +74,7 @@ const Profile = () => {
           <ProfileSecondPaper
             email={fetchedEmail || ""}
             nickname={fetchedNickname || ""}
-            setFetchedEmail={setFetchedEmail}
-            setFetchedNickname={setFetchedNickname}
+            setUserData={setUserData}
           />
         </Grid>
       </Grid>

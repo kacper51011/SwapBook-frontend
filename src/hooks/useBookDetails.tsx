@@ -1,8 +1,7 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 import { ISingleBook } from "../Pages/BooksForSwapPage";
-import { setError } from "../store/alertsSlice";
+import useAlert from "./useAlert";
 
 interface IFetchedCreator {
   _id: string;
@@ -13,7 +12,6 @@ interface IFetchedCreator {
 }
 
 const useBookDetails = (bookId: string | undefined) => {
-  const dispatch = useDispatch();
   const [fetchedBook, setBook] = useState<ISingleBook>();
   const [fetchedCreator, setFetchedCreator] = useState<IFetchedCreator>();
 
@@ -25,7 +23,7 @@ const useBookDetails = (bookId: string | undefined) => {
         setBook(data.data.oneBook);
         setFetchedCreator(data.data.creator);
       } catch (err) {
-        dispatch(setError("couldn`t load book details"));
+        useAlert("error", "couldn`t load book details");
       }
     };
 

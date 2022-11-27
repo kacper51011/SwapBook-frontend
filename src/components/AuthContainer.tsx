@@ -7,6 +7,8 @@ interface IAuthContainer {
   icon?: ReactNode;
 }
 
+// Container used in login and register window
+
 const AuthContainer = ({ children, information, icon }: IAuthContainer) => {
   return (
     <Paper
