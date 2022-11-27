@@ -1,6 +1,7 @@
 import { Paper, InputBase, Divider, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
+import useSearch from "../hooks/useSearch";
 
 // component used in BooksForSwapPage, as a part of FilterBar
 
@@ -9,12 +10,7 @@ interface ISearchBar {
 }
 
 const SearchBar = ({ setSearch }: ISearchBar) => {
-  const [input, setInput] = useState("");
-
-  const handleSearch: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-    event.preventDefault();
-    setSearch(input);
-  };
+  const [{ setInput, handleSearch }] = useSearch(setSearch);
 
   return (
     <Paper

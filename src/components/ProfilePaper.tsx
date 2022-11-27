@@ -99,22 +99,6 @@ const ProfilePaper = ({
           inputNameVariant="h6"
         />
       </Stack>
-      {contact && (
-        <Box
-          display={"flex"}
-          alignItems="center"
-          flexDirection={"column"}
-          marginBottom="1vw"
-          marginTop="1vw"
-        >
-          <Button
-            variant="contained"
-            sx={{ width: "0.5", marginBottom: "0.2" }}
-          >
-            Send a message
-          </Button>
-        </Box>
-      )}
     </Paper>
   );
 };
