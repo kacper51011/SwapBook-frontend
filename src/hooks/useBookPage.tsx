@@ -1,6 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { ISingleBook } from "../Pages/BooksForSwapPage";
 import axios from "axios";
+
+import useAlert from "./useAlert";
+
+export interface ISingleBook {
+  nameOfTheBook?: string;
+  category?: string;
+  author?: string;
+  releaseDate?: number;
+  swapPlace?: string;
+  swapFor?: string;
+  description?: string;
+  _id?: string;
+  created?: string;
+}
 
 const useBookPage = () => {
   // States set by user before fetching the data
@@ -13,7 +26,6 @@ const useBookPage = () => {
   // States set after fetching the data
   const [books, setBooks] = useState<ISingleBook[]>([]);
   const [pagination, setPagination] = useState<number>(1);
-  const [error, setError] = useState<boolean>(false);
   // HANDLERS
 
   // handling the page change on click, used on <Pagination/> (BooksForSwapPage)
@@ -65,7 +77,7 @@ const useBookPage = () => {
         console.log(data);
         setPagination(data.paginationNumbers);
       } catch (error) {
-        setError(true);
+        useAlert("error", "couldn`t load the data, try again later!");
       }
     };
     getBooks();

@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import { extendSxProp } from "@mui/system";
 
 interface IBookDetailsTypography {
   inputName: string;

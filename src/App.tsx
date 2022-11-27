@@ -2,7 +2,6 @@ import "./App.css";
 import NavigationBar from "./components/NavigationBar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
-import AboutUs from "./Pages/AboutUs";
 import BooksForSwapPage from "./Pages/BooksForSwapPage";
 import Account from "./ProtectedPages/Account";
 import MyRequests from "./ProtectedPages/AccountSubPages/MyOffers";
@@ -31,7 +30,6 @@ function App() {
       <Routes>
         {/* Pages without protection */}
         <Route path="/" element={<Home />} />
-        <Route path="/About" element={<AboutUs />} />
         <Route path="/Books" element={<BooksForSwapPage />} />
         <Route path="/Books/:bookId" element={<BookDetails />} />
         {/*  Protected pages*/}
