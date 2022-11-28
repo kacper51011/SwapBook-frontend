@@ -1,19 +1,15 @@
 import { Box, Typography, Grid } from "@mui/material";
 import ProfilePaper from "../../components/ProfilePaper";
 import ProfileSecondPaper from "../../components/ProfileSecondPaper";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import useAlert from "../../hooks/useAlert";
 import useFetchedUser from "../../hooks/useFetchedUser";
 
 const Profile = () => {
+  const [setAlert] = useAlert();
   const auth = useAppSelector((state) => state.auth?.user);
-  // states that will store data that useEffect fetch at initial render
-  // also states that will store the default values of inputs in ProfileSecondPaper
-  // const [fetchedNickname, setFetchedNickname] = useState<string>("");
-  // const [fetchedEmail, setFetchedEmail] = useState<string>("");
-  // const [fetchedNumberOfSwaps, setFetchedNumberOfSwaps] = useState<number>();
 
   const [fetchedNickname, fetchedEmail, fetchedNumberOfSwaps, { setUserData }] =
     useFetchedUser();
@@ -27,11 +23,8 @@ const Profile = () => {
           data.user.email,
           data.user.swaps.length
         );
-        // setFetchedEmail(data.user.email);
-        // setFetchedNickname(data.user.nickname);
-        // setFetchedNumberOfSwaps(data.user.swaps.length);
       } catch (err) {
-        useAlert("error", "couldn`t load the data, try again later");
+        setAlert("error", "couldn`t load the data, try again later");
       }
     };
     getPersonalData();

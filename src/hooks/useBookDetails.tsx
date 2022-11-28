@@ -12,6 +12,7 @@ interface IFetchedCreator {
 }
 
 const useBookDetails = (bookId: string | undefined) => {
+  const [setAlert] = useAlert();
   const [fetchedBook, setBook] = useState<ISingleBook>();
   const [fetchedCreator, setFetchedCreator] = useState<IFetchedCreator>();
 
@@ -23,7 +24,7 @@ const useBookDetails = (bookId: string | undefined) => {
         setBook(data.data.oneBook);
         setFetchedCreator(data.data.creator);
       } catch (err) {
-        useAlert("error", "couldn`t load book details");
+        setAlert("error", "couldn`t load book details");
       }
     };
 

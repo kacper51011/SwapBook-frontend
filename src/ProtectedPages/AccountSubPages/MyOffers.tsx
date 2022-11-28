@@ -7,6 +7,7 @@ import useAlert from "../../hooks/useAlert";
 
 const MyOffers = () => {
   const [userSwaps, setUserSwaps] = useState<ISingleBook[]>();
+  const [setAlert] = useAlert();
 
   useEffect(() => {
     const getSwaps = async () => {
@@ -14,7 +15,7 @@ const MyOffers = () => {
         const { data } = await axios.get("/api/users/account/myOffers");
         setUserSwaps(data.data);
       } catch (err) {
-        useAlert("error", "couldn`t load the data, try again later");
+        setAlert("error", "Couldn`t load your Offers, try again later");
       }
     };
     getSwaps();

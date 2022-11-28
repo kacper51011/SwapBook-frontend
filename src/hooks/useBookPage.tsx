@@ -16,6 +16,7 @@ export interface ISingleBook {
 }
 
 const useBookPage = () => {
+  const [setAlert] = useAlert();
   // States set by user before fetching the data
   const [search, setSearch] = useState<string>("");
   const [category, setCategory] = useState<string>("");
@@ -77,7 +78,7 @@ const useBookPage = () => {
         console.log(data);
         setPagination(data.paginationNumbers);
       } catch (error) {
-        useAlert("error", "couldn`t load the data, try again later!");
+        setAlert("error", "couldn`t load the data, try again later!");
       }
     };
     getBooks();

@@ -21,15 +21,16 @@ import {
 import useAlert from "../hooks/useAlert";
 
 const CreateSwapOfferPage = () => {
+  const [setAlert] = useAlert();
   // initializing Formik, data can be found in "../data/createSwapOfferValidation"
   const offerFormik: FormikProps<IOfferInitialValues> = useFormik({
     initialValues: { ...offerInitialValues },
     validationSchema: offerValidationSchema,
     onSubmit: async (values) => {
       CreateOfferApiCall(values)
-        .then((res) => useAlert("success", "Offer created"))
+        .then((res) => setAlert("success", "Offer created"))
         .catch((err) =>
-          useAlert("error", "something went wrong, try again later!")
+          setAlert("error", "something went wrong, try again later!")
         );
     },
   });

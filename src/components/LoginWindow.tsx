@@ -33,6 +33,7 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
   const [backendError, setBackendError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [setAlert] = useAlert();
 
   const loginFormik: FormikProps<ILoginInitialValues> = useFormik({
     initialValues: { ...loginInitialValues },
@@ -50,12 +51,12 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
             sessionStorage.setItem("userInfo", JSON.stringify(res.user));
           }
           dispatch(changeAuth(res.user));
-          useAlert("success", "Successfully logged in!");
+          setAlert("success", "Successfully logged in!");
           navigate("/Books", { replace: true });
         })
         .catch((err) => {
           setBackendError(err.response.data.message);
-          useAlert("error", "Something went wrong! try again");
+          setAlert("error", "Something went wrong! try again");
         });
     },
   });
