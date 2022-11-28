@@ -1,6 +1,8 @@
 import * as yup from "yup";
 import axios from "axios";
 
+// I decided to leave create swap offer / login / register logic in data and their validation files, cause it contains a bit more than only states or functions
+
 interface IOfferInitialValues {
   nameOfTheBook: string;
   category: string;

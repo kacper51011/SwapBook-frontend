@@ -17,6 +17,7 @@ import { changePhoto } from "../store/authSlice";
 
 import useAlert from "../hooks/useAlert";
 import usePhoto from "../hooks/usePhoto";
+import useProfileDataUpdate from "../hooks/useProfileDataUpdate";
 
 // component used in account/profile page
 
@@ -31,87 +32,36 @@ interface ISecondPaper {
 }
 
 const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
-  const dispatch = useDispatch();
   const [setAlert] = useAlert();
   // todo: useEditedValues or something and usePhotoChange
 
   // states used only for toggling normal mode and edit mode (Password is a textfield by default, so it dont have a toggle)
   const [nicknameEdit, toggleNicknameEdit] = useState<Boolean>(false);
   const [emailEdit, toggleEmailEdit] = useState<Boolean>(false);
-  // states used for storing values of edited fields
-  const [nicknameEditValue, setEditedNicknameValue] = useState("");
-  const [emailEditValue, setEditedEmailValue] = useState("");
-  const [passwordEditValue, setEditedPasswordValue] = useState("");
+
   const [setEditedPhotoValue, handlePhotoChangeSave] = usePhoto();
+  const [
+    nicknameEditValue,
+    emailEditValue,
+    setEditedNicknameValue,
+    setEditedEmailValue,
+    setEditedPasswordValue,
+    handleNicknameChangeSave,
+    handleEmailChangeSave,
+    handlePasswordChangeSave,
+  ] = useProfileDataUpdate();
 
-  // todo: change the useeffect in profile and handlers below to instantly update the data
-
-  const handleNicknameChangeSave = async () => {
-    try {
-      await axios.put("/api/users/account/update", {
-        nickname: nicknameEditValue,
-      });
-
-      toggleNicknameEdit(!nicknameEdit);
-      setUserData((nickname = nicknameEditValue));
-      setAlert("success", "nickname changed successfully");
-    } catch (err) {
-      setAlert("error", "something went wrong, try other nickname");
-    }
+  const handleNicknameChange = () => {
+    handleNicknameChangeSave();
+    toggleNicknameEdit(!nicknameEdit);
+    setUserData((nickname = nicknameEditValue));
   };
 
-  const handleEmailChangeSave = async () => {
-    try {
-      await axios.put("/api/users/account/update", {
-        email: emailEditValue,
-      });
-      setAlert("success", "Email changed successfuly!");
-      setUserData((email = emailEditValue));
-      toggleEmailEdit(!emailEdit);
-    } catch (err) {
-      setAlert("error", "Something went wrong, try other Email");
-    }
+  const handleEmailChange = () => {
+    handleEmailChangeSave();
+    toggleEmailEdit(!emailEdit);
+    setUserData((email = emailEditValue));
   };
-
-  const handlePasswordChangeSave = async () => {
-    try {
-      await axios.put("/api/users/account/update", {
-        password: passwordEditValue,
-      });
-      setAlert("success", "password changed successfully");
-    } catch (err) {
-      setAlert("success", "something went wrong, try other Password");
-    }
-  };
-
-  // handling the button Click
-
-  // const handlePhotoChangeSave: React.MouseEventHandler = () => {
-  //   const photoCall = async () => {
-  //     const data = new FormData();
-  //     if (photo) {
-  //       data.append("photo", photo);
-  //     }
-
-  //     try {
-  //       if (photo) {
-  //         const newUserData = await axios.post(
-  //           "/api/users/account/upload",
-  //           data
-  //         );
-  //         dispatch(changePhoto(newUserData.data.data));
-
-  //         setAlert("success", "photo set successfully");
-  //       }
-  //     } catch (err) {
-  //       setAlert("error", "Something went wrong, try other image");
-  //     }
-  //   };
-
-  //   photoCall();
-  // };
-
-  // onChange`s and onClick`s are setted inline
 
   return (
     <Paper
@@ -161,9 +111,7 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
               <EditIcon />
             </IconButton>
           )}
-          {nicknameEdit && (
-            <Button onClick={handleNicknameChangeSave}>Save</Button>
-          )}
+          {nicknameEdit && <Button onClick={handleNicknameChange}>Save</Button>}
         </Grid>
       </Grid>
       <Divider orientation="horizontal" sx={{ marginY: "0.4vw" }} />
@@ -197,9 +145,7 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
               <EditIcon />
             </IconButton>
           )}
-          {emailEdit && (
-            <Button onClick={() => handleEmailChangeSave}>Save</Button>
-          )}
+          {emailEdit && <Button onClick={() => handleEmailChange}>Save</Button>}
         </Grid>
       </Grid>
       {/* password */}
