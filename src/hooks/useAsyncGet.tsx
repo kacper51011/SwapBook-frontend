@@ -1,6 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import useAlert from "./useAlert";
+
+// Hook that return getData (async function which set the data, both depends on passed url to hooks) and the data itself
+//  It is also needed to pass the error message (will be shown when the error occur)
 
 const useAsyncGet = (url: string, errorMessage: string) => {
   const [data, setAsyncData] = useState<any>();

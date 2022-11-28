@@ -65,14 +65,6 @@ const offerValidationSchema = yup.object({
     .max(200, maxError(200)),
 });
 
-// nameOfTheBook: string;
-// category: string;
-// author: string;
-// releaseDate: number;
-// swapLocalization: string;
-// booksInterestedFor: string;
-// description: string;
-
 const CreateOfferApiCall = async (values: IOfferInitialValues) => {
   const {
     nameOfTheBook,

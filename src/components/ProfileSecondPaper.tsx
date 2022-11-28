@@ -10,12 +10,6 @@ import {
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-
-import { changePhoto } from "../store/authSlice";
-
-import useAlert from "../hooks/useAlert";
 import usePhoto from "../hooks/usePhoto";
 import useProfileDataUpdate from "../hooks/useProfileDataUpdate";
 
@@ -25,21 +19,19 @@ interface ISecondPaper {
   nickname?: string;
   email?: string;
   setUserData: (
-    nickname?: string | undefined,
-    email?: string | undefined,
-    numberOfSwaps?: number | undefined
+    nickname?: string,
+    email?: string,
+    numberOfSwaps?: number
   ) => void;
 }
 
 const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
-  const [setAlert] = useAlert();
-  // todo: useEditedValues or something and usePhotoChange
-
   // states used only for toggling normal mode and edit mode (Password is a textfield by default, so it dont have a toggle)
   const [nicknameEdit, toggleNicknameEdit] = useState<Boolean>(false);
   const [emailEdit, toggleEmailEdit] = useState<Boolean>(false);
 
   const [setEditedPhotoValue, handlePhotoChangeSave] = usePhoto();
+
   const [
     nicknameEditValue,
     emailEditValue,
