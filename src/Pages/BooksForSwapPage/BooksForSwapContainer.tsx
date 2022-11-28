@@ -6,7 +6,7 @@ interface ICustomContainer {
   children2?: React.ReactNode | undefined;
 }
 
-const CustomContainer = ({ children1, children2 }: ICustomContainer) => {
+const BooksForSwapContainer = ({ children1, children2 }: ICustomContainer) => {
   return (
     <Container
       sx={{
@@ -31,4 +31,4 @@ const CustomContainer = ({ children1, children2 }: ICustomContainer) => {
   );
 };
 
-export default CustomContainer;
+export default BooksForSwapContainer;

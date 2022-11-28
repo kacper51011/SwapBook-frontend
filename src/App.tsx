@@ -1,18 +1,18 @@
 import "./App.css";
 import NavigationBar from "./components/NavigationBar";
 import { Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
-import BooksForSwapPage from "./Pages/BooksForSwapPage";
-import Account from "./ProtectedPages/Account";
-import MyRequests from "./ProtectedPages/AccountSubPages/MyOffers";
+import Home from "./Pages/Home/Home";
+import BooksForSwapPage from "./Pages/BooksForSwapPage/BooksForSwapPage";
+import Account from "./ProtectedPages/Account/Account";
+import MyRequests from "./ProtectedPages/Account/MyOffers";
 import ProtectedPagesContainer from "./ProtectedPages/ProtectedPagesContainer";
 import Footer from "./components/Footer";
-import Profile from "./ProtectedPages/AccountSubPages/Profile";
-import CreateSwapOfferPage from "./ProtectedPages/CreateSwapOfferPage";
-import BookDetails from "./Pages/BookDetails";
+import Profile from "./ProtectedPages/Account/Profile";
+import CreateSwapOfferPage from "./ProtectedPages/CreateSwapOffer/CreateSwapOfferPage";
+import BookDetails from "./Pages/BookDetails/BookDetails";
 import SnackBarItem from "./components/SnackBarItem";
 import { useAppSelector } from "./hooks/useAppSelector";
-import MyOffers from "./ProtectedPages/AccountSubPages/MyOffers";
+import MyOffers from "./ProtectedPages/Account/MyOffers";
 
 // todo: images, swaps page, swaps expiration, preparing dates, refactoring
 

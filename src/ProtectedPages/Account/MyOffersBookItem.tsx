@@ -1,11 +1,11 @@
 import { Grid, IconButton } from "@mui/material";
 import React from "react";
-import BookItem from "./BookItem";
+import BookItem from "../../components/BookItem";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { IBookItem } from "./BookItem";
+import { IBookItem } from "../../components/BookItem";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setError, setSuccess } from "../store/alertsSlice";
+import { setError, setSuccess } from "../../store/alertsSlice";
 
 const MyOffersBookItem = ({
   bookName,

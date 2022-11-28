@@ -1,9 +1,9 @@
 import { Stack, Pagination } from "@mui/material";
 
-import BookItem from "../components/BookItem";
-import CustomContainer from "../components/CustomContainer";
-import FilterBar from "../components/FilterBar";
-import useBookPage from "../hooks/useBookPage";
+import BookItem from "../../components/BookItem";
+import BooksForSwapContainer from "./BooksForSwapContainer";
+import FilterBar from "./FilterBar";
+import useBookPage from "../../hooks/useBookPage";
 
 export interface ISingleBook {
   nameOfTheBook?: string;
@@ -39,7 +39,7 @@ const BooksForSwapPage = () => {
         handleBooksPerPageChange={handleBooksPerPageChange}
         setSearch={setSearch}
       />
-      <CustomContainer
+      <BooksForSwapContainer
         // books fetched from API
         children1={
           <Stack spacing={2}>

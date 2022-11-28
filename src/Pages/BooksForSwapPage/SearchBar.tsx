@@ -1,7 +1,7 @@
 import { Paper, InputBase, Divider, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
-import useSearch from "../hooks/useSearch";
+import useSearch from "../../hooks/useSearch";
 
 // component used in BooksForSwapPage, as a part of FilterBar
 

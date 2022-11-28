@@ -16,11 +16,11 @@ import {
   loginValidationSchema,
   ILoginInitialValues,
   loginApiCall,
-} from "../data/loginValidation";
-import { changeAuth } from "../store/authSlice";
+} from "../../data/loginValidation";
+import { changeAuth } from "../../store/authSlice";
 import AuthContainer from "./AuthContainer";
-import { formStyle } from "../data/loginValidation";
-import useAlert from "../hooks/useAlert";
+import { formStyle } from "../../data/loginValidation";
+import useAlert from "../../hooks/useAlert";
 
 // component used in Home Page
 

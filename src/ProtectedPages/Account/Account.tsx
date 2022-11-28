@@ -11,7 +11,7 @@ import { Link, Outlet } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import LogoutIcon from "@mui/icons-material/Logout";
-import useLogout from "../hooks/useLogout";
+import useLogout from "../../hooks/useLogout";
 
 const Account = () => {
   const [logout] = useLogout();

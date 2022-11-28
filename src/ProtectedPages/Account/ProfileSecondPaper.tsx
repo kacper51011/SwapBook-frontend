@@ -10,8 +10,8 @@ import {
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
-import usePhoto from "../hooks/usePhoto";
-import useProfileDataUpdate from "../hooks/useProfileDataUpdate";
+import usePhoto from "../../hooks/usePhoto";
+import useProfileDataUpdate from "../../hooks/useProfileDataUpdate";
 
 // component used in account/profile page
 

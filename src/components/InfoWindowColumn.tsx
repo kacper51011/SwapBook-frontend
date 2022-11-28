@@ -15,7 +15,7 @@ const InfoWindowColumn = ({ columnName, inputs }: IInfoColumn) => {
         {columnName}
       </Typography>
       <Stack direction="column" flexGrow="1" justifyContent="space-evenly">
-        {/* with that method of props someone can pass how many BookDetailsTypographies he wants */}
+        {/* with that method of props someone can pass as many BookDetailsTypographies he wants */}
         {inputs.map((input, index) => {
           return (
             <BookDetailsTypography

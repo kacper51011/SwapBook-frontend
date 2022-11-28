@@ -5,7 +5,7 @@ import {
   Typography,
   Stack,
 } from "@mui/material";
-import categories from "../data/categories";
+import categories from "../../data/categories";
 import SearchBar from "./SearchBar";
 
 // component belongs to BooksForSwapPage,

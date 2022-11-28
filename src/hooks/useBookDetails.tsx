@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ISingleBook } from "../Pages/BooksForSwapPage";
+import { ISingleBook } from "../Pages/BooksForSwapPage/BooksForSwapPage";
 import useAsyncGet from "./useAsyncGet";
 
 interface IFetchedCreator {

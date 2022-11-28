@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import { ISingleBook } from "../../Pages/BooksForSwapPage";
-import MyOffersBookItem from "../../components/MyOffersBookItem";
+import { ISingleBook } from "../../Pages/BooksForSwapPage/BooksForSwapPage";
+import MyOffersBookItem from "./MyOffersBookItem";
 import useAsyncGet from "../../hooks/useAsyncGet";
 
 const MyOffers = () => {

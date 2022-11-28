@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 
 import { Container, Grid, Box, Paper } from "@mui/material";
-import ProfilePaper from "../components/ProfilePaper";
-import BookDetailsInfo from "../components/BookDetailsInfo";
+import ProfilePaper from "../../components/ProfilePaper";
+import BookDetailsInfo from "./BookDetailsInfo";
 
-import useBookDetails from "../hooks/useBookDetails";
+import useBookDetails from "../../hooks/useBookDetails";
 
 const BookDetails = () => {
   // getting the params, will be used in useEffect data fetching, where the getSingleBook route will be used

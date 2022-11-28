@@ -7,11 +7,11 @@ import {
   registerValidationSchema,
   IRegisterInitialValues,
   registerApiCall,
-} from "../data/registerValidation";
+} from "../../data/registerValidation";
 import { useDispatch } from "react-redux";
-import { setError, setSuccess } from "../store/alertsSlice";
+import { setError, setSuccess } from "../../store/alertsSlice";
 import AuthContainer from "./AuthContainer";
-import { formStyle } from "../data/loginValidation";
+import { formStyle } from "../../data/loginValidation";
 // component used in Home Page
 
 interface IRegisterProps {

@@ -1,6 +1,6 @@
 import { Box, Typography, Grid } from "@mui/material";
 import ProfilePaper from "../../components/ProfilePaper";
-import ProfileSecondPaper from "../../components/ProfileSecondPaper";
+import ProfileSecondPaper from "./ProfileSecondPaper";
 import { useEffect } from "react";
 import axios from "axios";
 import { useAppSelector } from "../../hooks/useAppSelector";

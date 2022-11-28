@@ -1,7 +1,7 @@
 import { Box, Paper } from "@mui/material";
 import React, { useState } from "react";
-import LoginWindow from "../components/LoginWindow";
-import RegisterWindow from "../components/RegisterWindow";
+import LoginWindow from "./LoginWindow";
+import RegisterWindow from "./RegisterWindow";
 
 const Home = () => {
   const [displayRegisterWindow, setDisplayedWindow] = useState(false);
