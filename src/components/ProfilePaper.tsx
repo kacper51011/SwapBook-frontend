@@ -11,8 +11,7 @@ interface IprofilePaper {
   image?: string;
   nickname?: string;
   email?: string;
-  swapsAmount?: number;
-  // change contact from boolean to string or link etc
+  swapsNumber?: number;
   contact?: boolean;
   xsWidth: string;
   smWidth: string;
@@ -24,7 +23,7 @@ const ProfilePaper = ({
   image,
   nickname,
   email,
-  swapsAmount,
+  swapsNumber,
   contact,
   xsWidth,
   smWidth,
@@ -95,7 +94,7 @@ const ProfilePaper = ({
         />
         <BookDetailsTypography
           inputName="Number of swaps"
-          userInput={swapsAmount}
+          userInput={swapsNumber}
           inputNameVariant="h6"
         />
       </Stack>

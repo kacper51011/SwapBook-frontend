@@ -10,7 +10,6 @@ export interface IBookItem {
   swapPlace?: string;
   addedIn?: string;
   bookId?: string;
-  children?: any;
   width?: string;
 }
 
@@ -21,7 +20,6 @@ const BookItem = ({
   swapPlace,
   addedIn,
   bookId,
-  children,
   width,
 }: IBookItem) => {
   return (
@@ -33,8 +31,6 @@ const BookItem = ({
         width: { width },
       }}
     >
-      {/* I will use children in myOffers page */}
-      {children}
       <CardMedia component="img" src={img} sx={{ width: "0.2" }} />
       <Box
         sx={{

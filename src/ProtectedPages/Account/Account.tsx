@@ -15,7 +15,7 @@ import useLogout from "../../hooks/useLogout";
 
 const Account = () => {
   const [logout] = useLogout();
-  // todo: create a listItem component, then map the listItems with provided data here
+
   return (
     <Box
       sx={{
