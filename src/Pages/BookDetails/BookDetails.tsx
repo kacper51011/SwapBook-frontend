@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-import { Container, Grid, Box, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import ProfilePaper from "../../components/ProfilePaper";
 import BookDetailsInfo from "./BookDetailsInfo";
 
@@ -11,7 +12,11 @@ const BookDetails = () => {
   // getting the params, will be used in useEffect data fetching, where the getSingleBook route will be used
   let { bookId } = useParams();
 
-  const [fetchedBook, fetchedCreator] = useBookDetails(bookId);
+  const [fetchedBook, fetchedCreator, getBook] = useBookDetails(bookId);
+
+  useEffect(() => {
+    getBook();
+  }, []);
 
   return (
     <BookDetailsContainer

@@ -11,6 +11,7 @@ interface IOfferInitialValues {
   swapPlace: string;
   swapFor: string;
   description: string;
+  bookPhoto: File | "";
 }
 
 const offerInitialValues: IOfferInitialValues = {
@@ -21,6 +22,7 @@ const offerInitialValues: IOfferInitialValues = {
   swapPlace: "",
   swapFor: "",
   description: "",
+  bookPhoto: "",
 };
 
 // functions and consts to make validation schema more simple
@@ -74,17 +76,20 @@ const CreateOfferApiCall = async (values: IOfferInitialValues) => {
     swapPlace,
     swapFor,
     description,
+    bookPhoto,
   } = values;
+  const offerData = new FormData();
+  // had to do it manually cause of typescript problem
+  offerData.append("nameOfTheBook", nameOfTheBook);
+  offerData.append("category", category);
+  offerData.append("author", author);
+  offerData.append("releaseDate", releaseDate.toString());
+  offerData.append("swapPlace", swapPlace);
+  offerData.append("swapFor", swapFor);
+  offerData.append("description", description);
+  offerData.append("bookPhoto", bookPhoto);
 
-  const { data } = await axios.post("/api/books/create", {
-    nameOfTheBook,
-    category,
-    author,
-    releaseDate,
-    swapPlace,
-    swapFor,
-    description,
-  });
+  const { data } = await axios.post("/api/books/create", offerData);
   return data;
 };
 

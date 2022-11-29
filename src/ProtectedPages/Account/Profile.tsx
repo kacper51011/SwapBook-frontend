@@ -3,22 +3,33 @@ import ProfileSecondPaper from "./ProfileSecondPaper";
 import { useEffect } from "react";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import useFetchedUser from "../../hooks/useFetchedUser";
-import useAsyncGet from "../../hooks/useAsyncGet";
+
 import ProfileContainer from "./ProfileContainer";
+import useAlert from "../../hooks/useAlert";
+import { setDefaultResultOrder } from "dns";
+import axios from "axios";
 
 const Profile = () => {
   const auth = useAppSelector((state) => state.auth?.user);
-  const [data, getPersonalData] = useAsyncGet(
-    "/api/users/account/profile",
-    "couldn`t load the data, try again later"
-  );
+  const [setAlert] = useAlert();
 
   const [fetchedNickname, fetchedEmail, fetchedNumberOfSwaps, { setUserData }] =
     useFetchedUser();
 
   useEffect(() => {
-    getPersonalData();
-    setUserData(data.user.nickname, data.user.email, data.user.swaps.length);
+    const getProfile = async () => {
+      try {
+        const { data } = await axios.get("/api/users/account/profile");
+        setUserData(
+          data.user.nickname,
+          data.user.email,
+          data.user.swaps.length
+        );
+      } catch (error) {
+        setAlert("error", "couldn`t load the data, try again later");
+      }
+    };
+    getProfile();
   }, []);
 
   return (

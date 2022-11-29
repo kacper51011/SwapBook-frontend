@@ -42,21 +42,23 @@ const BooksForSwapPage = () => {
       <BooksForSwapContainer
         // books fetched from API
         children1={
-          <Stack spacing={2}>
-            {books &&
-              books.map((el) => {
-                return (
-                  <BookItem
-                    key={el._id}
-                    bookName={el.nameOfTheBook}
-                    category={el.category}
-                    swapPlace={el.swapPlace}
-                    addedIn={el.created}
-                    bookId={el._id}
-                  ></BookItem>
-                );
-              })}
-          </Stack>
+          books && (
+            <Stack spacing={2}>
+              {books &&
+                books.map((el) => {
+                  return (
+                    <BookItem
+                      key={el._id}
+                      bookName={el.nameOfTheBook}
+                      category={el.category}
+                      swapPlace={el.swapPlace}
+                      addedIn={el.created}
+                      bookId={el._id}
+                    ></BookItem>
+                  );
+                })}
+            </Stack>
+          )
         }
         // Pagination
         children2={

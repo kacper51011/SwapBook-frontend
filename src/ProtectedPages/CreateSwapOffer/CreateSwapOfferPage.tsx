@@ -195,6 +195,16 @@ const CreateSwapOfferPage = () => {
             maxRows={6}
           ></TextField>
         </Stack>
+        <input
+          type="file"
+          name="bookPhoto"
+          id="bookPhoto"
+          accept="image/*"
+          onChange={(event) =>
+            event.target.files &&
+            offerFormik.setFieldValue("bookPhoto", event.target.files[0])
+          }
+        />
 
         <Button type="submit" variant="contained" size="large">
           Create swap offer

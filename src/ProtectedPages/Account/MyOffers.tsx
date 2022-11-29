@@ -2,18 +2,25 @@ import { useState, useEffect } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { ISingleBook } from "../../Pages/BooksForSwapPage/BooksForSwapPage";
 import MyOffersBookItem from "./MyOffersBookItem";
-import useAsyncGet from "../../hooks/useAsyncGet";
+import axios from "axios";
+import useAlert from "../../hooks/useAlert";
 
 const MyOffers = () => {
+  const [setAlert] = useAlert();
   const [userSwaps, setUserSwaps] = useState<ISingleBook[]>();
-  const [data, getOffers] = useAsyncGet(
-    "/api/users/account/myOffers",
-    "Couldn`t load your Offers, try again later"
-  );
 
   useEffect(() => {
+    const getOffers = async () => {
+      try {
+        const { data } = await axios.get("/api/users/account/myOffers");
+        setUserSwaps(data.data);
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+        setAlert("error", "Couldn`t load offers, try again later");
+      }
+    };
     getOffers();
-    setUserSwaps(data.data);
   }, []);
 
   return (

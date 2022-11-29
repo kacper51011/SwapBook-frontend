@@ -1,6 +1,7 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { ISingleBook } from "../Pages/BooksForSwapPage/BooksForSwapPage";
-import useAsyncGet from "./useAsyncGet";
+import useAlert from "./useAlert";
 
 interface IFetchedCreator {
   _id: string;
@@ -11,22 +12,24 @@ interface IFetchedCreator {
 }
 
 const useBookDetails = (bookId: string | undefined) => {
-  const [data, getBookAndCreator] = useAsyncGet(
-    `/api/books/getBook/${bookId}`,
-    "couldn`t load book details"
-  );
-  const [fetchedBook, setBook] = useState<ISingleBook>();
+  const [setAlert] = useAlert();
+  const [fetchedBook, setFetchedBook] = useState<ISingleBook>();
   const [fetchedCreator, setFetchedCreator] = useState<IFetchedCreator>();
 
-  useEffect(() => {
-    // tried to fight with the error, that fires when i fetch the data after changing user photo. Decided to leave it like that
+  // tried to fight with the error, that fires when i fetch the data after changing user photo. Decided to leave it like that
 
-    getBookAndCreator();
-    setBook(data.data.oneBook);
-    setFetchedCreator(data.data.creator);
-  }, []);
+  const getBook = async () => {
+    try {
+      const { data } = await axios.get(`/api/books/getBook/${bookId}`);
+      console.log(data);
+      setFetchedBook(data.data.oneBook);
+      setFetchedCreator(data.data.creator);
+    } catch (err) {
+      setAlert("error", "couldn`t load book details");
+    }
+  };
 
-  return [fetchedBook, fetchedCreator] as const;
+  return [fetchedBook, fetchedCreator, getBook] as const;
 };
 
 export default useBookDetails;
