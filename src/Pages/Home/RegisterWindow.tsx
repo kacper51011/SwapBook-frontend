@@ -15,7 +15,7 @@ import { formStyle } from "../../data/loginValidation";
 // component used in Home Page
 
 interface IRegisterProps {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const RegisterWindow = ({ onClick }: IRegisterProps) => {
@@ -29,7 +29,11 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
     onSubmit: async (values) => {
       setBackendError("");
       registerApiCall(values)
-        .then((res) => dispatch(setSuccess("registered successfully!")))
+        .then((res) => {
+          dispatch(setSuccess("registered successfully!"));
+          onClick(false);
+        })
+
         .catch((err) => {
           console.log(err.response.data.message);
           setBackendError(err.response.data.message);
@@ -130,7 +134,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
       </form>
       <Typography variant="body2" marginTop={"5px"}>
         You have an account?{" "}
-        <Button variant="text" onClick={onClick}>
+        <Button variant="text" onClick={() => onClick(false)}>
           Sign in
         </Button>
       </Typography>

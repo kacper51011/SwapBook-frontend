@@ -206,7 +206,12 @@ const CreateSwapOfferPage = () => {
           }
         />
 
-        <Button type="submit" variant="contained" size="large">
+        <Button
+          sx={{ marginTop: "5vw" }}
+          type="submit"
+          variant="contained"
+          size="large"
+        >
           Create swap offer
         </Button>
       </SwapOfferContainer>

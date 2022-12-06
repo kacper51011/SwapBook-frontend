@@ -80,12 +80,20 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
         justifyContent="space-around"
       >
         <Grid item xs={4}>
-          <Typography fontWeight="bold" paddingY="1vw">
+          <Typography
+            fontSize={{ xs: "0.7rem", sm: "1rem" }}
+            fontWeight="bold"
+            paddingY="1vw"
+          >
             Your Nickname
           </Typography>
         </Grid>
         <Grid item xs={4}>
-          {!nicknameEdit && <Typography>{nickname}</Typography>}
+          {!nicknameEdit && (
+            <Typography fontSize={{ xs: "0.7rem", sm: "1rem" }}>
+              {nickname}
+            </Typography>
+          )}
           {nicknameEdit && (
             <TextField
               type="text"
@@ -116,10 +124,16 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
         justifyContent="space-around"
       >
         <Grid item xs={4} paddingY="1vw">
-          <Typography fontWeight="bold">Your Email</Typography>
+          <Typography fontWeight="bold" fontSize={{ xs: "0.7rem", sm: "1rem" }}>
+            Your Email
+          </Typography>
         </Grid>
         <Grid item xs={4}>
-          {!emailEdit && <Typography>{email}</Typography>}
+          {!emailEdit && (
+            <Typography fontSize={{ xs: "0.7rem", sm: "1rem" }}>
+              {email}
+            </Typography>
+          )}
           {emailEdit && (
             <TextField
               type="email"
@@ -149,7 +163,9 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
         justifyContent="space-around"
       >
         <Grid item xs={4} paddingY="1vw">
-          <Typography fontWeight="bold">Change password</Typography>
+          <Typography fontWeight="bold" fontSize={{ xs: "0.7rem", sm: "1rem" }}>
+            Change password
+          </Typography>
         </Grid>
         <Grid item xs={4}>
           <TextField

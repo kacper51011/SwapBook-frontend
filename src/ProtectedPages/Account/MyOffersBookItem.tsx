@@ -13,6 +13,7 @@ const MyOffersBookItem = ({
   swapPlace,
   addedIn,
   bookId,
+  bookPhoto,
 }: IBookItem) => {
   const dispatch = useDispatch();
   const onClickHandler = async () => {
@@ -20,6 +21,7 @@ const MyOffersBookItem = ({
       await axios.delete(`/api/books/deleteBook/${bookId}`);
       dispatch(setSuccess("successfully deleted"));
     } catch (err) {
+      console.log(err);
       dispatch(setError("something went wrong"));
     }
   };
@@ -32,6 +34,7 @@ const MyOffersBookItem = ({
           swapPlace={swapPlace}
           addedIn={addedIn}
           bookId={bookId}
+          bookPhoto={bookPhoto}
           width={"100%"}
         />
       </Grid>

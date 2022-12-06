@@ -25,7 +25,7 @@ import useAlert from "../../hooks/useAlert";
 // component used in Home Page
 
 interface ILoginProps {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const LoginWindow = ({ onClick }: ILoginProps) => {
@@ -112,11 +112,11 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
         >
           Sign in
         </Button>
-        <FormHelperText> {backendError} </FormHelperText>
+        <FormHelperText error>{backendError}</FormHelperText>
       </form>
       <Typography variant="body2" marginTop={"5px"}>
         You don't have an account yet?{" "}
-        <Button variant="text" onClick={onClick}>
+        <Button variant="text" onClick={() => onClick(true)}>
           Sign up
         </Button>
       </Typography>

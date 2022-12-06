@@ -13,14 +13,14 @@ const BookDetailsContainer = ({
   children3,
 }: IBookDetailsContainer) => {
   return (
-    <Container>
+    <Container sx={{ minHeight: "40vw" }}>
       <Paper>
-        <Box marginTop="5%" minHeight="50vw">
+        <Box marginTop="5%">
           <Grid container spacing={3}>
-            <Grid item xs={8}>
+            <Grid item xs={12} sm={8}>
               {children1}
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={4}>
               {children2}
             </Grid>
             <Grid item xs={12} minHeight="40vw">

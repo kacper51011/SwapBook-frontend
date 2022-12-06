@@ -7,6 +7,7 @@ import BookDetailsInfo from "./BookDetailsInfo";
 
 import useBookDetails from "../../hooks/useBookDetails";
 import BookDetailsContainer from "./BookDetailsContainer";
+import Image from "mui-image";
 
 const BookDetails = () => {
   // getting the params, will be used in useEffect data fetching, where the getSingleBook route will be used
@@ -22,7 +23,14 @@ const BookDetails = () => {
     <BookDetailsContainer
       children1={
         <Paper elevation={3} sx={{ width: "1", height: "1" }}>
-          Here will be image carousel
+          <Image
+            fit="cover"
+            src={
+              fetchedBook?.bookPhoto
+                ? `http://localhost:5000//images/books/${fetchedBook.bookPhoto}`
+                : ""
+            }
+          />
         </Paper>
       }
       children2={

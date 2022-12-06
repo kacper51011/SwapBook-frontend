@@ -43,6 +43,11 @@ const MyOffers = () => {
               swapPlace={swap.swapPlace}
               addedIn={swap.created}
               bookId={swap._id}
+              bookPhoto={
+                swap.bookPhoto
+                  ? `http://localhost:5000//images/books/${swap.bookPhoto}`
+                  : ""
+              }
             />
           );
         })}

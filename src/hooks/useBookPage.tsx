@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 import useAlert from "./useAlert";
@@ -13,6 +13,7 @@ export interface ISingleBook {
   description?: string;
   _id?: string;
   created?: string;
+  bookPhoto?: string;
 }
 
 const useBookPage = () => {
@@ -58,28 +59,27 @@ const useBookPage = () => {
   > = (event) => {
     setBooksPerPage(event.target.value);
   };
+  const getBooks = useCallback(async () => {
+    // setting up flexible params and queries for get request
+    const CategoryParams = category ? `/category/${category}` : "";
+    const searchParams = search ? `/search/${search}` : "";
+    const booksPerPageQuery = `?records=${booksPerPage}`;
+    const sortingQuery = sorting ? `&sort=${sorting}` : "";
+    const choosenPageQuery = `&pageNum=${choosenPage}`;
 
+    try {
+      const { data } = await axios.get(
+        `/api/books${CategoryParams}${searchParams}${booksPerPageQuery}${sortingQuery}${choosenPageQuery}`
+      );
+
+      setBooks(data.books);
+      console.log(data);
+      setPagination(data.paginationNumbers);
+    } catch (error) {
+      setAlert("error", "couldn`t load books, try again later");
+    }
+  }, [category, search, booksPerPage, sorting, choosenPage]);
   useEffect(() => {
-    const getBooks = async () => {
-      // setting up flexible params and queries for get request
-      const CategoryParams = category ? `/category/${category}` : "";
-      const searchParams = search ? `/search/${search}` : "";
-      const booksPerPageQuery = `?records=${booksPerPage}`;
-      const sortingQuery = sorting ? `&sort=${sorting}` : "";
-      const choosenPageQuery = `&pageNum=${choosenPage}`;
-
-      try {
-        const { data } = await axios.get(
-          `/api/books${CategoryParams}${searchParams}${booksPerPageQuery}${sortingQuery}${choosenPageQuery}`
-        );
-
-        setBooks(data.books);
-        console.log(data);
-        setPagination(data.paginationNumbers);
-      } catch (error) {
-        setAlert("error", "couldn`t load books, try again later");
-      }
-    };
     getBooks();
   }, [search, category, booksPerPage, sorting, choosenPage]);
   return [

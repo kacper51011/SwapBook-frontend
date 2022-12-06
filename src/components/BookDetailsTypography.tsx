@@ -43,6 +43,7 @@ const BookDetailsTypography = ({
       {inputName}
       <br></br>{" "}
       <Typography
+        fontSize={{ xs: "0.7rem", sm: "1rem" }}
         color="darkblue"
         marginLeft={marginLeft}
         padding={userInputPadding}

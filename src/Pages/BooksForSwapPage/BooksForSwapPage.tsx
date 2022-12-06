@@ -15,6 +15,7 @@ export interface ISingleBook {
   description?: string;
   _id?: string;
   created?: string;
+  bookPhoto?: string;
 }
 
 const BooksForSwapPage = () => {
@@ -42,23 +43,25 @@ const BooksForSwapPage = () => {
       <BooksForSwapContainer
         // books fetched from API
         children1={
-          books && (
-            <Stack spacing={2}>
-              {books &&
-                books.map((el) => {
-                  return (
-                    <BookItem
-                      key={el._id}
-                      bookName={el.nameOfTheBook}
-                      category={el.category}
-                      swapPlace={el.swapPlace}
-                      addedIn={el.created}
-                      bookId={el._id}
-                    ></BookItem>
-                  );
-                })}
-            </Stack>
-          )
+          <Stack spacing={2}>
+            {books.map((el) => {
+              return (
+                <BookItem
+                  key={el._id}
+                  bookName={el.nameOfTheBook}
+                  category={el.category}
+                  swapPlace={el.swapPlace}
+                  addedIn={el.created}
+                  bookId={el._id}
+                  bookPhoto={
+                    el.bookPhoto
+                      ? `http://localhost:5000//images/books/${el.bookPhoto}`
+                      : ""
+                  }
+                ></BookItem>
+              );
+            })}
+          </Stack>
         }
         // Pagination
         children2={

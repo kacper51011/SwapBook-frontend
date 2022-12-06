@@ -20,6 +20,7 @@ const SwapOfferContainer = ({ children }: React.PropsWithChildren) => {
           flexDirection: "column",
           alignItems: "center",
           marginTop: "5vw",
+          padding: "2vw",
         }}
       >
         <Typography variant="h2" margin={"1%"}>

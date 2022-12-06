@@ -2,8 +2,8 @@ import { Container, Paper } from "@mui/material";
 import React from "react";
 
 interface ICustomContainer {
-  children1?: React.ReactNode | undefined;
-  children2?: React.ReactNode | undefined;
+  children1?: any;
+  children2?: any;
 }
 
 const BooksForSwapContainer = ({ children1, children2 }: ICustomContainer) => {

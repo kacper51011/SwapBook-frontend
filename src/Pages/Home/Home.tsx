@@ -1,22 +1,21 @@
 import { Box, Paper } from "@mui/material";
+import Image from "mui-image";
 import React, { useState } from "react";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import BooksForSwapPage from "../BooksForSwapPage/BooksForSwapPage";
 import LoginWindow from "./LoginWindow";
 import RegisterWindow from "./RegisterWindow";
 
 const Home = () => {
   const [displayRegisterWindow, setDisplayedWindow] = useState(false);
+  const auth = useAppSelector((state) => state.auth?.user);
 
-  const showLoginWindow = () => {
-    setDisplayedWindow(false);
-  };
-  const showRegisterWindow = () => {
-    setDisplayedWindow(true);
-  };
-
-  return (
+  return auth ? (
+    <BooksForSwapPage />
+  ) : (
     <Box
       sx={{
-        height: "100vh",
+        minHeight: "50vw",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
@@ -32,11 +31,16 @@ const Home = () => {
             justifyContent: "center",
             alignItems: "center",
           },
-          height: "100%",
-          width: "50%",
+          height: "1",
+          width: "0.5",
         }}
       >
-        <Paper sx={{ height: "70%", width: "90%" }}>sdsdsd</Paper>
+        <Paper elevation={10} sx={{ height: "35vw", width: "45vw" }}>
+          <Image
+            fit="cover"
+            src="http://localhost:5000//images/books/homePageIMG.jpg"
+          />
+        </Paper>
       </Box>
       <Box
         sx={{
@@ -49,9 +53,9 @@ const Home = () => {
         }}
       >
         {displayRegisterWindow ? (
-          <RegisterWindow onClick={showLoginWindow} />
+          <RegisterWindow onClick={setDisplayedWindow} />
         ) : (
-          <LoginWindow onClick={showRegisterWindow} />
+          <LoginWindow onClick={setDisplayedWindow} />
         )}
       </Box>
     </Box>
