@@ -59,6 +59,8 @@ const useBookPage = () => {
   > = (event) => {
     setBooksPerPage(event.target.value);
   };
+
+  // setting async function, will be called in useEffect
   const getBooks = useCallback(async () => {
     // setting up flexible params and queries for get request
     const CategoryParams = category ? `/category/${category}` : "";
@@ -79,9 +81,12 @@ const useBookPage = () => {
       setAlert("error", "couldn`t load books, try again later");
     }
   }, [category, search, booksPerPage, sorting, choosenPage]);
+
+  // getting books for the page
   useEffect(() => {
     getBooks();
   }, [search, category, booksPerPage, sorting, choosenPage]);
+
   return [
     books,
     pagination,

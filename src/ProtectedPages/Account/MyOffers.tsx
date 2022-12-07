@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import { ISingleBook } from "../../Pages/BooksForSwapPage/BooksForSwapPage";
 import MyOffersBookItem from "./MyOffersBookItem";
@@ -9,19 +9,45 @@ const MyOffers = () => {
   const [setAlert] = useAlert();
   const [userSwaps, setUserSwaps] = useState<ISingleBook[]>();
 
+  // defining useCallback func
+  const getOffers = useCallback(async () => {
+    try {
+      const { data } = await axios.get("/api/users/account/myOffers");
+      setUserSwaps(data.data);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      setAlert("error", "Couldn`t load offers, try again later");
+    }
+  }, []);
+
+  // useEffect with useCallback func
+
   useEffect(() => {
-    const getOffers = async () => {
-      try {
-        const { data } = await axios.get("/api/users/account/myOffers");
-        setUserSwaps(data.data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-        setAlert("error", "Couldn`t load offers, try again later");
-      }
-    };
     getOffers();
   }, []);
+
+  // defining memoized list of myOffers
+
+  const memoMyOffers = useMemo(() => {
+    return userSwaps?.map((swap) => {
+      return (
+        <MyOffersBookItem
+          key={swap._id}
+          bookName={swap.nameOfTheBook}
+          category={swap.category}
+          swapPlace={swap.swapPlace}
+          addedIn={swap.created}
+          bookId={swap._id}
+          bookPhoto={
+            swap.bookPhoto
+              ? `http://localhost:5000//images/books/${swap.bookPhoto}`
+              : ""
+          }
+        />
+      );
+    });
+  }, [userSwaps]);
 
   return (
     <Box
@@ -34,23 +60,7 @@ const MyOffers = () => {
         My Requests
       </Typography>
       <Grid container spacing={3}>
-        {userSwaps?.map((swap) => {
-          return (
-            <MyOffersBookItem
-              key={swap._id}
-              bookName={swap.nameOfTheBook}
-              category={swap.category}
-              swapPlace={swap.swapPlace}
-              addedIn={swap.created}
-              bookId={swap._id}
-              bookPhoto={
-                swap.bookPhoto
-                  ? `http://localhost:5000//images/books/${swap.bookPhoto}`
-                  : ""
-              }
-            />
-          );
-        })}
+        {memoMyOffers}
       </Grid>
     </Box>
   );

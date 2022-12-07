@@ -34,33 +34,37 @@ const BookDetails = () => {
         </Paper>
       }
       children2={
-        <ProfilePaper
-          xsWidth="0.2"
-          smWidth="0.4"
-          nickname={fetchedCreator?.nickname}
-          swapsNumber={fetchedCreator?.swaps.length}
-          email={fetchedCreator?.email}
-          image={
-            fetchedCreator?.photo
-              ? `http://localhost:5000//images/users/${fetchedCreator.photo}`
-              : ""
-          }
-          offerCreatedBy
-          avatarMargin="2vw"
-        />
+        fetchedCreator && (
+          <ProfilePaper
+            xsWidth="0.2"
+            smWidth="0.4"
+            nickname={fetchedCreator.nickname}
+            swapsNumber={fetchedCreator.swaps.length}
+            email={fetchedCreator.email}
+            image={
+              fetchedCreator?.photo
+                ? `http://localhost:5000//images/users/${fetchedCreator.photo}`
+                : ""
+            }
+            offerCreatedBy
+            avatarMargin="2vw"
+          />
+        )
       }
       children3={
-        <BookDetailsInfo
-          nameOfTheBook={fetchedBook?.nameOfTheBook}
-          category={fetchedBook?.category}
-          author={fetchedBook?.author}
-          releaseDate={fetchedBook?.releaseDate}
-          swapPlace={fetchedBook?.swapPlace}
-          swapFor={fetchedBook?.swapFor}
-          description={fetchedBook?.description}
-          created={fetchedBook?.created}
-          _id={fetchedBook?._id}
-        />
+        fetchedBook && (
+          <BookDetailsInfo
+            nameOfTheBook={fetchedBook.nameOfTheBook}
+            category={fetchedBook.category}
+            author={fetchedBook.author}
+            releaseDate={fetchedBook.releaseDate}
+            swapPlace={fetchedBook.swapPlace}
+            swapFor={fetchedBook.swapFor}
+            description={fetchedBook.description}
+            created={fetchedBook.created}
+            _id={fetchedBook._id}
+          />
+        )
       }
     />
   );

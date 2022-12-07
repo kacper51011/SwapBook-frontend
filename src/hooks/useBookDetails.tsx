@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useCallback, useState } from "react";
 import { ISingleBook } from "../Pages/BooksForSwapPage/BooksForSwapPage";
 import useAlert from "./useAlert";
 
@@ -18,7 +18,7 @@ const useBookDetails = (bookId: string | undefined) => {
 
   // tried to fight with the error, that fires when i fetch the data after changing user photo. Decided to leave it like that
 
-  const getBook = async () => {
+  const getBook = useCallback(async () => {
     try {
       const { data } = await axios.get(`/api/books/getBook/${bookId}`);
       console.log(data);
@@ -27,7 +27,7 @@ const useBookDetails = (bookId: string | undefined) => {
     } catch (err) {
       setAlert("error", "couldn`t load book details");
     }
-  };
+  }, [bookId]);
 
   return [fetchedBook, fetchedCreator, getBook] as const;
 };
