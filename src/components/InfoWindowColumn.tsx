@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, Stack } from "@mui/material";
 import BookDetailsTypography from "./BookDetailsTypography";
 
@@ -17,13 +16,7 @@ const InfoWindowColumn = ({ columnName, inputs }: IInfoColumn) => {
       <Stack direction="column" flexGrow="1" justifyContent="space-evenly">
         {/* with that method of props someone can pass as many BookDetailsTypographies he wants */}
         {inputs.map((input, index) => {
-          return (
-            <BookDetailsTypography
-              key={index}
-              inputName={input.inputName}
-              userInput={input.userInput}
-            />
-          );
+          return <BookDetailsTypography key={index} {...input} />;
         })}
       </Stack>
     </Box>

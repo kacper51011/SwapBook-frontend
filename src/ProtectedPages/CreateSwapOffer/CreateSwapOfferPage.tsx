@@ -1,7 +1,5 @@
 import {
-  Container,
   Stack,
-  Paper,
   TextField,
   Typography,
   FormControl,
@@ -10,6 +8,8 @@ import {
   MenuItem,
   Button,
 } from "@mui/material";
+import { SelectProps } from "@mui/material/Select";
+import { TextFieldProps } from "@mui/material/TextField";
 import { useFormik, FormikProps } from "formik";
 import categories from "../../data/categories";
 import {
@@ -20,6 +20,58 @@ import {
 } from "../../data/createSwapOfferValidation";
 import useAlert from "../../hooks/useAlert";
 import SwapOfferContainer from "./SwapOfferContainer";
+
+const nameProps: TextFieldProps = {
+  name: "nameOfTheBook",
+  id: "nameOfTheBook",
+  label: "Enter name of the book",
+  variant: "outlined",
+};
+
+const categoryProps: SelectProps = {
+  name: "category",
+  id: "category",
+  defaultValue: "",
+};
+
+const authorProps: TextFieldProps = {
+  name: "author",
+  id: "author",
+  label: "Author of the book",
+  variant: "outlined",
+};
+
+const swapPlaceProps: TextFieldProps = {
+  name: "swapPlace",
+  id: "swapPlace",
+  label: "Swap localization",
+  variant: "outlined",
+};
+
+const descriptionProps: TextFieldProps = {
+  name: "description",
+  id: "description",
+  label: "Description",
+  variant: "outlined",
+  multiline: true,
+  minRows: 3,
+  maxRows: 6,
+};
+
+const swapForProps: TextFieldProps = {
+  name: "swapFor",
+  id: "swapFor",
+  label: "Books that you are interested in for",
+  variant: "outlined",
+};
+
+const releaseDateProps: TextFieldProps = {
+  type: "number",
+  name: "releaseDate",
+  id: "releaseDate",
+  label: "Book release date",
+  variant: "outlined",
+};
 
 const CreateSwapOfferPage = () => {
   const [setAlert] = useAlert();
@@ -43,6 +95,7 @@ const CreateSwapOfferPage = () => {
         {/* input for name of the book -> */}
 
         <TextField
+          {...nameProps}
           value={offerFormik.values.nameOfTheBook}
           onChange={offerFormik.handleChange}
           error={
@@ -54,10 +107,6 @@ const CreateSwapOfferPage = () => {
             offerFormik.errors.nameOfTheBook
           }
           onBlur={offerFormik.handleBlur}
-          name="nameOfTheBook"
-          id="nameOfTheBook"
-          label="Enter name of the book"
-          variant="outlined"
           sx={{ width: "80%", marginBottom: "2%" }}
         ></TextField>
         <Stack
@@ -72,9 +121,7 @@ const CreateSwapOfferPage = () => {
               Category
             </InputLabel>
             <Select
-              name="category"
-              id="category"
-              defaultValue=""
+              {...categoryProps}
               value={offerFormik.values.category}
               error={
                 offerFormik.touched.category &&
@@ -103,10 +150,7 @@ const CreateSwapOfferPage = () => {
               offerFormik.touched.author && Boolean(offerFormik.errors.author)
             }
             helperText={offerFormik.touched.author && offerFormik.errors.author}
-            name="author"
-            id="author"
-            label="Author of the book"
-            variant="outlined"
+            {...authorProps}
             sx={{ width: { xs: "100%", sm: "33%" } }}
           ></TextField>
 
@@ -124,11 +168,7 @@ const CreateSwapOfferPage = () => {
             helperText={
               offerFormik.touched.releaseDate && offerFormik.errors.releaseDate
             }
-            type="number"
-            name="releaseDate"
-            id="releaseDate"
-            label="Book release date"
-            variant="outlined"
+            {...releaseDateProps}
             sx={{ width: { xs: "100%", sm: "33%" } }}
           ></TextField>
         </Stack>
@@ -151,10 +191,7 @@ const CreateSwapOfferPage = () => {
             helperText={
               offerFormik.touched.swapPlace && offerFormik.errors.swapPlace
             }
-            name="swapPlace"
-            id="swapPlace"
-            label="Swap localization"
-            variant="outlined"
+            {...swapPlaceProps}
           ></TextField>
           {/* books somebody want to have */}
           <TextField
@@ -168,10 +205,7 @@ const CreateSwapOfferPage = () => {
             helperText={
               offerFormik.touched.swapFor && offerFormik.errors.swapFor
             }
-            name="swapFor"
-            id="swapFor"
-            label="Books that you are interested in for"
-            variant="outlined"
+            {...swapForProps}
           ></TextField>
 
           {/* description */}
@@ -186,13 +220,7 @@ const CreateSwapOfferPage = () => {
             helperText={
               offerFormik.touched.description && offerFormik.errors.description
             }
-            name="description"
-            id="description"
-            label="Description"
-            variant="outlined"
-            multiline
-            minRows={3}
-            maxRows={6}
+            {...descriptionProps}
           ></TextField>
         </Stack>
         <input

@@ -34,11 +34,11 @@ const MyOffers = () => {
       return (
         <MyOffersBookItem
           key={swap._id}
-          bookName={swap.nameOfTheBook}
+          nameOfTheBook={swap.nameOfTheBook}
           category={swap.category}
           swapPlace={swap.swapPlace}
-          addedIn={swap.created}
-          bookId={swap._id}
+          created={swap.created}
+          _id={swap._id}
           bookPhoto={
             swap.bookPhoto
               ? `http://localhost:5000//images/books/${swap.bookPhoto}`

@@ -1,12 +1,11 @@
 import ProfilePaper from "../../components/ProfilePaper";
 import ProfileSecondPaper from "./ProfileSecondPaper";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import useFetchedUser from "../../hooks/useFetchedUser";
 
 import ProfileContainer from "./ProfileContainer";
 import useAlert from "../../hooks/useAlert";
-import { setDefaultResultOrder } from "dns";
 import axios from "axios";
 
 const Profile = () => {
@@ -15,20 +14,17 @@ const Profile = () => {
 
   const [fetchedNickname, fetchedEmail, fetchedNumberOfSwaps, { setUserData }] =
     useFetchedUser();
+  const getProfile = useCallback(async () => {
+    try {
+      const { data } = await axios.get("/api/users/account/profile");
+      setUserData(data.user.nickname, data.user.email, data.user.swaps.length);
+      console.log(123);
+    } catch (error) {
+      setAlert("error", "couldn`t load the data, try again later");
+    }
+  }, []);
 
   useEffect(() => {
-    const getProfile = async () => {
-      try {
-        const { data } = await axios.get("/api/users/account/profile");
-        setUserData(
-          data.user.nickname,
-          data.user.email,
-          data.user.swaps.length
-        );
-      } catch (error) {
-        setAlert("error", "couldn`t load the data, try again later");
-      }
-    };
     getProfile();
   }, []);
 

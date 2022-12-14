@@ -5,21 +5,21 @@ import { Box } from "@mui/system";
 
 export interface IBookItem {
   bookPhoto?: string;
-  bookName?: string;
+  nameOfTheBook?: string;
   category?: string;
   swapPlace?: string;
-  addedIn?: string;
-  bookId?: string;
+  created?: string;
+  _id?: string;
   width?: string;
 }
 
 const BookItem = ({
   bookPhoto,
-  bookName,
+  nameOfTheBook,
   category,
   swapPlace,
-  addedIn,
-  bookId,
+  created,
+  _id,
   width,
 }: IBookItem) => {
   return (
@@ -44,9 +44,9 @@ const BookItem = ({
         }}
       >
         <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography>{bookName}</Typography>
+          <Typography>{nameOfTheBook}</Typography>
           <Typography sx={{ display: { xs: "none", sm: "inline" } }}>
-            {addedIn}
+            {created}
           </Typography>
         </CardContent>
         <CardContent
@@ -66,7 +66,7 @@ const BookItem = ({
           }}
         >
           <Typography>{swapPlace} </Typography>
-          <Link underline="hover" href={`/Books/${bookId}`}>
+          <Link underline="hover" href={`/Books/${_id}`}>
             Read more...
           </Link>
         </CardContent>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Typography } from "@mui/material";
 
 interface IBookDetailsTypography {
@@ -29,14 +28,13 @@ const BookDetailsTypography = ({
   inputName,
   userInput,
   marginLeft,
-  inputNameVariant,
+  inputNameVariant = "h5",
   inputNamePadding,
   userInputPadding,
-  marginY,
 }: IBookDetailsTypography) => {
   return (
     <Typography
-      variant={inputNameVariant || "h5"}
+      variant={inputNameVariant}
       padding={inputNamePadding}
       marginY="1vw"
     >

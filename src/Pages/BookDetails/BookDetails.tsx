@@ -38,34 +38,14 @@ const BookDetails = () => {
           <ProfilePaper
             xsWidth="0.2"
             smWidth="0.4"
-            nickname={fetchedCreator.nickname}
+            {...fetchedCreator}
             swapsNumber={fetchedCreator.swaps.length}
-            email={fetchedCreator.email}
-            image={
-              fetchedCreator?.photo
-                ? `http://localhost:5000//images/users/${fetchedCreator.photo}`
-                : ""
-            }
             offerCreatedBy
             avatarMargin="2vw"
           />
         )
       }
-      children3={
-        fetchedBook && (
-          <BookDetailsInfo
-            nameOfTheBook={fetchedBook.nameOfTheBook}
-            category={fetchedBook.category}
-            author={fetchedBook.author}
-            releaseDate={fetchedBook.releaseDate}
-            swapPlace={fetchedBook.swapPlace}
-            swapFor={fetchedBook.swapFor}
-            description={fetchedBook.description}
-            created={fetchedBook.created}
-            _id={fetchedBook._id}
-          />
-        )
-      }
+      children3={fetchedBook && <BookDetailsInfo {...fetchedBook} />}
     />
   );
 };

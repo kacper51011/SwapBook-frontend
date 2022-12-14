@@ -1,4 +1,4 @@
-import { Box, Paper, Typography, Button, Icon, Avatar } from "@mui/material";
+import { Box, Paper, Typography, Avatar } from "@mui/material";
 import { Stack } from "@mui/system";
 import Image from "mui-image";
 import BookDetailsTypography from "./BookDetailsTypography";
@@ -8,7 +8,7 @@ import { deepOrange } from "@mui/material/colors";
 // component used in Account/Profile Page
 
 interface IprofilePaper {
-  image?: string;
+  photo?: string;
   nickname?: string;
   email?: string;
   swapsNumber?: number;
@@ -20,11 +20,10 @@ interface IprofilePaper {
 }
 
 const ProfilePaper = ({
-  image,
+  photo,
   nickname,
   email,
   swapsNumber,
-  contact,
   xsWidth,
   smWidth,
   offerCreatedBy,
@@ -48,15 +47,15 @@ const ProfilePaper = ({
             Offer creator
           </Typography>
         )}
-        {image && (
+        {photo && (
           <Image
             height={"10vw"}
             style={{ borderRadius: "50%" }}
             width="10vw"
-            src={image}
+            src={`http://localhost:5000//images/users/${photo}`}
           />
         )}
-        {!image && auth && (
+        {!photo && auth && (
           <Avatar
             src=""
             style={{ objectFit: "cover" }}
