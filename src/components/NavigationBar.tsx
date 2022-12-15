@@ -9,14 +9,20 @@ import {
 import AutoStoriesSharpIcon from "@mui/icons-material/AutoStoriesSharp";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
-import EmailIcon from "@mui/icons-material/Email";
 import { NavLink } from "react-router-dom";
-import { Stack } from "@mui/system";
+import { Stack, SxProps } from "@mui/system";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/useAppSelector";
 import { deepOrange, red } from "@mui/material/colors";
 
 // component used in every page
+
+const lowResDisplay: SxProps = {
+  display: { xs: "block", sm: "none" },
+};
+const highResDisplay: SxProps = {
+  display: { xs: "none", sm: "block" },
+};
 
 const NavigationBar = () => {
   const auth = useAppSelector((state) => state.auth.user);
@@ -24,10 +30,10 @@ const NavigationBar = () => {
     <AppBar position="static" sx={{ zIndex: "1000" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         {/* name of the site or icon (depends on width)  */}
-        <Typography variant="h4" sx={{ display: { xs: "none", sm: "block" } }}>
+        <Typography variant="h4" sx={highResDisplay}>
           SwapBook
         </Typography>
-        <AutoStoriesSharpIcon sx={{ display: { xs: "block", sm: "none" } }} />
+        <AutoStoriesSharpIcon sx={lowResDisplay} />
         <Stack direction="row" spacing={1} alignItems="center">
           {/* Button or Icon for creating offer (depends on width and being logged in) */}
           {auth && (
@@ -37,7 +43,7 @@ const NavigationBar = () => {
               color="error"
               variant="contained"
               size="large"
-              sx={{ display: { xs: "none", sm: "block" } }}
+              sx={highResDisplay}
             >
               Create swap offer
             </Button>
@@ -46,7 +52,7 @@ const NavigationBar = () => {
             <IconButton
               component={Link}
               to="/CreateSwapOffer"
-              sx={{ display: { xs: "block", sm: "none" } }}
+              sx={lowResDisplay}
             >
               <NoteAddIcon sx={{ color: "white" }} />
             </IconButton>
@@ -57,16 +63,12 @@ const NavigationBar = () => {
           <Button
             component={NavLink}
             to="/books"
-            sx={{ display: { xs: "none", sm: "block" }, color: red[50] }}
+            sx={{ ...highResDisplay, color: red[50] }}
           >
             Books for Swap
           </Button>
 
-          <IconButton
-            component={Link}
-            to="/books"
-            sx={{ display: { xs: "block", sm: "none" } }}
-          >
+          <IconButton component={Link} to="/books" sx={lowResDisplay}>
             <CompareArrowsIcon sx={{ color: "white" }} />
           </IconButton>
 

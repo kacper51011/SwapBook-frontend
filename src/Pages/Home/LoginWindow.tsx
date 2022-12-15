@@ -7,7 +7,7 @@ import {
   FormHelperText,
 } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import { useFormik, FormikProps } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -16,6 +16,8 @@ import {
   loginValidationSchema,
   ILoginInitialValues,
   loginApiCall,
+  passwordProps,
+  emailProps,
 } from "../../data/loginValidation";
 import { changeAuth } from "../../store/authSlice";
 import AuthContainer from "./AuthContainer";
@@ -42,7 +44,6 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
 
     // onSubmit use loginApiCall, coming from the loginValidation file, also use replace: true in navigation to remove loginPage from history
     onSubmit: async (values) => {
-      console.log(values);
       loginApiCall(values)
         .then((res) => {
           if (values.dontLogout) {
@@ -70,10 +71,7 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
           onBlur={loginFormik.handleBlur}
           error={loginFormik.touched.email && Boolean(loginFormik.errors.email)}
           helperText={loginFormik.touched.email && loginFormik.errors.email}
-          label="email"
-          name="email"
-          id="email"
-          type="email"
+          {...emailProps}
         ></TextField>
 
         {/* password input */}
@@ -87,10 +85,7 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
           helperText={
             loginFormik.touched.password && loginFormik.errors.password
           }
-          label="password"
-          name="password"
-          id="password"
-          type="password"
+          {...passwordProps}
           sx={{ margin: "5px" }}
         ></TextField>
 

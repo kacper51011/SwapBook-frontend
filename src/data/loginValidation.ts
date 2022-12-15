@@ -1,6 +1,7 @@
 import * as yup from "yup";
 import axios from "axios";
 import { CSSProperties } from "react";
+import { TextFieldProps } from "@mui/material";
 
 interface ILoginInitialValues {
   email: string;
@@ -38,10 +39,27 @@ const formStyle: CSSProperties = {
   width: "100%",
 };
 
+const emailProps: TextFieldProps = {
+  label: "email",
+  name: "email",
+  id: "email",
+  type: "email",
+  autoFocus: true,
+};
+
+const passwordProps: TextFieldProps = {
+  label: "password",
+  name: "password",
+  id: "password",
+  type: "password",
+};
+
 export {
   loginApiCall,
   loginInitialValues,
   loginValidationSchema,
   type ILoginInitialValues,
   formStyle,
+  emailProps,
+  passwordProps,
 };

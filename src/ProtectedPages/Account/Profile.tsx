@@ -38,7 +38,7 @@ const Profile = () => {
           email={fetchedEmail || ""}
           nickname={fetchedNickname || ""}
           swapsNumber={fetchedNumberOfSwaps || 0}
-          image={
+          photo={
             auth.photo
               ? `http://localhost:5000//images/users/${auth.photo}`
               : ""

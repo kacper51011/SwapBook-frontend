@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { reset } from "../store/alertsSlice";
 interface ISnackBarItem {
   state: boolean;
-  color: "success" | "info" | "warning" | "error";
+  color: "success" | "error";
   message: string;
 }
 

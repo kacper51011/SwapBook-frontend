@@ -46,9 +46,45 @@ const registerApiCall = async (values: IRegisterInitialValues) => {
   });
   return data;
 };
+
+const nicknameProps = {
+  label: "Nickname",
+  name: "nickname",
+  id: "nickname",
+  type: "text",
+  autoFocus: true,
+};
+
+const passwordProps = {
+  placeholder: "Password",
+  type: "password",
+  name: "password",
+  id: "password",
+  label: "password",
+};
+
+const emailProps = {
+  label: "Email",
+  name: "email",
+  id: "email",
+  type: "email",
+};
+
+const confirmPasswordProps = {
+  type: "password",
+  placeholder: "Confirm password",
+  name: "confirmPassword",
+  id: "confirmPassword",
+  label: "Confirm password",
+};
+
 export {
   registerApiCall,
   registerInitialValues,
   registerValidationSchema,
   type IRegisterInitialValues,
+  emailProps,
+  passwordProps,
+  confirmPasswordProps,
+  nicknameProps,
 };

@@ -33,7 +33,9 @@ const BookItem = ({
     >
       <CardMedia
         component="img"
-        src={bookPhoto}
+        src={
+          bookPhoto ? `http://localhost:5000//images/books/${bookPhoto}` : ""
+        }
         sx={{ width: { xs: "0.4", sm: "0.2" } }}
       />
       <Box

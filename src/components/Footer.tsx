@@ -1,5 +1,4 @@
 import { Paper } from "@mui/material";
-import React from "react";
 
 const Footer = () => {
   // component used in every page

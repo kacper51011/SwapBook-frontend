@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import { ISingleBook } from "../../Pages/BooksForSwapPage/BooksForSwapPage";
+
 import MyOffersBookItem from "./MyOffersBookItem";
 import axios from "axios";
 import useAlert from "../../hooks/useAlert";
+import { ISingleBook } from "../../hooks/useBookPage";
 
 const MyOffers = () => {
   const [setAlert] = useAlert();
@@ -31,21 +32,7 @@ const MyOffers = () => {
 
   const memoMyOffers = useMemo(() => {
     return userSwaps?.map((swap) => {
-      return (
-        <MyOffersBookItem
-          key={swap._id}
-          nameOfTheBook={swap.nameOfTheBook}
-          category={swap.category}
-          swapPlace={swap.swapPlace}
-          created={swap.created}
-          _id={swap._id}
-          bookPhoto={
-            swap.bookPhoto
-              ? `http://localhost:5000//images/books/${swap.bookPhoto}`
-              : ""
-          }
-        />
-      );
+      return <MyOffersBookItem {...swap} />;
     });
   }, [userSwaps]);
 

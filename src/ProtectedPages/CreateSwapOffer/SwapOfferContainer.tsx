@@ -5,7 +5,7 @@ const SwapOfferContainer = ({ children }: React.PropsWithChildren) => {
   return (
     <Container
       sx={{
-        minHeight: "100vh",
+        minHeight: "50vh",
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",

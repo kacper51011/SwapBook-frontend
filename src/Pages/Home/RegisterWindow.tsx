@@ -1,4 +1,10 @@
-import { Button, Typography, TextField, FormHelperText } from "@mui/material";
+import {
+  Button,
+  Typography,
+  TextField,
+  FormHelperText,
+  SxProps,
+} from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 import { MouseEventHandler, useState } from "react";
 import { useFormik, FormikProps } from "formik";
@@ -7,6 +13,10 @@ import {
   registerValidationSchema,
   IRegisterInitialValues,
   registerApiCall,
+  emailProps,
+  passwordProps,
+  confirmPasswordProps,
+  nicknameProps,
 } from "../../data/registerValidation";
 import { useDispatch } from "react-redux";
 import { setError, setSuccess } from "../../store/alertsSlice";
@@ -17,6 +27,8 @@ import { formStyle } from "../../data/loginValidation";
 interface IRegisterProps {
   onClick: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const inputStyle: SxProps = { margin: "10px", width: "0.6" };
 
 const RegisterWindow = ({ onClick }: IRegisterProps) => {
   const [backendError, setBackendError] = useState("");
@@ -47,11 +59,8 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
       {/* nickname input */}
       <form style={formStyle} onSubmit={registerFormik.handleSubmit}>
         <TextField
-          label="Nickname"
-          name="nickname"
-          id="nickname"
-          type="text"
-          sx={{ margin: "5px", width: "0.6" }}
+          {...nicknameProps}
+          sx={inputStyle}
           onChange={registerFormik.handleChange}
           onBlur={registerFormik.handleBlur}
           error={
@@ -66,10 +75,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
         {/* email input */}
 
         <TextField
-          label="Email"
-          name="email"
-          id="email"
-          type="email"
+          {...emailProps}
           onChange={registerFormik.handleChange}
           onBlur={registerFormik.handleBlur}
           error={
@@ -78,16 +84,13 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
           helperText={
             registerFormik.touched.email && registerFormik.errors.email
           }
-          sx={{ margin: "10px", width: "0.6" }}
+          sx={inputStyle}
         ></TextField>
 
         {/* password input */}
 
         <TextField
-          placeholder="Password"
-          type="password"
-          name="password"
-          id="password"
+          {...passwordProps}
           onChange={registerFormik.handleChange}
           onBlur={registerFormik.handleBlur}
           error={
@@ -97,17 +100,13 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
           helperText={
             registerFormik.touched.password && registerFormik.errors.password
           }
-          label="password"
-          sx={{ margin: "5px", width: "0.6" }}
+          sx={inputStyle}
         ></TextField>
 
         {/* confirm password input */}
 
         <TextField
-          type="password"
-          placeholder="Confirm password"
-          name="confirmPassword"
-          id="confirmPassword"
+          {...confirmPasswordProps}
           onChange={registerFormik.handleChange}
           onBlur={registerFormik.handleBlur}
           error={
@@ -118,8 +117,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
             registerFormik.touched.confirmPassword &&
             registerFormik.errors.confirmPassword
           }
-          label="Confirm password"
-          sx={{ margin: "5px", marginBottom: "15px", width: "0.6" }}
+          sx={{ inputStyle, marginBottom: "15px" }}
         ></TextField>
 
         <Button

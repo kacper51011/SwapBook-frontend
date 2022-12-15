@@ -1,7 +1,6 @@
-import { ISingleBook } from "../BooksForSwapPage/BooksForSwapPage";
-
 import InfoWindowColumn from "../../components/InfoWindowColumn";
 import InfoWindowContainer from "../../components/InfoWindowContainer";
+import { ISingleBook } from "../../hooks/useBookPage";
 
 const BookDetailsInfo = ({
   nameOfTheBook,

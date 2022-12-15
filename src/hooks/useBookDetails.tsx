@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { ISingleBook } from "../Pages/BooksForSwapPage/BooksForSwapPage";
 import useAlert from "./useAlert";
+import { ISingleBook } from "./useBookPage";
 
 interface IFetchedCreator {
   _id: string;

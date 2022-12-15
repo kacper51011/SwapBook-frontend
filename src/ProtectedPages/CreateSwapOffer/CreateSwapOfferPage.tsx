@@ -2,13 +2,10 @@ import {
   Stack,
   TextField,
   Typography,
-  FormControl,
-  InputLabel,
-  Select,
   MenuItem,
   Button,
+  SxProps,
 } from "@mui/material";
-import { SelectProps } from "@mui/material/Select";
 import { TextFieldProps } from "@mui/material/TextField";
 import { useFormik, FormikProps } from "formik";
 import categories from "../../data/categories";
@@ -21,6 +18,10 @@ import {
 import useAlert from "../../hooks/useAlert";
 import SwapOfferContainer from "./SwapOfferContainer";
 
+const oneThirdWidth: SxProps = {
+  width: { xs: "100%", sm: "33%" },
+};
+
 const nameProps: TextFieldProps = {
   name: "nameOfTheBook",
   id: "nameOfTheBook",
@@ -28,10 +29,12 @@ const nameProps: TextFieldProps = {
   variant: "outlined",
 };
 
-const categoryProps: SelectProps = {
+const categoryProps: TextFieldProps = {
+  placeholder: "category",
   name: "category",
   id: "category",
   defaultValue: "",
+  label: "category",
 };
 
 const authorProps: TextFieldProps = {
@@ -90,7 +93,7 @@ const CreateSwapOfferPage = () => {
 
   return (
     // name, category, swap for, description, swapPlace, author of the book, image,
-    <form onSubmit={offerFormik.handleSubmit}>
+    <form style={{ textAlign: "center" }} onSubmit={offerFormik.handleSubmit}>
       <SwapOfferContainer>
         {/* input for name of the book -> */}
 
@@ -103,42 +106,40 @@ const CreateSwapOfferPage = () => {
             Boolean(offerFormik.errors.nameOfTheBook)
           }
           helperText={
-            offerFormik.touched.nameOfTheBook &&
-            offerFormik.errors.nameOfTheBook
+            (offerFormik.touched.nameOfTheBook &&
+              offerFormik.errors.nameOfTheBook) ||
+            " "
           }
           onBlur={offerFormik.handleBlur}
-          sx={{ width: "80%", marginBottom: "2%" }}
+          sx={{ width: "80%", marginBottom: "3%" }}
         ></TextField>
         <Stack
-          spacing={3}
+          spacing={{ sx: 0, sm: 3 }}
           width={"80%"}
           direction={{ xs: "column", sm: "row" }}
+          mb="3%"
         >
           {/* select for the category of a book */}
-
-          <FormControl sx={{ width: { xs: "100%", sm: "33%" } }}>
-            <InputLabel variant="standard" htmlFor="categoryOfABook">
-              Category
-            </InputLabel>
-            <Select
-              {...categoryProps}
-              value={offerFormik.values.category}
-              error={
-                offerFormik.touched.category &&
-                Boolean(offerFormik.errors.category)
-              }
-              onBlur={offerFormik.handleBlur}
-              onChange={offerFormik.handleChange}
-            >
-              {categories.map<React.ReactNode>((category, index) => {
-                return (
-                  <MenuItem value={category} key={index}>
-                    {category}
-                  </MenuItem>
-                );
-              })}
-            </Select>
-          </FormControl>
+          <TextField
+            {...categoryProps}
+            value={offerFormik.values.category}
+            error={
+              offerFormik.touched.category &&
+              Boolean(offerFormik.errors.category)
+            }
+            onBlur={offerFormik.handleBlur}
+            onChange={offerFormik.handleChange}
+            select
+            sx={{ ...oneThirdWidth, mb: "3%" }}
+          >
+            {categories.map<React.ReactNode>((category, index) => {
+              return (
+                <MenuItem value={category} key={index}>
+                  {category}
+                </MenuItem>
+              );
+            })}
+          </TextField>
 
           {/* input for author */}
 
@@ -149,9 +150,11 @@ const CreateSwapOfferPage = () => {
             error={
               offerFormik.touched.author && Boolean(offerFormik.errors.author)
             }
-            helperText={offerFormik.touched.author && offerFormik.errors.author}
+            helperText={
+              (offerFormik.touched.author && offerFormik.errors.author) || " "
+            }
             {...authorProps}
-            sx={{ width: { xs: "100%", sm: "33%" } }}
+            sx={{ ...oneThirdWidth, mb: "3%" }}
           ></TextField>
 
           {/* input for Book release date (I dont want to install mui x package for one input so I decided to leave it as number input,
@@ -166,10 +169,12 @@ const CreateSwapOfferPage = () => {
               Boolean(offerFormik.errors.releaseDate)
             }
             helperText={
-              offerFormik.touched.releaseDate && offerFormik.errors.releaseDate
+              (offerFormik.touched.releaseDate &&
+                offerFormik.errors.releaseDate) ||
+              " "
             }
             {...releaseDateProps}
-            sx={{ width: { xs: "100%", sm: "33%" } }}
+            sx={{ ...oneThirdWidth, mb: "3%" }}
           ></TextField>
         </Stack>
 
@@ -177,7 +182,7 @@ const CreateSwapOfferPage = () => {
           Other informations about the swap offer
         </Typography>
 
-        <Stack direction="column" spacing={3} width="80%" marginBottom={"5%"}>
+        <Stack direction="column" width="80%" marginBottom={"5%"}>
           {/* localization for the swap */}
           <TextField
             fullWidth
@@ -189,9 +194,11 @@ const CreateSwapOfferPage = () => {
               Boolean(offerFormik.errors.swapPlace)
             }
             helperText={
-              offerFormik.touched.swapPlace && offerFormik.errors.swapPlace
+              (offerFormik.touched.swapPlace && offerFormik.errors.swapPlace) ||
+              " "
             }
             {...swapPlaceProps}
+            sx={{ mb: "3%" }}
           ></TextField>
           {/* books somebody want to have */}
           <TextField
@@ -203,9 +210,10 @@ const CreateSwapOfferPage = () => {
               offerFormik.touched.swapFor && Boolean(offerFormik.errors.swapFor)
             }
             helperText={
-              offerFormik.touched.swapFor && offerFormik.errors.swapFor
+              (offerFormik.touched.swapFor && offerFormik.errors.swapFor) || " "
             }
             {...swapForProps}
+            sx={{ mb: "3%" }}
           ></TextField>
 
           {/* description */}
@@ -218,7 +226,9 @@ const CreateSwapOfferPage = () => {
               Boolean(offerFormik.errors.description)
             }
             helperText={
-              offerFormik.touched.description && offerFormik.errors.description
+              (offerFormik.touched.description &&
+                offerFormik.errors.description) ||
+              " "
             }
             {...descriptionProps}
           ></TextField>

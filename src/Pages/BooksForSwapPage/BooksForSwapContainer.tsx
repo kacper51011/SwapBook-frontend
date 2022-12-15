@@ -1,5 +1,4 @@
 import { Container, Paper } from "@mui/material";
-import React from "react";
 
 interface ICustomContainer {
   children1?: any;
