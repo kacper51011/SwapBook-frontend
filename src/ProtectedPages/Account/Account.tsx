@@ -28,6 +28,7 @@ const Account = () => {
       <List
         sx={{
           minWidth: { xs: "100%", sm: "15%" },
+          backgroundColor: "white",
         }}
       >
         <ListItem disablePadding>

@@ -5,6 +5,7 @@ import {
   MenuItem,
   Button,
   SxProps,
+  Grid,
 } from "@mui/material";
 import { TextFieldProps } from "@mui/material/TextField";
 import { useFormik, FormikProps } from "formik";
@@ -19,7 +20,7 @@ import useAlert from "../../hooks/useAlert";
 import SwapOfferContainer from "./SwapOfferContainer";
 
 const oneThirdWidth: SxProps = {
-  width: { xs: "100%", sm: "33%" },
+  width: { xs: "100%", sm: "33%", mb: "3vw" },
 };
 
 const nameProps: TextFieldProps = {
@@ -30,11 +31,11 @@ const nameProps: TextFieldProps = {
 };
 
 const categoryProps: TextFieldProps = {
-  placeholder: "category",
   name: "category",
   id: "category",
   defaultValue: "",
   label: "category",
+  variant: "outlined",
 };
 
 const authorProps: TextFieldProps = {
@@ -111,78 +112,79 @@ const CreateSwapOfferPage = () => {
             " "
           }
           onBlur={offerFormik.handleBlur}
-          sx={{ width: "80%", marginBottom: "3%" }}
+          sx={{ width: "80%", mb: "calc(2vw + 5px)" }}
         ></TextField>
-        <Stack
-          spacing={{ sx: 0, sm: 3 }}
-          width={"80%"}
-          direction={{ xs: "column", sm: "row" }}
-          mb="3%"
-        >
+        <Grid container width={"80%"} justifyContent="space-between">
           {/* select for the category of a book */}
-          <TextField
-            {...categoryProps}
-            value={offerFormik.values.category}
-            error={
-              offerFormik.touched.category &&
-              Boolean(offerFormik.errors.category)
-            }
-            onBlur={offerFormik.handleBlur}
-            onChange={offerFormik.handleChange}
-            select
-            sx={{ ...oneThirdWidth, mb: "3%" }}
-          >
-            {categories.map<React.ReactNode>((category, index) => {
-              return (
-                <MenuItem value={category} key={index}>
-                  {category}
-                </MenuItem>
-              );
-            })}
-          </TextField>
-
+          <Grid item xs={12} sm={3.8} mb="calc(2vw + 5px)">
+            <TextField
+              {...categoryProps}
+              value={offerFormik.values.category}
+              fullWidth
+              error={
+                offerFormik.touched.category &&
+                Boolean(offerFormik.errors.category)
+              }
+              onBlur={offerFormik.handleBlur}
+              onChange={offerFormik.handleChange}
+              helperText={
+                (offerFormik.touched.category && offerFormik.errors.category) ||
+                " "
+              }
+              select
+            >
+              {categories.map<React.ReactNode>((category, index) => {
+                return (
+                  <MenuItem value={category} key={index}>
+                    {category}
+                  </MenuItem>
+                );
+              })}
+            </TextField>
+          </Grid>
           {/* input for author */}
-
-          <TextField
-            value={offerFormik.values.author}
-            onChange={offerFormik.handleChange}
-            onBlur={offerFormik.handleBlur}
-            error={
-              offerFormik.touched.author && Boolean(offerFormik.errors.author)
-            }
-            helperText={
-              (offerFormik.touched.author && offerFormik.errors.author) || " "
-            }
-            {...authorProps}
-            sx={{ ...oneThirdWidth, mb: "3%" }}
-          ></TextField>
-
+          <Grid item xs={12} sm={3.8} mb="calc(2vw + 5px)">
+            <TextField
+              value={offerFormik.values.author}
+              onChange={offerFormik.handleChange}
+              onBlur={offerFormik.handleBlur}
+              fullWidth
+              error={
+                offerFormik.touched.author && Boolean(offerFormik.errors.author)
+              }
+              helperText={
+                (offerFormik.touched.author && offerFormik.errors.author) || " "
+              }
+              {...authorProps}
+            ></TextField>
+          </Grid>
           {/* input for Book release date (I dont want to install mui x package for one input so I decided to leave it as number input,
                   so I can anyway validate random inputs with Yup) */}
+          <Grid item xs={12} sm={3.8} mb="calc(2vw + 5px)">
+            <TextField
+              value={offerFormik.values.releaseDate}
+              onChange={offerFormik.handleChange}
+              onBlur={offerFormik.handleBlur}
+              fullWidth
+              error={
+                offerFormik.touched.releaseDate &&
+                Boolean(offerFormik.errors.releaseDate)
+              }
+              helperText={
+                (offerFormik.touched.releaseDate &&
+                  offerFormik.errors.releaseDate) ||
+                " "
+              }
+              {...releaseDateProps}
+            ></TextField>
+          </Grid>
+        </Grid>
 
-          <TextField
-            value={offerFormik.values.releaseDate}
-            onChange={offerFormik.handleChange}
-            onBlur={offerFormik.handleBlur}
-            error={
-              offerFormik.touched.releaseDate &&
-              Boolean(offerFormik.errors.releaseDate)
-            }
-            helperText={
-              (offerFormik.touched.releaseDate &&
-                offerFormik.errors.releaseDate) ||
-              " "
-            }
-            {...releaseDateProps}
-            sx={{ ...oneThirdWidth, mb: "3%" }}
-          ></TextField>
-        </Stack>
-
-        <Typography variant="h6" paddingTop={2}>
+        <Typography variant="h6" mb="5px">
           Other informations about the swap offer
         </Typography>
 
-        <Stack direction="column" width="80%" marginBottom={"5%"}>
+        <Stack direction="column" width="80%" marginBottom={"calc(2vw + 5px)"}>
           {/* localization for the swap */}
           <TextField
             fullWidth
@@ -198,7 +200,7 @@ const CreateSwapOfferPage = () => {
               " "
             }
             {...swapPlaceProps}
-            sx={{ mb: "3%" }}
+            sx={{ mb: "calc(2vw + 5px)" }}
           ></TextField>
           {/* books somebody want to have */}
           <TextField
@@ -213,7 +215,7 @@ const CreateSwapOfferPage = () => {
               (offerFormik.touched.swapFor && offerFormik.errors.swapFor) || " "
             }
             {...swapForProps}
-            sx={{ mb: "3%" }}
+            sx={{ mb: "calc(2vw + 5px)" }}
           ></TextField>
 
           {/* description */}
@@ -245,7 +247,7 @@ const CreateSwapOfferPage = () => {
         />
 
         <Button
-          sx={{ marginTop: "5vw" }}
+          sx={{ marginTop: "5vw", fontWeight: "bold" }}
           type="submit"
           variant="contained"
           size="large"

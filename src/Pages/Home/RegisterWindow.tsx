@@ -1,12 +1,6 @@
-import {
-  Button,
-  Typography,
-  TextField,
-  FormHelperText,
-  SxProps,
-} from "@mui/material";
+import { Button, Typography, TextField, FormHelperText } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
-import { MouseEventHandler, useState } from "react";
+import { useState } from "react";
 import { useFormik, FormikProps } from "formik";
 import {
   registerInitialValues,
@@ -27,8 +21,6 @@ import { formStyle } from "../../data/loginValidation";
 interface IRegisterProps {
   onClick: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const inputStyle: SxProps = { margin: "10px", width: "0.6" };
 
 const RegisterWindow = ({ onClick }: IRegisterProps) => {
   const [backendError, setBackendError] = useState("");
@@ -60,7 +52,6 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
       <form style={formStyle} onSubmit={registerFormik.handleSubmit}>
         <TextField
           {...nicknameProps}
-          sx={inputStyle}
           onChange={registerFormik.handleChange}
           onBlur={registerFormik.handleBlur}
           error={
@@ -68,7 +59,9 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
             Boolean(registerFormik.errors.nickname)
           }
           helperText={
-            registerFormik.touched.nickname && registerFormik.errors.nickname
+            (registerFormik.touched.nickname &&
+              registerFormik.errors.nickname) ||
+            " "
           }
         ></TextField>
 
@@ -82,9 +75,8 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
             registerFormik.touched.email && Boolean(registerFormik.errors.email)
           }
           helperText={
-            registerFormik.touched.email && registerFormik.errors.email
+            (registerFormik.touched.email && registerFormik.errors.email) || " "
           }
-          sx={inputStyle}
         ></TextField>
 
         {/* password input */}
@@ -98,9 +90,10 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
             Boolean(registerFormik.errors.password)
           }
           helperText={
-            registerFormik.touched.password && registerFormik.errors.password
+            (registerFormik.touched.password &&
+              registerFormik.errors.password) ||
+            " "
           }
-          sx={inputStyle}
         ></TextField>
 
         {/* confirm password input */}
@@ -114,10 +107,10 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
             Boolean(registerFormik.errors.confirmPassword)
           }
           helperText={
-            registerFormik.touched.confirmPassword &&
-            registerFormik.errors.confirmPassword
+            (registerFormik.touched.confirmPassword &&
+              registerFormik.errors.confirmPassword) ||
+            " "
           }
-          sx={{ inputStyle, marginBottom: "15px" }}
         ></TextField>
 
         <Button
@@ -128,7 +121,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
         >
           Sign up
         </Button>
-        <FormHelperText> {backendError} </FormHelperText>
+        <FormHelperText error> {backendError || " "} </FormHelperText>
       </form>
       <Typography variant="body2" marginTop={"5px"}>
         You have an account?{" "}

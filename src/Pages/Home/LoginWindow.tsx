@@ -70,7 +70,9 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
           onChange={loginFormik.handleChange}
           onBlur={loginFormik.handleBlur}
           error={loginFormik.touched.email && Boolean(loginFormik.errors.email)}
-          helperText={loginFormik.touched.email && loginFormik.errors.email}
+          helperText={
+            (loginFormik.touched.email && loginFormik.errors.email) || " "
+          }
           {...emailProps}
         ></TextField>
 
@@ -83,10 +85,9 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
             loginFormik.touched.password && Boolean(loginFormik.errors.password)
           }
           helperText={
-            loginFormik.touched.password && loginFormik.errors.password
+            (loginFormik.touched.password && loginFormik.errors.password) || " "
           }
           {...passwordProps}
-          sx={{ margin: "5px" }}
         ></TextField>
 
         <FormControlLabel
@@ -97,17 +98,12 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
               id="dontLogout"
             />
           }
-          label="Do not log me out"
+          label="Remember me"
         />
-        <Button
-          variant="contained"
-          size="medium"
-          type="submit"
-          sx={{ marginBottom: "10px" }}
-        >
+        <Button variant="contained" size="medium" type="submit">
           Sign in
         </Button>
-        <FormHelperText error>{backendError}</FormHelperText>
+        <FormHelperText error>{backendError || " "}</FormHelperText>
       </form>
       <Typography variant="body2" marginTop={"5px"}>
         You don't have an account yet?{" "}

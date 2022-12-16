@@ -29,7 +29,7 @@ const ProfilePaper = ({
   offerCreatedBy,
   avatarMargin,
 }: IprofilePaper) => {
-  const auth = useAppSelector((state) => state.auth.user);
+  const auth = useAppSelector((state) => state.auth?.user);
   return (
     <Paper
       elevation={5}
@@ -49,9 +49,9 @@ const ProfilePaper = ({
         )}
         {photo && (
           <Image
-            height={"10vw"}
             style={{ borderRadius: "50%" }}
-            width="10vw"
+            height={"calc(15vw + 10px)"}
+            width={"calc(15vw + 10px)"}
             src={`http://localhost:5000//images/users/${photo}`}
           />
         )}
@@ -62,8 +62,8 @@ const ProfilePaper = ({
             alt="avatar"
             sx={{
               bgcolor: deepOrange[500],
-              height: "10vw",
-              width: "10vw",
+              height: "calc(15vw + 10px)",
+              width: "calc(15vw + 10px)",
               fontSize: "5vw",
               padding: "20px",
               margin: { avatarMargin },

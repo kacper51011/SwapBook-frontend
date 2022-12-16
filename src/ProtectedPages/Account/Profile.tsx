@@ -38,11 +38,7 @@ const Profile = () => {
           email={fetchedEmail || ""}
           nickname={fetchedNickname || ""}
           swapsNumber={fetchedNumberOfSwaps || 0}
-          photo={
-            auth.photo
-              ? `http://localhost:5000//images/users/${auth.photo}`
-              : ""
-          }
+          photo={auth.photo ? auth.photo : ""}
         />
       }
       children2={

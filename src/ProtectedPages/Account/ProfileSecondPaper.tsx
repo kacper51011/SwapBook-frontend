@@ -66,29 +66,26 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
         padding: "1vw",
       }}
     >
-      <Typography variant="h5" textAlign="center" marginBottom="1vw">
+      <Typography variant="h5" textAlign="center" mb="calc(0.2vw + 5px)">
         Manage your data
       </Typography>
 
-      <Divider orientation="horizontal" sx={{ marginY: "0.4vw" }} />
+      <Divider orientation="horizontal" sx={{ marginY: "calc(1.5vw + 5px)" }} />
 
       {/* nickname */}
       <Grid
         container
         direction="row"
         alignItems="center"
+        height="0.3"
         justifyContent="space-around"
       >
-        <Grid item xs={4}>
-          <Typography
-            fontSize={{ xs: "0.7rem", sm: "1rem" }}
-            fontWeight="bold"
-            paddingY="1vw"
-          >
+        <Grid item xs={3}>
+          <Typography fontSize={{ xs: "0.7rem", sm: "1rem" }} fontWeight="bold">
             Your Nickname
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           {!nicknameEdit && (
             <Typography fontSize={{ xs: "0.7rem", sm: "1rem" }}>
               {nickname}
@@ -96,6 +93,9 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
           )}
           {nicknameEdit && (
             <TextField
+              sx={{ height: "0.5" }}
+              fullWidth
+              size="small"
               type="text"
               label="Your Nickname"
               id="nicknameEdit"
@@ -105,16 +105,25 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
             ></TextField>
           )}
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={2}>
           {!nicknameEdit && (
             <IconButton onClick={() => toggleNicknameEdit(!nicknameEdit)}>
               <EditIcon />
             </IconButton>
           )}
+          {nicknameEdit && (
+            <Button
+              color="error"
+              size="small"
+              onClick={() => toggleNicknameEdit(!nicknameEdit)}
+            >
+              Cancel
+            </Button>
+          )}
           {nicknameEdit && <Button onClick={handleNicknameChange}>Save</Button>}
         </Grid>
       </Grid>
-      <Divider orientation="horizontal" sx={{ marginY: "0.4vw" }} />
+      <Divider orientation="horizontal" sx={{ marginY: "calc(1.5vw + 5px)" }} />
 
       {/* email */}
       <Grid
@@ -123,12 +132,12 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
         alignItems="center"
         justifyContent="space-around"
       >
-        <Grid item xs={4} paddingY="1vw">
+        <Grid item xs={3}>
           <Typography fontWeight="bold" fontSize={{ xs: "0.7rem", sm: "1rem" }}>
             Your Email
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           {!emailEdit && (
             <Typography fontSize={{ xs: "0.7rem", sm: "1rem" }}>
               {email}
@@ -137,6 +146,8 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
           {emailEdit && (
             <TextField
               type="email"
+              fullWidth
+              size="small"
               label="Your Email"
               id="emailEdit"
               name="emailEdit"
@@ -145,31 +156,46 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
             ></TextField>
           )}
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={2} flexDirection="row">
           {!emailEdit && (
             <IconButton onClick={() => toggleEmailEdit(!emailEdit)}>
               <EditIcon />
             </IconButton>
           )}
-          {emailEdit && <Button onClick={() => handleEmailChange}>Save</Button>}
+          {emailEdit && (
+            <Button
+              color="error"
+              size="small"
+              onClick={() => toggleEmailEdit(!emailEdit)}
+            >
+              Cancel
+            </Button>
+          )}
+          {emailEdit && (
+            <Button size="small" onClick={() => handleEmailChange}>
+              Save
+            </Button>
+          )}
         </Grid>
       </Grid>
       {/* password */}
-      <Divider orientation="horizontal" sx={{ marginY: "0.4vw" }} />
+      <Divider orientation="horizontal" sx={{ marginY: "calc(1.5vw + 5px)" }} />
       <Grid
         container
         direction="row"
         alignItems="center"
         justifyContent="space-around"
       >
-        <Grid item xs={4} paddingY="1vw">
+        <Grid item xs={3}>
           <Typography fontWeight="bold" fontSize={{ xs: "0.7rem", sm: "1rem" }}>
             Change password
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <TextField
             type="password"
+            size="small"
+            fullWidth
             label="New Password"
             id="passwordEdit"
             name="passwordEdit"
@@ -177,11 +203,11 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
           ></TextField>
         </Grid>
 
-        <Grid item xs={1}>
+        <Grid item xs={2}>
           <Button onClick={() => handlePasswordChangeSave}>Save</Button>
         </Grid>
       </Grid>
-      <Divider orientation="horizontal" sx={{ marginY: "0.4vw" }} />
+      <Divider orientation="horizontal" sx={{ marginY: "calc(1.5vw + 5px)" }} />
 
       {/* photo  */}
       <Grid

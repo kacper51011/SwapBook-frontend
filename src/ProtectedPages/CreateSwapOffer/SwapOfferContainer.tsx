@@ -27,7 +27,7 @@ const SwapOfferContainer = ({ children }: React.PropsWithChildren) => {
           Your swap offer
         </Typography>
 
-        <Typography variant="h6">
+        <Typography variant="h6" mb="5px">
           Informations about the book you offer
         </Typography>
         {children}

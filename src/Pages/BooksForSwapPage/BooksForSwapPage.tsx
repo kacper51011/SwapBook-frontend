@@ -26,11 +26,7 @@ const BooksForSwapPage = () => {
           <BookItem
             {...el}
             key={el._id}
-            bookPhoto={
-              el.bookPhoto
-                ? `http://localhost:5000//images/books/${el.bookPhoto}`
-                : ""
-            }
+            bookPhoto={el.bookPhoto ? el.bookPhoto : ""}
           ></BookItem>
         );
       }),
@@ -48,7 +44,7 @@ const BooksForSwapPage = () => {
       />
       <BooksForSwapContainer
         // books fetched from API
-        children1={<Stack spacing={2}>{memoBooks}</Stack>}
+        children1={<Stack spacing={3}>{memoBooks}</Stack>}
         // Pagination
         children2={
           <Pagination
