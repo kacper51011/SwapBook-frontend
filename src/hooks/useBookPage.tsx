@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 import useAlert from "./useAlert";
+import { SelectChangeEvent } from "@mui/material/Select";
 
 export interface ISingleBook {
   nameOfTheBook?: string;
@@ -40,23 +41,19 @@ const useBookPage = () => {
   };
 
   // handling the category Change used in FilterBar props
-  const handleCategoryChange: React.ChangeEventHandler<HTMLSelectElement> = (
-    event
-  ) => {
+  const handleCategoryChange: (event: SelectChangeEvent) => void = (event) => {
     setCategory(event.target.value);
   };
 
   // handling the sorting Change used in FilterBar props
-  const handleSortingChange: React.ChangeEventHandler<HTMLSelectElement> = (
-    event
-  ) => {
+  const handleSortingChange: (event: SelectChangeEvent) => void = (event) => {
     setSorting(event.target.value);
   };
 
   // handling books per page change used in FilterBar props
-  const handleBooksPerPageChange: React.ChangeEventHandler<
-    HTMLSelectElement
-  > = (event) => {
+  const handleBooksPerPageChange: (event: SelectChangeEvent) => void = (
+    event
+  ) => {
     setBooksPerPage(event.target.value);
   };
 

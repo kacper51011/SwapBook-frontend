@@ -1,10 +1,12 @@
 import {
   Paper,
-  NativeSelect,
   FormControl,
   Typography,
   Stack,
+  Select,
+  SelectChangeEvent,
 } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
 import categories from "../../data/categories";
 import SearchBar from "./SearchBar";
 
@@ -12,9 +14,9 @@ import SearchBar from "./SearchBar";
 // include: SearchBar
 
 interface IFilterBar {
-  handleSortingChange: React.ChangeEventHandler<HTMLSelectElement>;
-  handleCategoryChange: React.ChangeEventHandler<HTMLSelectElement>;
-  handleBooksPerPageChange: React.ChangeEventHandler<HTMLSelectElement>;
+  handleSortingChange: (event: SelectChangeEvent) => void;
+  handleCategoryChange: (event: SelectChangeEvent) => void;
+  handleBooksPerPageChange: (event: SelectChangeEvent) => void;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -57,40 +59,44 @@ const FilterBar = ({
         spacing={5}
       >
         {/* category filter */}
-        <FormControl sx={{ width: { xs: "0.6", sm: "0.15" } }}>
+        <FormControl sx={{ width: { xs: "0.8", sm: "0.15" } }}>
           <Typography marginBottom="5px">Category</Typography>
-          <NativeSelect defaultValue={""} onChange={handleCategoryChange}>
+          <Select defaultValue={""} onChange={handleCategoryChange}>
             <option value=""></option>
             {categories.map<React.ReactNode>((category, index) => {
               return (
-                <option key={index} value={category}>
+                <MenuItem key={index} value={category}>
                   {category}
-                </option>
+                </MenuItem>
               );
             })}
-          </NativeSelect>
+          </Select>
         </FormControl>
         {/* books per page  */}
         <FormControl sx={{ width: { xs: "0.8", sm: "0.15" } }}>
-          <Typography marginBottom="5px">Books per page</Typography>
-
-          <NativeSelect defaultValue={"10"} onChange={handleBooksPerPageChange}>
-            <option value={"10"}>10</option>
-            <option value={"25"}>25</option>
-            <option value={"50"}>50</option>
-          </NativeSelect>
+          <Typography marginBottom="5px">Books Per Page:</Typography>
+          <Select
+            defaultValue={"10"}
+            id="booksPerPageChangeSelect"
+            onChange={handleBooksPerPageChange}
+          >
+            <MenuItem value={"10"}>10</MenuItem>
+            <MenuItem value={"25"}>25</MenuItem>
+            <MenuItem value={"50"}>50</MenuItem>
+          </Select>
         </FormControl>
+
         {/* sortBy */}
         <FormControl sx={{ width: { xs: "0.8", sm: "0.15" } }}>
           <Typography marginBottom="5px">Sort by:</Typography>
 
-          <NativeSelect defaultValue={""} onChange={handleSortingChange}>
-            <option value={""}></option>
-            <option value={"nameOfTheBook_+1"}>name+</option>
-            <option value={"nameOfTheBook_-1"}>name-</option>
-            <option value={"author_+1"}>author+</option>
-            <option value={"author_-1"}>author-</option>
-          </NativeSelect>
+          <Select defaultValue={""} onChange={handleSortingChange}>
+            <MenuItem value={""}></MenuItem>
+            <MenuItem value={"nameOfTheBook_+1"}>name+</MenuItem>
+            <MenuItem value={"nameOfTheBook_-1"}>name-</MenuItem>
+            <MenuItem value={"author_+1"}>author+</MenuItem>
+            <MenuItem value={"author_-1"}>author-</MenuItem>
+          </Select>
         </FormControl>
       </Stack>
     </Paper>

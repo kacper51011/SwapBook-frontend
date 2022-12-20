@@ -66,7 +66,7 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
         padding: "1vw",
       }}
     >
-      <Typography variant="h5" textAlign="center" mb="calc(0.2vw + 5px)">
+      <Typography variant="h4" textAlign="center" mb="calc(0.2vw + 5px)">
         Manage your data
       </Typography>
 

@@ -4,11 +4,12 @@ import {
   Typography,
   MenuItem,
   Button,
-  SxProps,
   Grid,
 } from "@mui/material";
+import Box from "@mui/material/Box";
 import { TextFieldProps } from "@mui/material/TextField";
 import { useFormik, FormikProps } from "formik";
+import { useState, useEffect } from "react";
 import categories from "../../data/categories";
 import {
   offerInitialValues,
@@ -18,10 +19,6 @@ import {
 } from "../../data/createSwapOfferValidation";
 import useAlert from "../../hooks/useAlert";
 import SwapOfferContainer from "./SwapOfferContainer";
-
-const oneThirdWidth: SxProps = {
-  width: { xs: "100%", sm: "33%", mb: "3vw" },
-};
 
 const nameProps: TextFieldProps = {
   name: "nameOfTheBook",
@@ -78,6 +75,15 @@ const releaseDateProps: TextFieldProps = {
 };
 
 const CreateSwapOfferPage = () => {
+  const [selectedImage, setSelectedImage] = useState<null | File>(null);
+  const [imageURL, setImageUrl] = useState<null | string>(null);
+
+  useEffect(() => {
+    if (selectedImage) {
+      setImageUrl(URL.createObjectURL(selectedImage));
+    }
+  }, [selectedImage]);
+
   const [setAlert] = useAlert();
   // initializing Formik, data can be found in "../data/createSwapOfferValidation"
   const offerFormik: FormikProps<IOfferInitialValues> = useFormik({
@@ -235,16 +241,36 @@ const CreateSwapOfferPage = () => {
             {...descriptionProps}
           ></TextField>
         </Stack>
+
         <input
+          accept="image/*"
           type="file"
           name="bookPhoto"
           id="bookPhoto"
-          accept="image/*"
-          onChange={(event) =>
-            event.target.files &&
-            offerFormik.setFieldValue("bookPhoto", event.target.files[0])
-          }
+          style={{ display: "none" }}
+          onChange={(e) => {
+            e.target.files &&
+              setSelectedImage(e.target.files && e.target.files[0]);
+            e.target.files &&
+              offerFormik.setFieldValue("bookPhoto", e.target.files[0]);
+          }}
         />
+        <label htmlFor="bookPhoto">
+          <Button
+            variant="contained"
+            color="primary"
+            component="span"
+            size="small"
+          >
+            Add book photo
+          </Button>
+        </label>
+        {imageURL && selectedImage && (
+          <Box mt={2} textAlign="center">
+            <Typography>Image preview:</Typography>
+            <img src={imageURL} alt={selectedImage.name} height="100px" />
+          </Box>
+        )}
 
         <Button
           sx={{ marginTop: "5vw", fontWeight: "bold" }}

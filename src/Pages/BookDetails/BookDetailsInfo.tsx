@@ -32,7 +32,7 @@ const BookDetailsInfo = ({
             { inputName: "Created at", userInput: created },
             { inputName: "Place of exchange", userInput: swapPlace },
             { inputName: "Books for exchange", userInput: swapFor },
-            { inputName: "description", userInput: description },
+            { inputName: "Description", userInput: description },
           ]}
         />
       }

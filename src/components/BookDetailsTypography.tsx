@@ -37,6 +37,7 @@ const BookDetailsTypography = ({
       variant={inputNameVariant}
       padding={inputNamePadding}
       marginY="1vw"
+      fontWeight="500"
     >
       {inputName}
       <br></br>{" "}

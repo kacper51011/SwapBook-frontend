@@ -32,7 +32,7 @@ const MyOffers = () => {
 
   const memoMyOffers = useMemo(() => {
     return userSwaps?.map((swap) => {
-      return <MyOffersBookItem {...swap} />;
+      return <MyOffersBookItem {...swap} key={swap._id} />;
     });
   }, [userSwaps]);
 

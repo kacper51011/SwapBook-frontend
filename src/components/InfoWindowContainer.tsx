@@ -12,7 +12,7 @@ const InfoWindowContainer = ({ firstInfo, secondInfo }: IInfoWindow) => {
       {/* Divide will display only if both props are passed to InfoWindow(secondInfo is optional) */}
       <Box width="100%" height="100%" display="flex" flexDirection="row">
         {firstInfo}
-        {firstInfo && secondInfo && <Divider />}
+        {firstInfo && secondInfo && <Divider orientation="vertical" />}
         {secondInfo}
       </Box>
     </Paper>
