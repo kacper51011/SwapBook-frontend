@@ -12,6 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import usePhoto from "../../hooks/usePhoto";
 import useProfileDataUpdate from "../../hooks/useProfileDataUpdate";
+import { Box } from "@mui/system";
 
 // component used in account/profile page
 
@@ -29,6 +30,11 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
   // states used only for toggling normal mode and edit mode (Password is a textfield by default, so it dont have a toggle)
   const [nicknameEdit, toggleNicknameEdit] = useState<Boolean>(false);
   const [emailEdit, toggleEmailEdit] = useState<Boolean>(false);
+
+  const [selectedProfilePhoto, setSelectedProfilePhoto] = useState<null | File>(
+    null
+  );
+  const [imageURL, setImageUrl] = useState<null | string>(null);
 
   const [setEditedPhotoValue, handlePhotoChangeSave] = usePhoto();
 
@@ -212,14 +218,14 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
       {/* photo  */}
       <Grid
         container
-        flexDirection="column"
+        direction="row"
         alignItems="center"
-        marginTop="2vw"
+        justifyContent="space-around"
       >
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <Typography fontWeight="bold">Photo</Typography>
         </Grid>
-        <Grid item xs={12} flexDirection="row" justifyContent="space-around">
+        <Grid item xs={5} flexDirection="row" justifyContent="space-around">
           <input
             type="file"
             name="photo"
@@ -231,15 +237,25 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
               }
             }}
           />
-          <Button
-            variant="contained"
-            endIcon={<CameraAltIcon />}
-            onClick={handlePhotoChangeSave}
-          >
-            Save{" "}
-          </Button>
-          {/* </form> */}
         </Grid>
+        <Grid item xs={2}>
+          <Button onClick={handlePhotoChangeSave}>Save </Button>
+        </Grid>
+        <Grid item xs={12} textAlign="center">
+          {imageURL && selectedProfilePhoto ? (
+            <Box mt={2} textAlign="center">
+              <img
+                src={imageURL}
+                alt={selectedProfilePhoto.name}
+                height="100px"
+              />
+            </Box>
+          ) : (
+            <Box height="100px" />
+          )}
+        </Grid>
+
+        {/* </form> */}
       </Grid>
     </Paper>
   );

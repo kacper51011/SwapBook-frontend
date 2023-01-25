@@ -67,6 +67,8 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
       <form style={formStyle} onSubmit={loginFormik.handleSubmit}>
         {/* email input */}
         <TextField
+          variant="standard"
+          sx={{ width: "70%" }}
           onChange={loginFormik.handleChange}
           onBlur={loginFormik.handleBlur}
           error={loginFormik.touched.email && Boolean(loginFormik.errors.email)}
@@ -79,6 +81,8 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
         {/* password input */}
 
         <TextField
+          variant="standard"
+          sx={{ width: "70%" }}
           onChange={loginFormik.handleChange}
           onBlur={loginFormik.handleBlur}
           error={
@@ -105,11 +109,14 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
         </Button>
         <FormHelperText error>{backendError || " "}</FormHelperText>
       </form>
-      <Typography variant="body2" marginTop={"5px"}>
-        You don't have an account yet?{" "}
-        <Button variant="text" onClick={() => onClick(true)}>
-          Sign up
-        </Button>
+      <Typography
+        variant="body2"
+        fontWeight="600"
+        component="div"
+        onClick={() => onClick(true)}
+        marginTop={"5px"}
+      >
+        You don't have account yet? Click here!
       </Typography>
     </AuthContainer>
   );

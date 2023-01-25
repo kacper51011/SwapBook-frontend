@@ -7,7 +7,7 @@ import BooksForSwapPage from "./Pages/BooksForSwapPage/BooksForSwapPage";
 import Footer from "./components/Footer";
 import SnackBarItem from "./components/SnackBarItem";
 import { useAppSelector } from "./hooks/useAppSelector";
-import { Typography } from "@mui/material";
+import { CssBaseline, Typography } from "@mui/material";
 
 // lazy loading implementation for protected routes
 const MyOffers = lazy(() => import("./ProtectedPages/Account/MyOffers"));
@@ -36,20 +36,25 @@ function App() {
       <Suspense
         fallback={<Typography textAlign="center">Loading...</Typography>}
       >
-        <Routes>
-          {/* Pages without protection */}
-          <Route path="/" element={<Home />} />
-          <Route path="/Books" element={<BooksForSwapPage />} />
-          <Route path="/Books/:bookId" element={<BookDetails />} />
-          {/*  Protected pages*/}
-          <Route element={<ProtectedPagesContainer />}>
-            <Route path="/Account" element={<Account />}>
-              <Route path="MyOffers" element={<MyOffers />}></Route>
-              <Route path="Profile" element={<Profile />}></Route>
+        <CssBaseline>
+          <Routes>
+            {/* Pages without protection */}
+            <Route path="/" element={<Home />} />
+            <Route path="/Books" element={<BooksForSwapPage />} />
+            <Route path="/Books/:bookId" element={<BookDetails />} />
+            {/*  Protected pages*/}
+            <Route element={<ProtectedPagesContainer />}>
+              <Route path="/Account" element={<Account />}>
+                <Route path="MyOffers" element={<MyOffers />}></Route>
+                <Route path="Profile" element={<Profile />}></Route>
+              </Route>
+              <Route
+                path="/CreateSwapOffer"
+                element={<CreateSwapOfferPage />}
+              />
             </Route>
-            <Route path="/CreateSwapOffer" element={<CreateSwapOfferPage />} />
-          </Route>
-        </Routes>
+          </Routes>
+        </CssBaseline>
       </Suspense>
       <Footer />
       <SnackBarItem

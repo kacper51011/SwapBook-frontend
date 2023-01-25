@@ -5,6 +5,7 @@ import { useAppSelector } from "../../hooks/useAppSelector";
 import BooksForSwapPage from "../BooksForSwapPage/BooksForSwapPage";
 import LoginWindow from "./LoginWindow";
 import RegisterWindow from "./RegisterWindow";
+import { ReactComponent as HomePageImage } from "../../utils/HomePageImage.svg";
 
 const Home = () => {
   const [displayRegisterWindow, setDisplayedWindow] = useState(false);
@@ -20,7 +21,7 @@ const Home = () => {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: "#F5F5F5",
+        color: "primary",
       }}
     >
       <Box
@@ -35,12 +36,7 @@ const Home = () => {
           width: "0.5",
         }}
       >
-        <Paper elevation={10} sx={{ height: "35vw", width: "45vw" }}>
-          <Image
-            fit="cover"
-            src="http://localhost:5000//images/books/homePageIMG.jpg"
-          />
-        </Paper>
+        <HomePageImage />
       </Box>
       <Box
         sx={{

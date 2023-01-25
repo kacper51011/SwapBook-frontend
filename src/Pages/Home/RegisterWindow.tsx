@@ -51,6 +51,8 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
       {/* nickname input */}
       <form style={formStyle} onSubmit={registerFormik.handleSubmit}>
         <TextField
+          sx={{ width: "70%" }}
+          variant="standard"
           {...nicknameProps}
           onChange={registerFormik.handleChange}
           onBlur={registerFormik.handleBlur}
@@ -68,6 +70,8 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
         {/* email input */}
 
         <TextField
+          sx={{ width: "70%" }}
+          variant="standard"
           {...emailProps}
           onChange={registerFormik.handleChange}
           onBlur={registerFormik.handleBlur}
@@ -82,6 +86,8 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
         {/* password input */}
 
         <TextField
+          variant="standard"
+          sx={{ width: "70%" }}
           {...passwordProps}
           onChange={registerFormik.handleChange}
           onBlur={registerFormik.handleBlur}
@@ -99,6 +105,8 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
         {/* confirm password input */}
 
         <TextField
+          variant="standard"
+          sx={{ width: "70%" }}
           {...confirmPasswordProps}
           onChange={registerFormik.handleChange}
           onBlur={registerFormik.handleBlur}
@@ -123,11 +131,15 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
         </Button>
         <FormHelperText error> {backendError || " "} </FormHelperText>
       </form>
-      <Typography variant="body2" marginTop={"5px"}>
-        You have an account?{" "}
-        <Button variant="text" onClick={() => onClick(false)}>
-          Sign in
-        </Button>
+      <Typography
+        variant="body2"
+        component="div"
+        onClick={() => onClick(false)}
+        marginTop={"5px"}
+        fontWeight="600"
+        sx={{ cursor: "pointer" }}
+      >
+        You have account? Click here!
       </Typography>
     </AuthContainer>
   );

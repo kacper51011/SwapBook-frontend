@@ -118,11 +118,11 @@ const CreateSwapOfferPage = () => {
             " "
           }
           onBlur={offerFormik.handleBlur}
-          sx={{ width: "80%", mb: "calc(2vw + 5px)" }}
+          sx={{ width: "80%", mb: "calc(1vw + 5px)" }}
         ></TextField>
         <Grid container width={"80%"} justifyContent="space-between">
           {/* select for the category of a book */}
-          <Grid item xs={12} sm={3.8} mb="calc(2vw + 5px)">
+          <Grid item xs={12} sm={3.8} mb="calc(1vw + 5px)">
             <TextField
               {...categoryProps}
               value={offerFormik.values.category}
@@ -149,7 +149,7 @@ const CreateSwapOfferPage = () => {
             </TextField>
           </Grid>
           {/* input for author */}
-          <Grid item xs={12} sm={3.8} mb="calc(2vw + 5px)">
+          <Grid item xs={12} sm={3.8} mb="calc(1vw + 5px)">
             <TextField
               value={offerFormik.values.author}
               onChange={offerFormik.handleChange}
@@ -166,7 +166,7 @@ const CreateSwapOfferPage = () => {
           </Grid>
           {/* input for Book release date (I dont want to install mui x package for one input so I decided to leave it as number input,
                   so I can anyway validate random inputs with Yup) */}
-          <Grid item xs={12} sm={3.8} mb="calc(2vw + 5px)">
+          <Grid item xs={12} sm={3.8} mb="calc(1vw + 5px)">
             <TextField
               value={offerFormik.values.releaseDate}
               onChange={offerFormik.handleChange}
@@ -190,7 +190,7 @@ const CreateSwapOfferPage = () => {
           Other informations about the swap offer
         </Typography>
 
-        <Stack direction="column" width="80%" marginBottom={"calc(2vw + 5px)"}>
+        <Stack direction="column" width="80%" marginBottom={"calc(1vw + 5px)"}>
           {/* localization for the swap */}
           <TextField
             fullWidth
@@ -206,7 +206,7 @@ const CreateSwapOfferPage = () => {
               " "
             }
             {...swapPlaceProps}
-            sx={{ mb: "calc(2vw + 5px)" }}
+            sx={{ mb: "calc(1vw + 5px)" }}
           ></TextField>
           {/* books somebody want to have */}
           <TextField
@@ -221,7 +221,7 @@ const CreateSwapOfferPage = () => {
               (offerFormik.touched.swapFor && offerFormik.errors.swapFor) || " "
             }
             {...swapForProps}
-            sx={{ mb: "calc(2vw + 5px)" }}
+            sx={{ mb: "calc(1vw + 5px)" }}
           ></TextField>
 
           {/* description */}

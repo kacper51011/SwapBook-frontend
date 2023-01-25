@@ -20,16 +20,15 @@ const BookItem = ({
   swapPlace,
   created,
   _id,
-  width,
 }: IBookItem) => {
   return (
     <Paper
       elevation={1}
       sx={{
         display: "flex",
-        position: "relative",
         width: 1,
-        minHeight: { xs: "20vw", sm: "10vw" },
+        height: { xs: "calc(5vh + 50px)", sm: "12vw" },
+        borderRadius: "16px",
       }}
     >
       <CardMedia
@@ -38,8 +37,9 @@ const BookItem = ({
           bookPhoto ? `http://localhost:5000//images/books/${bookPhoto}` : ""
         }
         sx={{
-          width: { xs: "0.4", sm: "0.2" },
-          objectFit: "cover",
+          width: "0.2",
+          height: "1",
+          objectFit: "contain",
         }}
       />
       <Box
@@ -47,7 +47,7 @@ const BookItem = ({
           display: "flex",
           flexDirection: "column",
           width: "0.8",
-          height: "1",
+          maxHeight: "1",
         }}
       >
         <CardContent sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -63,7 +63,7 @@ const BookItem = ({
         </CardContent>
         <CardContent
           sx={{
-            display: "flex",
+            display: { xs: "none", sm: "flex" },
             justifyContent: "flex-start",
           }}
         >

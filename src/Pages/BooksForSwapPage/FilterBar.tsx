@@ -60,8 +60,12 @@ const FilterBar = ({
       >
         {/* category filter */}
         <FormControl sx={{ width: { xs: "0.8", sm: "0.15" } }}>
-          <Typography marginBottom="5px">Category</Typography>
-          <Select defaultValue={""} onChange={handleCategoryChange}>
+          <Typography marginBottom="5px">Category:</Typography>
+          <Select
+            defaultValue={""}
+            onChange={handleCategoryChange}
+            size="small"
+          >
             <option value=""></option>
             {categories.map<React.ReactNode>((category, index) => {
               return (
@@ -76,11 +80,14 @@ const FilterBar = ({
         <FormControl sx={{ width: { xs: "0.8", sm: "0.15" } }}>
           <Typography marginBottom="5px">Books Per Page:</Typography>
           <Select
-            defaultValue={"10"}
+            size="small"
+            defaultValue="10"
             id="booksPerPageChangeSelect"
             onChange={handleBooksPerPageChange}
           >
-            <MenuItem value={"10"}>10</MenuItem>
+            <MenuItem selected value={"10"}>
+              10
+            </MenuItem>
             <MenuItem value={"25"}>25</MenuItem>
             <MenuItem value={"50"}>50</MenuItem>
           </Select>
@@ -90,7 +97,7 @@ const FilterBar = ({
         <FormControl sx={{ width: { xs: "0.8", sm: "0.15" } }}>
           <Typography marginBottom="5px">Sort by:</Typography>
 
-          <Select defaultValue={""} onChange={handleSortingChange}>
+          <Select defaultValue={""} onChange={handleSortingChange} size="small">
             <MenuItem value={""}></MenuItem>
             <MenuItem value={"nameOfTheBook_+1"}>name+</MenuItem>
             <MenuItem value={"nameOfTheBook_-1"}>name-</MenuItem>

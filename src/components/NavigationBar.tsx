@@ -85,7 +85,7 @@ const NavigationBar = () => {
                 alt="avatar"
                 sx={{ bgcolor: deepOrange[500] }}
               >
-                {auth.nickname.charAt(0)}
+                {auth.nickname}
               </Avatar>
             </IconButton>
           )}

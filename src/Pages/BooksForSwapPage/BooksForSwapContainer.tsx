@@ -20,6 +20,7 @@ const BooksForSwapContainer = ({ children1, children2 }: ICustomContainer) => {
           marginY: "20px",
           paddingY: "20px",
           backgroundColor: "#F5F5F5",
+          borderRadius: "16px",
           width: 1,
         }}
       >

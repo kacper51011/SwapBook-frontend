@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 
 interface IAuthContainer {
   children: ReactNode;
@@ -12,6 +12,7 @@ interface IAuthContainer {
 const AuthContainer = ({ children, information, icon }: IAuthContainer) => {
   return (
     <Paper
+      elevation={2}
       sx={{
         width: { xs: "0.8", lg: "0.5" },
         display: "flex",
@@ -20,6 +21,7 @@ const AuthContainer = ({ children, information, icon }: IAuthContainer) => {
         justifyContent: "center",
         paddingTop: "30px",
         paddingBottom: "20px",
+        borderRadius: "16px",
       }}
     >
       <Typography
