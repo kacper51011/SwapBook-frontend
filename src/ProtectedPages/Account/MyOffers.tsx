@@ -44,7 +44,7 @@ const MyOffers = () => {
       minHeight="40vw"
     >
       <Typography padding={2} variant="h2">
-        My Requests
+        My Offers
       </Typography>
       <Grid container spacing={3}>
         {memoMyOffers}

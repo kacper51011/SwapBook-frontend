@@ -7,7 +7,6 @@ import {
   Divider,
   IconButton,
 } from "@mui/material";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
 import usePhoto from "../../hooks/usePhoto";
@@ -70,6 +69,7 @@ const ProfileSecondPaper = ({ nickname, email, setUserData }: ISecondPaper) => {
         minWidth: "1",
         minHeight: "1",
         padding: "1vw",
+        borderRadius: "16px",
       }}
     >
       <Typography variant="h4" textAlign="center" mb="calc(0.2vw + 5px)">

@@ -23,12 +23,12 @@ const BookDetails = lazy(() => import("./Pages/BookDetails/BookDetails"));
 // todo:  swaps expiration, preparing dates, refactoring
 
 function App() {
-  const successMessage = useAppSelector((state) => state.alerts.success);
+  const successMessage = useAppSelector((state) => state.alerts?.success);
   const successState = useAppSelector(
-    (state) => state.alerts.successVisibility
+    (state) => state.alerts?.successVisibility
   );
-  const errorMessage = useAppSelector((state) => state.alerts.error);
-  const errorState = useAppSelector((state) => state.alerts.errorVisibility);
+  const errorMessage = useAppSelector((state) => state.alerts?.error);
+  const errorState = useAppSelector((state) => state.alerts?.errorVisibility);
 
   return (
     <div className="App">
@@ -56,7 +56,7 @@ function App() {
           </Routes>
         </CssBaseline>
       </Suspense>
-      <Footer />
+
       <SnackBarItem
         state={successState}
         color="success"

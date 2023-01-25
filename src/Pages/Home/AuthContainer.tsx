@@ -12,16 +12,15 @@ interface IAuthContainer {
 const AuthContainer = ({ children, information, icon }: IAuthContainer) => {
   return (
     <Paper
-      elevation={2}
+      elevation={5}
       sx={{
-        width: { xs: "0.8", lg: "0.5" },
+        width: { xs: "0.8", lg: "0.9" },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        paddingTop: "30px",
-        paddingBottom: "20px",
-        borderRadius: "16px",
+        py: 3,
+        borderRadius: "32px",
       }}
     >
       <Typography
@@ -32,7 +31,8 @@ const AuthContainer = ({ children, information, icon }: IAuthContainer) => {
         }}
         variant="h5"
         component="span"
-        pb="30px"
+        fontWeight={600}
+        my={2}
       >
         {information} {icon}
       </Typography>

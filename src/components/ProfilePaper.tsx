@@ -39,6 +39,7 @@ const ProfilePaper = ({
         minWidth: { xs: { xsWidth }, sm: { smWidth } },
         minHeight: "1",
         padding: "1vw",
+        borderRadius: "16px",
       }}
     >
       <Box display={"flex"} alignItems="center" flexDirection={"column"}>

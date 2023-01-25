@@ -9,7 +9,12 @@ interface IInfoColumn {
 
 const InfoWindowColumn = ({ columnName, inputs }: IInfoColumn) => {
   return (
-    <Box width="0.5" padding="10px" display="flex" flexDirection="column">
+    <Box
+      width={{ xs: 1, sm: 0.5 }}
+      padding="10px"
+      display="flex"
+      flexDirection="column"
+    >
       <Typography width="100%" textAlign="center" variant="h4">
         {columnName}
       </Typography>

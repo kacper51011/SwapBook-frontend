@@ -63,7 +63,7 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
   });
 
   return (
-    <AuthContainer information="Sign In to SwapBook" icon={<LoginIcon />}>
+    <AuthContainer information="Welcome back!">
       <form style={formStyle} onSubmit={loginFormik.handleSubmit}>
         {/* email input */}
         <TextField
@@ -104,8 +104,8 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
           }
           label="Remember me"
         />
-        <Button variant="contained" size="medium" type="submit">
-          Sign in
+        <Button variant="contained" sx={{ py: 1, px: 7 }} type="submit">
+          LOGIN
         </Button>
         <FormHelperText error>{backendError || " "}</FormHelperText>
       </form>
@@ -114,6 +114,7 @@ const LoginWindow = ({ onClick }: ILoginProps) => {
         fontWeight="600"
         component="div"
         onClick={() => onClick(true)}
+        sx={{ cursor: "pointer" }}
         marginTop={"5px"}
       >
         You don't have account yet? Click here!

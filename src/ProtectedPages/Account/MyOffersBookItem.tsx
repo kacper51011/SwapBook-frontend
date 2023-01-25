@@ -21,7 +21,7 @@ const MyOffersBookItem = (data: IBookItem) => {
   return (
     <>
       <Grid item xs={11}>
-        <BookItem {...bookItemProps} width={"100%"} />
+        <BookItem _id={_id} {...bookItemProps} width={"100%"} />
       </Grid>
       <Grid item xs={1}>
         <IconButton onClick={onClickHandler}>

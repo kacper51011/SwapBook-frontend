@@ -22,8 +22,12 @@ const BookDetails = () => {
   return (
     <BookDetailsContainer
       children1={
-        <Paper elevation={3} sx={{ width: "1", height: "1" }}>
+        <Paper
+          elevation={3}
+          sx={{ width: "1", height: "1", borderRadius: "16px" }}
+        >
           <Image
+            style={{ borderRadius: "16px" }}
             fit="cover"
             src={
               fetchedBook?.bookPhoto

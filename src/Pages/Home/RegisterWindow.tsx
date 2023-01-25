@@ -47,7 +47,7 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
   });
 
   return (
-    <AuthContainer information="Sign up to SwapBook" icon={<LoginIcon />}>
+    <AuthContainer information="Join us!">
       {/* nickname input */}
       <form style={formStyle} onSubmit={registerFormik.handleSubmit}>
         <TextField
@@ -125,9 +125,9 @@ const RegisterWindow = ({ onClick }: IRegisterProps) => {
           type="submit"
           variant="contained"
           size="medium"
-          sx={{ marginBottom: "10px" }}
+          sx={{ py: 1, px: 7, my: 1 }}
         >
-          Sign up
+          Register
         </Button>
         <FormHelperText error> {backendError || " "} </FormHelperText>
       </form>
