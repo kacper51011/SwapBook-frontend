@@ -20,6 +20,7 @@ My first big original project in MERN stack with typescript. Created with purpos
 - Deleting swap offers
 - Uploading own profile image
 - Changing own User Data and image
+- Toasts information about successfull actions and errors
 
 ## Technologies
 

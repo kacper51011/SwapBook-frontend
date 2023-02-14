@@ -60,16 +60,22 @@ const useBookPage = () => {
   // setting async function, will be called in useEffect
   const getBooks = useCallback(async () => {
     // setting up flexible params and queries for get request
-    const CategoryParams = category ? `/category/${category}` : "";
-    const searchParams = search ? `/search/${search}` : "";
-    const booksPerPageQuery = `?records=${booksPerPage}`;
-    const sortingQuery = sorting ? `&sort=${sorting}` : "";
-    const choosenPageQuery = `&pageNum=${choosenPage}`;
+    const CategoryParams = category || "";
+    const searchParams = search || "";
+    const booksPerPageQuery = booksPerPage;
+    const sortingQuery = sorting || "";
+    const choosenPageQuery = choosenPage;
 
     try {
-      const { data } = await axios.get(
-        `/api/books${CategoryParams}${searchParams}${booksPerPageQuery}${sortingQuery}${choosenPageQuery}`
-      );
+      const { data } = await axios.get(`/api/books`, {
+        params: {
+          category: CategoryParams,
+          searchQuery: searchParams,
+          records: booksPerPageQuery,
+          sort: sortingQuery,
+          pageNum: choosenPageQuery,
+        },
+      });
 
       setBooks(data.books);
       console.log(data);

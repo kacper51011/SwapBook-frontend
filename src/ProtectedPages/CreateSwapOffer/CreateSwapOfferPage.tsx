@@ -20,6 +20,7 @@ import {
 import useAlert from "../../hooks/useAlert";
 import SwapOfferContainer from "./SwapOfferContainer";
 
+// I just wanted to clean the component a bit, so I decided to put some data here
 const nameProps: TextFieldProps = {
   name: "nameOfTheBook",
   id: "nameOfTheBook",
@@ -89,9 +90,14 @@ const CreateSwapOfferPage = () => {
   const offerFormik: FormikProps<IOfferInitialValues> = useFormik({
     initialValues: { ...offerInitialValues },
     validationSchema: offerValidationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, actions) => {
       CreateOfferApiCall(values)
-        .then((res) => setAlert("success", "Offer created"))
+        .then((res) => {
+          setAlert("success", "Offer created");
+          setSelectedImage(null);
+          setImageUrl(null);
+          actions.resetForm();
+        })
         .catch((err) =>
           setAlert("error", "something went wrong, try again later!")
         );
