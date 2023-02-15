@@ -10,6 +10,7 @@
 
 My first big original project in MERN stack with typescript. Created with purpose of practicing MUI and NodeJS. Focused mainly on "book swap offers".
 
+Link to video: https://youtu.be/WqcL4Dwqijs
 ## Features
 
 - Authentication and authorization (JWT in backend cookie)
